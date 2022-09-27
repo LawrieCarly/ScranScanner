@@ -34,21 +34,21 @@ public class Restaurant extends User {
     public Restaurant() {
     }
 
-    public Restaurant(String displayName, String email, String password, PermissionType permissionType, List<Table> tables, List<Booking> bookings, List<Review> reviews, HashMap<String, List<String>> attributes, HashMap<PriorityType, String> incentives) {
+    public Restaurant(String displayName, String email, String password, PermissionType permissionType, List<DinnerTable> dinnerTables, List<Booking> bookings, List<Review> reviews, HashMap<String, List<String>> attributes, HashMap<PriorityType, String> incentives) {
         super(displayName, email, password, permissionType);
-        this.tables = tables;
+        this.dinnerTables = dinnerTables;
         this.bookings = bookings;
         this.reviews = reviews;
         this.attributes = attributes;
         this.incentives = incentives;
     }
 
-    public List<Table> getTables() {
-        return tables;
+    public List<DinnerTable> getDinnerTables() {
+        return dinnerTables;
     }
 
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
+    public void setTables(List<DinnerTable> dinnerTables) {
+        this.dinnerTables = dinnerTables;
     }
 
     public List<Booking> getBookings() {
