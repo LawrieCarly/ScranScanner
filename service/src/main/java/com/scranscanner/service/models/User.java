@@ -2,21 +2,41 @@ package com.scranscanner.service.models;
 
 import com.scranscanner.service.types.PermissionType;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
+    @Column
     private String displayName;
-
+    @Column
     private String email;
-
+    @Column
     private String password;
-
+    @Column
+    @Enumerated(EnumType.STRING)
     private PermissionType permissionType;
+
+    public User() {
+    }
 
     public User(String displayName, String email, String password, PermissionType permissionType) {
         this.displayName = displayName;
         this.email = email;
         this.password = password;
         this.permissionType = permissionType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDisplayName() {
