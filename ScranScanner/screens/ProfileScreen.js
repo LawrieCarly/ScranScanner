@@ -2,27 +2,15 @@ import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 
 
-const HomeScreen = ({ navigation }) => {
+const ProfileScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-            <Text style={styles.textH1}>ScranScanner Home</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={
-                () => navigation.navigate(
-                    'SettingsStack', { screen: 'Settings' }
-                )}>
-                <Text>Go to settng Tab</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={
-                () => navigation.navigate('Details')
-                }>
-                <Text>Open Details Screen</Text>
-            </TouchableOpacity>
+                <Text style={styles.textH1}>My Profile</Text>
+                <Text style={styles.textH2} >Bookings</Text>
+                <Text style={styles.textH2}>Favourites</Text>
+
             </View>
 
         </View>
@@ -49,17 +37,20 @@ const HomeScreen = ({ navigation }) => {
     textH2: {
         fontSize: 18,
         textAlign: 'center',
-        color: 'grey'
+        color: 'black',
+        paddingTop: 100
+
     },
     textH3: {
         fontSize: 16,
         textAlign: 'center',
-        color: 'grey'
+        color: 'black'
+
     },
     mainView: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
     }
     });
-export default HomeScreen;
+export default ProfileScreen;

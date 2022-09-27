@@ -2,12 +2,12 @@ import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 
 
-const HomeScreen = ({ navigation }) => {
+const ResultsScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-            <Text style={styles.textH1}>ScranScanner Home</Text>
+            <Text style={styles.textH1}>Search Results </Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={
@@ -15,13 +15,6 @@ const HomeScreen = ({ navigation }) => {
                     'SettingsStack', { screen: 'Settings' }
                 )}>
                 <Text>Go to settng Tab</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={
-                () => navigation.navigate('Details')
-                }>
-                <Text>Open Details Screen</Text>
             </TouchableOpacity>
             </View>
 
@@ -59,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
     mainView: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     }
     });
-export default HomeScreen;
+export default ResultsScreen;
