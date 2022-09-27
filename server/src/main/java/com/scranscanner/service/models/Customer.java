@@ -1,7 +1,7 @@
-package com.scranscanner.server.models;
+package com.scranscanner.service.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.scranscanner.server.types.PermissionType;
+import com.scranscanner.service.types.PermissionType;
 
 import javax.persistence.*;
 import java.util.ArrayList;

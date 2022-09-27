@@ -1,6 +1,6 @@
-package com.scranscanner.server.repositories;
+package com.scranscanner.service.repositories;
 
-import com.scranscanner.server.models.Booking;
+import com.scranscanner.service.models.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {

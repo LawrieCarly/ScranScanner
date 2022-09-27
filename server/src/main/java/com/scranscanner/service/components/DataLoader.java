@@ -1,12 +1,12 @@
-package com.scranscanner.server.components;
+package com.scranscanner.service.components;
 
-import com.scranscanner.server.models.Booking;
-import com.scranscanner.server.models.Customer;
-import com.scranscanner.server.models.DinnerTable;
-import com.scranscanner.server.models.Restaurant;
-import com.scranscanner.server.repositories.*;
-import com.scranscanner.server.types.PermissionType;
-import com.scranscanner.server.types.PriorityType;
+import com.scranscanner.service.models.Booking;
+import com.scranscanner.service.models.Customer;
+import com.scranscanner.service.models.DinnerTable;
+import com.scranscanner.service.models.Restaurant;
+import com.scranscanner.service.repositories.*;
+import com.scranscanner.service.types.PermissionType;
+import com.scranscanner.service.types.PriorityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

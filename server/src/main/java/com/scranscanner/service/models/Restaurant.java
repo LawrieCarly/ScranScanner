@@ -1,8 +1,8 @@
-package com.scranscanner.server.models;
+package com.scranscanner.service.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.scranscanner.server.types.PermissionType;
-import com.scranscanner.server.types.PriorityType;
+import com.scranscanner.service.types.PermissionType;
+import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.util.List;
 public class Restaurant extends User {
 
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnoreProperties({"restaurant", "bookings"})
     private List<DinnerTable> dinnerTables;
 
     @OneToMany(mappedBy = "restaurant")
@@ -21,10 +22,11 @@ public class Restaurant extends User {
     private List<Booking> bookings;
 
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnoreProperties({"restaurant"})
     private List<Review> reviews;
 
     @ManyToMany
-    @JsonIgnoreProperties({"savedRestaurants"})
+    @JsonIgnoreProperties({"savedRestaurants", "bookings"})
     @JoinTable(
             name = "customers_savedRestaurants",
             joinColumns = {

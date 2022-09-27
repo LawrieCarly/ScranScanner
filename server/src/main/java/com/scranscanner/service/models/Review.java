@@ -1,6 +1,4 @@
-package com.scranscanner.server.models;
-
-import com.scranscanner.server.models.Restaurant;
+package com.scranscanner.service.models;
 
 import javax.persistence.*;
 

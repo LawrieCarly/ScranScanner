@@ -1,8 +1,7 @@
-package com.scranscanner.server.models;
+package com.scranscanner.service.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.scranscanner.server.models.Booking;
-import com.scranscanner.server.types.PriorityType;
+import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.*;
 import javax.persistence.Table;

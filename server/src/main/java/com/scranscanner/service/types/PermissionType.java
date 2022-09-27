@@ -1,4 +1,4 @@
-package com.scranscanner.server.types;
+package com.scranscanner.service.types;
 
 public enum PermissionType {
     CUSTOMER,

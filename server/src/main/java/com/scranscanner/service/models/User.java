@@ -1,6 +1,6 @@
-package com.scranscanner.server.models;
+package com.scranscanner.service.models;
 
-import com.scranscanner.server.types.PermissionType;
+import com.scranscanner.service.types.PermissionType;
 
 import javax.persistence.*;
 

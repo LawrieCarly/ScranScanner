@@ -1,7 +1,7 @@
-package com.scranscanner.server.controllers;
+package com.scranscanner.service.controllers;
 
-import com.scranscanner.server.models.Restaurant;
-import com.scranscanner.server.repositories.RestaurantRepository;
+import com.scranscanner.service.models.Restaurant;
+import com.scranscanner.service.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
