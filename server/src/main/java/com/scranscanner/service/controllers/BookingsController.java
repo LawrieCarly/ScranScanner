@@ -33,12 +33,12 @@ public class BookingsController {
         return new ResponseEntity<>(bookingRepository.save(booking), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/booking/{id}")
+    @PutMapping(value = "/bookings/{id}")
     public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking, @PathVariable Long id){
         return new ResponseEntity<>(bookingRepository.save(booking), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/booking/{id}")
+    @DeleteMapping(value = "/bookings/{id}")
     public ResponseEntity<Long> deleteBooking(@PathVariable Long id){
         bookingRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
