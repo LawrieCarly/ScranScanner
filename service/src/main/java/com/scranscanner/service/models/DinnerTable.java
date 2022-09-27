@@ -1,5 +1,6 @@
 package com.scranscanner.service.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.*;
@@ -28,21 +29,48 @@ public class DinnerTable {
     @Enumerated(EnumType.STRING)
     private PriorityType priorityType;
 
-    @Column
-    private List<Table> joinables;
+    @ManyToOne
+    @JsonIgnoreProperties({"dinnerTables", "bookings", "reviews"})
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
+
+
+//    @Column
+//    private List<DinnerTable> joinables;
 
     @Column
     private HashMap<LocalTime, Boolean> timeSlots;
 
+    @OneToMany(mappedBy = "dinnerTable")
+    private List<Booking> bookings;
+
     public DinnerTable() {
     }
 
-    public DinnerTable(int tableNumber, int size, PriorityType priorityType) {
+    public DinnerTable(int tableNumber, int size, PriorityType priorityType, Restaurant restaurant) {
         this.tableNumber = tableNumber;
         this.size = size;
         this.priorityType = priorityType;
-        this.joinables = new ArrayList<>();
+//        this.joinables = new ArrayList<>();
         this.timeSlots = new HashMap<>();
+        this.restaurant = restaurant;
+        this.bookings = new ArrayList<>();
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Long getId() {
@@ -77,13 +105,13 @@ public class DinnerTable {
         this.priorityType = priorityType;
     }
 
-    public List<Table> getJoinables() {
-        return joinables;
-    }
-
-    public void setJoinables(List<Table> joinables) {
-        this.joinables = joinables;
-    }
+//    public List<DinnerTable> getJoinables() {
+//        return joinables;
+//    }
+//
+//    public void setJoinables(List<DinnerTable> joinables) {
+//        this.joinables = joinables;
+//    }
 
     public HashMap<LocalTime, Boolean> getTimeSlots() {
         return timeSlots;

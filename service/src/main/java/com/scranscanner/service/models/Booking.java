@@ -3,6 +3,7 @@ package com.scranscanner.service.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,8 +25,10 @@ public class Booking {
     @JsonIgnoreProperties("bookings")
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "booking")
-    List<DinnerTable> dinnerTables;
+    @ManyToOne
+    @JoinColumn(name = "dinner_table_id", nullable = false)
+    @JsonIgnoreProperties("bookings")
+    private DinnerTable dinnerTable;
 
     @Column
     private int numberOfGuests;
@@ -33,10 +36,10 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Customer customer, Restaurant restaurant, List<DinnerTable> dinnerTables, int numberOfGuests) {
+    public Booking(Customer customer, Restaurant restaurant, DinnerTable dinnerTable, int numberOfGuests) {
         this.customer = customer;
         this.restaurant = restaurant;
-        this.dinnerTables = dinnerTables;
+        this.dinnerTable = dinnerTable;
         this.numberOfGuests = numberOfGuests;
     }
 
@@ -64,12 +67,12 @@ public class Booking {
         this.restaurant = restaurant;
     }
 
-    public List<DinnerTable> getDinnerTables() {
-        return dinnerTables;
+    public DinnerTable getDinnerTable() {
+        return dinnerTable;
     }
 
-    public void setDinnerTables(List<DinnerTable> dinnerTables) {
-        this.dinnerTables = dinnerTables;
+    public void setDinnerTable(DinnerTable dinnerTable) {
+        this.dinnerTable = dinnerTable;
     }
 
     public int getNumberOfGuests() {
@@ -79,4 +82,5 @@ public class Booking {
     public void setNumberOfGuests(int numberOfGuests) {
         this.numberOfGuests = numberOfGuests;
     }
+
 }

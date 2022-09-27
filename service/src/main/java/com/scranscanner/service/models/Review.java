@@ -1,10 +1,9 @@
 package com.scranscanner.service.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "reviews")
 public class Review {
 
     @Id
@@ -21,13 +20,26 @@ public class Review {
     @Column
     private String comment;
 
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
+
     public Review() {
     }
 
-    public Review(String customerName, double rating, String comment) {
+    public Review(String customerName, double rating, String comment, Restaurant restaurant) {
         this.customerName = customerName;
         this.rating = rating;
         this.comment = comment;
+        this.restaurant = restaurant;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Long getId() {

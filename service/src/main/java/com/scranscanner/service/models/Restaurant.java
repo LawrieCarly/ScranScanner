@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.scranscanner.service.types.PermissionType;
 import com.scranscanner.service.types.PriorityType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +23,18 @@ public class Restaurant extends User {
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews;
 
+    @ManyToMany
+    @JsonIgnoreProperties({"savedRestaurants"})
+    @JoinTable(
+            name = "customers_savedRestaurants",
+            joinColumns = {
+                    @JoinColumn(name = "restaurant_id", nullable = false, updatable = false)
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "customer_id", nullable = false, updatable = false)
+            })
+    private List<Customer> customers;
+
     @Column
     private HashMap<String, List<String>> attributes;
 
@@ -40,15 +49,24 @@ public class Restaurant extends User {
         this.dinnerTables = new ArrayList<>();
         this.bookings = new ArrayList<>();
         this.reviews = new ArrayList<>();
+        this.customers = new ArrayList<>();
         this.attributes = new HashMap<>();
         this.incentives = new HashMap<>();
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public List<DinnerTable> getDinnerTables() {
         return dinnerTables;
     }
 
-    public void setTables(List<DinnerTable> dinnerTables) {
+    public void setDinnerTables(List<DinnerTable> dinnerTables) {
         this.dinnerTables = dinnerTables;
     }
 
@@ -82,5 +100,13 @@ public class Restaurant extends User {
 
     public void setIncentives(HashMap<PriorityType, String> incentives) {
         this.incentives = incentives;
+    }
+
+    public void addDinnerTable(DinnerTable dinnerTable) {
+        this.dinnerTables.add(dinnerTable);
+    }
+
+    public void addBooking(Booking booking) {
+        this.bookings.add(booking);
     }
 }

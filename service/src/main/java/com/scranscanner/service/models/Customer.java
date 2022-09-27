@@ -16,8 +16,16 @@ public class Customer extends User {
     @JsonIgnoreProperties({"customer"})
     private List<Booking> bookings;
 
-    @OneToMany(mappedBy = "customer")
-    @JsonIgnoreProperties({"bookings", "tables", "reviews"})
+    @ManyToMany
+    @JsonIgnoreProperties({"customers"})
+    @JoinTable(
+            name = "customers_savedRestaurants",
+            joinColumns = {
+                    @JoinColumn(name = "customer_id", nullable = false, updatable = false)
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "restaurant_id", nullable = false, updatable = false)
+            })
     private List<Restaurant> savedRestaurants;
 
     @Column
@@ -55,5 +63,9 @@ public class Customer extends User {
 
     public void setPreferences(HashMap<String, String> preferences) {
         this.preferences = preferences;
+    }
+
+    public void addBooking(Booking booking){
+        this.bookings.add(booking);
     }
 }
