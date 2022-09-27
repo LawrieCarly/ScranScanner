@@ -5,6 +5,7 @@ import com.scranscanner.service.types.PriorityType;
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,12 +37,12 @@ public class DinnerTable {
     public DinnerTable() {
     }
 
-    public DinnerTable(int tableNumber, int size, PriorityType priorityType, List<Table> joinables, HashMap<LocalTime, Boolean> timeSlots) {
+    public DinnerTable(int tableNumber, int size, PriorityType priorityType) {
         this.tableNumber = tableNumber;
         this.size = size;
         this.priorityType = priorityType;
-        this.joinables = joinables;
-        this.timeSlots = timeSlots;
+        this.joinables = new ArrayList<>();
+        this.timeSlots = new HashMap<>();
     }
 
     public Long getId() {
