@@ -1,5 +1,7 @@
 package com.scranscanner.service.models;
 
+import com.scranscanner.service.types.PermissionType;
+
 public abstract class User {
 
     private String displayName;
