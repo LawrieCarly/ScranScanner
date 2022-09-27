@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.scranscanner.service.types.PermissionType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class Customer extends User {
     public Customer() {
     }
 
-    public Customer(String displayName, String email, String password, PermissionType permissionType, List<Booking> bookings, List<Restaurant> savedRestaurants, HashMap<String, String> preferences) {
+    public Customer(String displayName, String email, String password, PermissionType permissionType) {
         super(displayName, email, password, permissionType);
-        this.bookings = bookings;
-        this.savedRestaurants = savedRestaurants;
-        this.preferences = preferences;
+        this.bookings = new ArrayList<>();
+        this.savedRestaurants = new ArrayList<>();
+        this.preferences = new HashMap<>();
     }
 
     public List<Booking> getBookings() {
