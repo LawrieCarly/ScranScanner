@@ -5,6 +5,7 @@ import com.scranscanner.service.types.PermissionType;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
