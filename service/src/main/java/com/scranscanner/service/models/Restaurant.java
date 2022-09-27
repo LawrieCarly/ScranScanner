@@ -2,6 +2,7 @@ package com.scranscanner.service.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.scranscanner.service.types.PermissionType;
+import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import java.util.List;
 public class Restaurant extends User {
 
     @OneToMany(mappedBy = "restaurant")
-    private List<Table> tables;
+    private List<DinnerTable> dinnerTables;
 
     @OneToMany(mappedBy = "restaurant")
     @JsonIgnoreProperties({"restaurant"})
