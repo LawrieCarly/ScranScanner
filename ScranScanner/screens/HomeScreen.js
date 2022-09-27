@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 
+
 const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-            <Text style={styles.textH1}>ScranScanner HomeScreen</Text>
+            <Text style={styles.textH1}>ScranScanner Home</Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={
@@ -23,10 +24,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text>Open Details Screen</Text>
             </TouchableOpacity>
             </View>
-            <Text
-            style={styles.textH2}>React Native Bottom Navigation</Text>
-            <Text
-            style={styles.textH3}>www.aboutreact.com</Text>
+
         </View>
         </SafeAreaView>
     );
