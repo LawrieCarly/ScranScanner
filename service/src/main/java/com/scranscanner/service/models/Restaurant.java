@@ -109,4 +109,10 @@ public class Restaurant extends User {
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
     }
+
+    public void addAttribute(String key, String value) {
+        ArrayList<String> array = new ArrayList<>();
+        array.add(value);
+        this.attributes.put(key, array);
+    }
 }
