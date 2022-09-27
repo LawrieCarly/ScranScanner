@@ -1,7 +1,5 @@
-import { tSTypeAliasDeclaration } from '@babel/types';
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
-import { text } from 'stream/consumers';
 
 const HomeScreen = ({ navigation }) => {
     return (
