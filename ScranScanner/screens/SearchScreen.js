@@ -7,7 +7,7 @@ const ResultsScreen = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-            <Text style={styles.textH1}>Search Results </Text>
+            <Text style={{color: 'black'}}>Search Results </Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={
