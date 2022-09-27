@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,13 +35,13 @@ public class Restaurant extends User {
     public Restaurant() {
     }
 
-    public Restaurant(String displayName, String email, String password, PermissionType permissionType, List<DinnerTable> dinnerTables, List<Booking> bookings, List<Review> reviews, HashMap<String, List<String>> attributes, HashMap<PriorityType, String> incentives) {
+    public Restaurant(String displayName, String email, String password, PermissionType permissionType) {
         super(displayName, email, password, permissionType);
-        this.dinnerTables = dinnerTables;
-        this.bookings = bookings;
-        this.reviews = reviews;
-        this.attributes = attributes;
-        this.incentives = incentives;
+        this.dinnerTables = new ArrayList<>();
+        this.bookings = new ArrayList<>();
+        this.reviews = new ArrayList<>();
+        this.attributes = new HashMap<>();
+        this.incentives = new HashMap<>();
     }
 
     public List<DinnerTable> getDinnerTables() {
