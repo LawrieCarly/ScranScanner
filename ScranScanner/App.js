@@ -1,51 +1,44 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar,StyleSheet,Text, useColorScheme,TouchableOpacity,View} from 'react-native';
+import * as React from 'react';
+import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 
-
-import HomeTab from './screens/HomeTab';
-import SearchTab from './screens/SearchTab';
-import ProfileTab from './screens/ProfileTab';
+import TabHomeScreen from './screens/TabHomeScreen';
+import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
+import TabProfileScreen from './screens/TabProfileScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
 
 
+// Navigator function to allow separate page navigation from within the Profile page
 
-const Stack = createStackNavigator();
+const ProfileStack = createNativeStackNavigator();
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator >
+      <ProfileStack.Screen name="My Profile" component={TabProfileScreen} />
+      <ProfileStack.Screen name="Reservations" component={ReservationsScreen} />
+    </ProfileStack.Navigator>
+  );
+}
+
+
+
 const Tab = createBottomTabNavigator();
 
-
-
-
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-          initialRouteName="Feed"
-          screenOptions={{
-            headerShown: false
-          }}>
-
-        <Tab.Screen
-          name="Home"
-          component={HomeTab}
-        />
-        <Tab.Screen
-          name="Search"
-          component={SearchTab}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileTab}
-        />
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="Home" component={TabHomeScreen} />
+        <Tab.Screen name="Search" component={TabSearchResultsScreen} />
+        <Tab.Screen name="Profile" component={ProfileStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
 
-export default App;
-
+// WORKING V2 ===========================================================
 
 
 // import React from 'react';
@@ -55,7 +48,57 @@ export default App;
 // import { createStackNavigator } from '@react-navigation/stack';
 
 
-// import HomeScreen from './screens/HomeScreen';
+// import TabTabHomeScreen from './screens/TabTabHomeScreen';
+// import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
+// import TabProfileScreen from './screens/TabProfileScreen';
+// import ReservationsScreen from './screens/ReservationsScreen';
+
+
+
+// const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
+
+
+
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Tab.Navigator
+//           initialRouteName="Feed"
+//           screenOptions={{
+//             headerShown: false
+//           }}>
+
+//         <Tab.Screen
+//           name="Home"
+//           component={TabTabHomeScreen}
+//         />
+//         <Tab.Screen
+//           name="Search"
+//           component={TabSearchResultsScreen}
+//         />
+//         <Tab.Screen
+//           name="Profile"
+//           component={TabProfileScreen}
+//         />
+//       </Tab.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default App;
+
+// ==================================================================================
+
+// import React from 'react';
+// import {SafeAreaView, ScrollView, StatusBar,StyleSheet,Text, useColorScheme,TouchableOpacity,View} from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createStackNavigator } from '@react-navigation/stack';
+
+
+// import TabHomeScreen from './screens/TabHomeScreen';
 // import SearchScreen from './screens/SearchScreen';
 // import ProfileScreen from './screens/ProfileScreen';
 // import ReservationsScreen from './screens/sub-screens/ReservationsScreen';
@@ -79,7 +122,7 @@ export default App;
 
 //         <Tab.Screen
 //           name="Home"
-//           component={HomeScreen}
+//           component={TabHomeScreen}
 //         />
 //         <Tab.Screen
 //           name="Search"
@@ -118,7 +161,7 @@ export default App;
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // // Screens
-// import HomeScreen from './screens/HomeScreen';
+// import TabHomeScreen from './screens/TabHomeScreen';
 // import SearchScreen from './screens/SearchScreen';
 // import ProfileScreen from './screens/ProfileScreen';
 // import BookingsScreen from './screens/BookingsScreen';
@@ -161,7 +204,7 @@ export default App;
 //           style: { padding: 10, height: 70}
 //         }}>
 
-//         <Tab.Screen name={homeName} component={HomeScreen} />
+//         <Tab.Screen name={homeName} component={TabHomeScreen} />
 //         <Tab.Screen name={searchName} component={SearchScreen} />
 //         <Tab.Screen name={profileName } component={ProfileScreen} />
 

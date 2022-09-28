@@ -2,13 +2,13 @@ import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 
 
-const ResultsScreen = ({ navigation }) => {
+const TabSearchResultsScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
             <Text style={styles.textH1}>🔎 Search Page </Text>
-
+            
             <Text style={styles.textH2}>SEARCH FORM WILL BE HERE</Text>
 
             </View>
@@ -50,4 +50,4 @@ const ResultsScreen = ({ navigation }) => {
         justifyContent: 'flex-start',
     }
     });
-export default ResultsScreen;
+export default TabSearchResultsScreen;

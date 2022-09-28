@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
-import FilteredRestaurants from '../components/FilteredRestaurants';
-import FilteredRestaurants2 from '../components/FilteredRestaurants2';
+import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
-const HomeScreen = ({ navigation }) => {
+const TabHomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
@@ -32,14 +31,7 @@ const HomeScreen = ({ navigation }) => {
 
                             {/* Weirdly can't get another component to APPEAR AND RENDER (the space is there....) */}
 
-                            <View style={{paddingTop: 70}}>
-                                <FilteredRestaurants2/>
-                            </View>
-                            <View>
-                                <Text style={{color:'black', paddingTop: 100, fontSize:30}}>
-                                #opendining
-                                </Text>
-                            </View>
+
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -79,4 +71,4 @@ const HomeScreen = ({ navigation }) => {
         justifyContent: 'flex-start',
     }
     });
-export default HomeScreen;
+export default TabHomeScreen;
