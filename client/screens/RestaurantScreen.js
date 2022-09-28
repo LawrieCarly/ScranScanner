@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const logo2 = {
@@ -13,7 +15,7 @@ const RestaurantScreen = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-                <Text style={styles.textH1}>Restaurant Name</Text>
+                <Text style={styles.textH1}>RESTAURANT PAGE</Text>
                 <Image source={logo2}/>
                 <Text style={styles.textH2}>Details</Text>
                 <Text style={styles.textH2}>Details</Text>

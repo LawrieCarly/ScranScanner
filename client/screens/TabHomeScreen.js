@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
-import FilteredRestaurants from '../containers/FilteredRestaurants';
+import FilteredRestaurants from './FilteredRestaurants';
+
 
 
 const TabHomeScreen = ({ navigation }) => {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView >
             <ScrollView>
                 <View style={styles.mainView}>
 
                         <Text style={styles.textH1}>🍔 ScranScanner 🍔 </Text>
                         <Text style={styles.textH2}>Let's find ya some scran eh pal?</Text>
+
                         <TouchableOpacity
                             style={styles.button}
                             onPress={
