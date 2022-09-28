@@ -26,11 +26,12 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        reviewRepository.deleteAll();
         bookingRepository.deleteAll();
         customerRepository.deleteAll();
         dinnerTableRepository.deleteAll();
         restaurantRepository.deleteAll();
-        reviewRepository.deleteAll();
+
 
         Restaurant restaurant1 = new Restaurant("Palmyra", "palmyra@email.com", "password", PermissionType.RESTAURANT);
         restaurantRepository.save(restaurant1);
