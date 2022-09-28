@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
-import FilteredRestaurants from './FilteredRestaurants';
+import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
-import RestaurantPreview from './RestaurantPreview';
-import FilteredRestaurants from './FilteredRestaurants';
+import RestaurantPreview from '../components/RestaurantPreview';
+import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
 const ReservationsScreen = ({ navigation }) => {
