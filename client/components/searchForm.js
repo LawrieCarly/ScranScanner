@@ -17,17 +17,26 @@ const handleSubmit = (event) => {
         partySize: partySize,
         date: moment(date).format('YYYY-MM-DD'),
     }
+    // console.log(restaurantList)
     setLocation("");
     setPartySize("");
     setDate(new Date());
 }
 
-const restaurantName = restaurants.map(restaurant => {restaurant.displayName});
+console.log(restaurants)
+
+// const restaurantList = () => { restaurants.map((restaurant) => {
+//         return (
+//         <View>
+//             <Text>{restaurant.title}</Text>
+//         </View>
+//         );
+//     });
+// };
 
 return (
     <View>
         <Text>Search for a table!</Text>
-
         <TextInput
             style={styles.input}
             onChangeText={(input) => setLocation(input)}
@@ -51,10 +60,14 @@ return (
             onConfirm={(date) => {setOpen(false), setDate(date)}}
             onCancel={() => { setOpen(false)}}
         />
+        <View>
+            {restaurants.map((restaurant) => { return (
+            <View><Text style={styles.buttonText}>{restaurant.displayName}</Text></View>
+            );})}
+        </View>
         <Pressable style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Find Restaurants</Text>
         </Pressable>
-        <Text>{restaurantName}</Text>
 
         
     </View>
@@ -74,7 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor:"black"
     },
     buttonText: {
-        color:'white'
+        color:'black'
 
     },
 
