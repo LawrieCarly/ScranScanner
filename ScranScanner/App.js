@@ -5,10 +5,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import BookingsScreen from './screens/BookingsScreen';
+import HomeTab from './screens/HomeTab';
+import SearchTab from './screens/SearchTab';
+import ProfileTab from './screens/ProfileTab';
+import ReservationsScreen from './screens/ReservationsScreen';
 
 
 
@@ -16,46 +16,28 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
-function ProfileStack() {
-    return (
-    <Stack.Navigator
-      initialRouteName="Profile"
-  >
 
-      <Stack.Screen
-        name="Bookings"
-        component={BookingsScreen}
-        options={{ title: 'Details Page' }}
-      />
-      {/* <Stack.Screen
-        name="Favourites"
-        component={FavouritesScreen}
-        options={{ title: 'Profile Page' }}
-      /> */}
-    </Stack.Navigator>
-  );
-}
 
 function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
+          initialRouteName="Feed"
           screenOptions={{
             headerShown: false
-          }}
-        initialRouteName="Feed">
+          }}>
 
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeTab}
         />
         <Tab.Screen
           name="Search"
-          component={SearchScreen}
+          component={SearchTab}
         />
         <Tab.Screen
           name="Profile"
-          component={ProfileStack}
+          component={ProfileTab}
         />
       </Tab.Navigator>
     </NavigationContainer>
@@ -63,6 +45,72 @@ function App() {
 }
 
 export default App;
+
+
+
+// import React from 'react';
+// import {SafeAreaView, ScrollView, StatusBar,StyleSheet,Text, useColorScheme,TouchableOpacity,View} from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createStackNavigator } from '@react-navigation/stack';
+
+
+// import HomeScreen from './screens/HomeScreen';
+// import SearchScreen from './screens/SearchScreen';
+// import ProfileScreen from './screens/ProfileScreen';
+// import ReservationsScreen from './screens/sub-screens/ReservationsScreen';
+
+
+
+// const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
+
+
+
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Tab.Navigator
+//           initialRouteName="Feed"
+//           screenOptions={{
+//             headerShown: false
+//           }}>
+
+//         <Tab.Screen
+//           name="Home"
+//           component={HomeScreen}
+//         />
+//         <Tab.Screen
+//           name="Search"
+//           component={SearchScreen}
+//         />
+//         <Tab.Screen
+//           name="Profile"
+//           component={ProfileScreen}
+//         />
+//       </Tab.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ALTERNATE BOTTOM NAV ==============================================================================================================================================
+
+
 
 
 // import * as React from 'react';
