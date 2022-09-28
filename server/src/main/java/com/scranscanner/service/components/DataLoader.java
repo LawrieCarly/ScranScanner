@@ -1,9 +1,6 @@
 package com.scranscanner.service.components;
 
-import com.scranscanner.service.models.Booking;
-import com.scranscanner.service.models.Customer;
-import com.scranscanner.service.models.DinnerTable;
-import com.scranscanner.service.models.Restaurant;
+import com.scranscanner.service.models.*;
 import com.scranscanner.service.repositories.*;
 import com.scranscanner.service.types.PermissionType;
 import com.scranscanner.service.types.PriorityType;
@@ -58,9 +55,15 @@ public class DataLoader implements ApplicationRunner {
 
         Booking bookingEthan = new Booking(customer1, restaurant1, dinnerTable1, 4);
         bookingRepository.save(bookingEthan);
-
         Booking bookingSam = new Booking(customer2, restaurant2, dinnerTable2, 2);
         bookingRepository.save(bookingSam);
+
+        Review reviewEthan = new Review("Ethan", 4.5, "Fabtastic", restaurant1);
+        reviewRepository.save(reviewEthan);
+        restaurant1.addReview(reviewEthan);
+        Review reviewSam = new Review("Sam", 4, "Great, but not this morning...", restaurant2);
+        reviewRepository.save(reviewSam);
+        restaurant2.addReview((reviewSam));
 
         restaurant1.addDinnerTable(dinnerTable1);
         restaurantRepository.save(restaurant1);

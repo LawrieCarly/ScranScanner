@@ -117,4 +117,8 @@ public class Restaurant extends User {
         array.add(value);
         this.attributes.put(key, array);
     }
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
 }
