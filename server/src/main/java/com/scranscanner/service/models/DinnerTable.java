@@ -5,6 +5,8 @@ import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +122,11 @@ public class DinnerTable {
 
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
+    }
+
+
+    public void addAvailability(Availability availability) {
+        this.availabilities.add(availability);
     }
 }
 
