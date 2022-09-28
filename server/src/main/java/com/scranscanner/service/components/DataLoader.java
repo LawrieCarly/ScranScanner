@@ -32,9 +32,6 @@ public class DataLoader implements ApplicationRunner {
         restaurantRepository.deleteAll();
         reviewRepository.deleteAll();
 
-
-
-
         Restaurant restaurant1 = new Restaurant("Palmyra", "palmyra@email.com", "password", PermissionType.RESTAURANT);
         restaurantRepository.save(restaurant1);
         Restaurant restaurant2 = new Restaurant("Tasty Noodles", "tastynoodles@email.com", "password", PermissionType.RESTAURANT);
