@@ -4,18 +4,16 @@ import RestaurantPreview from '../components/RestaurantPreview';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
-const ReservationsScreen = ({ navigation }) => {
+const FavouritesScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-                <Text style={styles.textH1}>Here's what you've booked:</Text>
+                <Text style={styles.textH1}>Places to try and those you already love:</Text>
             </View>
-          
-            <View style={styles.mainView}>
+            <View style={{ flex: 3, padding: 16 }}>
                 <RestaurantPreview/>
             </View>
-
 
         </View>
         </SafeAreaView>
@@ -57,4 +55,4 @@ const ReservationsScreen = ({ navigation }) => {
         justifyContent: 'flex-start',
     }
     });
-export default ReservationsScreen;
+export default FavouritesScreen;

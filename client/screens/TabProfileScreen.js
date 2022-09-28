@@ -21,17 +21,12 @@ function TabProfileScreen({ navigation }) {
                     
                     <View style={{paddingTop: 50}}/>
 
-                    {/* <Button
+                    <Button
                     title="Go to Favourites"
-                    onPress={() => navigation.navigate('Reservations')}
+                    onPress={() => navigation.navigate('Favourites')}
                     />
 
-                    <View style={{paddingTop: 50}}/>
 
-                    <Button
-                    title="My Preferences "
-                    onPress={() => navigation.navigate('Reservations')}
-                    /> */}
                 </View>
 
             </ScrollView>

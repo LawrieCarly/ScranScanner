@@ -8,6 +8,8 @@ import TabHomeScreen from './screens/TabHomeScreen';
 import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
 import TabProfileScreen from './screens/TabProfileScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
+import FavouritesScreen from './screens/FavouritesScreen';
+import RestaurantScreen from './screens/RestaurantScreen';
 
 
 // Navigator function to allow separate page navigation from within the Profile page
@@ -18,9 +20,19 @@ function ProfileStackScreen() {
     <ProfileStack.Navigator >
       <ProfileStack.Screen name="My Profile" component={TabProfileScreen} />
       <ProfileStack.Screen name="Reservations" component={ReservationsScreen} />
+      <ProfileStack.Screen name="Favourites" component={FavouritesScreen} />
     </ProfileStack.Navigator>
   );
 }
+// const HomeStack = createNativeStackNavigator();
+// function HomeStackScreen() {
+//   return (
+//     <HomeStack.Navigator >
+//       <HomeStack.Screen name="Home" component={TabHomeScreen} />
+//       <HomeStack.Screen name="Restaurant" component={RestaurantScreen} />
+//     </HomeStack.Navigator>
+//   );
+// }
 
 
 
@@ -33,6 +45,9 @@ export default function App() {
         <Tab.Screen name="Home" component={TabHomeScreen} />
         <Tab.Screen name="Search" component={TabSearchResultsScreen} />
         <Tab.Screen name="Profile" component={ProfileStackScreen} />
+        {/* <Tab.Screen name="Restaurant" component={RestaurantScreen} 
+            options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
+               /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
