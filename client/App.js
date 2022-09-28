@@ -12,6 +12,7 @@ import ReservationsScreen from './screens/ReservationsScreen';
 
 // Navigator function to allow separate page navigation from within the Profile page
 
+
 const ProfileStack = createNativeStackNavigator();
 function ProfileStackScreen() {
   return (
@@ -21,8 +22,6 @@ function ProfileStackScreen() {
     </ProfileStack.Navigator>
   );
 }
-
-
 
 const Tab = createBottomTabNavigator();
 
