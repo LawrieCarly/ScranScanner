@@ -1,10 +1,14 @@
 package com.scranscanner.service.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.scranscanner.service.repositories.AvailabilityRepository;
 import com.scranscanner.service.types.PermissionType;
 import com.scranscanner.service.types.PriorityType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,4 +125,6 @@ public class Restaurant extends User {
     public void addReview(Review review){
         this.reviews.add(review);
     }
+
+
 }

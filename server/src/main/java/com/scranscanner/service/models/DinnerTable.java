@@ -5,9 +5,9 @@ import com.scranscanner.service.types.PriorityType;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -38,8 +38,11 @@ public class DinnerTable {
 //    @Column
 //    private List<DinnerTable> joinables;
 
-    @Column
-    private HashMap<LocalTime, Boolean> timeSlots;
+//    @Column
+//    private HashMap<LocalTime, Boolean> timeSlots;
+
+    @OneToMany(mappedBy = "dinnerTable")
+    private List<Availability> availabilities;
 
     @OneToMany(mappedBy = "dinnerTable")
     private List<Booking> bookings;
@@ -52,7 +55,7 @@ public class DinnerTable {
         this.size = size;
         this.priorityType = priorityType;
 //        this.joinables = new ArrayList<>();
-        this.timeSlots = new HashMap<>();
+        this.availabilities = new ArrayList<>();
         this.restaurant = restaurant;
         this.bookings = new ArrayList<>();
     }
@@ -113,12 +116,17 @@ public class DinnerTable {
 //        this.joinables = joinables;
 //    }
 
-    public HashMap<LocalTime, Boolean> getTimeSlots() {
-        return timeSlots;
+    public List<Availability> getAvailabilities() {
+        return availabilities;
     }
 
-    public void setTimeSlots(HashMap<LocalTime, Boolean> timeSlots) {
-        this.timeSlots = timeSlots;
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
+    }
+
+
+    public void addAvailability(Availability availability) {
+        this.availabilities.add(availability);
     }
 }
 
