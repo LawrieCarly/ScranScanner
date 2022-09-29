@@ -18,7 +18,7 @@ const logo2 = {
 
 
 
-const FilteredRestaurants = ({restaurants}) => {
+const FilteredRestaurants = ({restaurants, route}) => {
 
   const navigation = useNavigation();
 //   const restaurantNodes = restaurants.map((restaurant, index)=>{
@@ -36,9 +36,23 @@ const FilteredRestaurants = ({restaurants}) => {
   <>
         <ScrollView>{restaurants.map((restaurant) => { 
           return ( 
-            <TouchableOpacity onPress={
+            <TouchableOpacity 
+            onPress={
               () => navigation.navigate(
-                  'Restaurant')}>
+                  'Restaurant', { restaurantId: restaurant.id })}
+            // onPress={() => {
+            //   // Pass and merge params back to home screen
+            //   navigation.navigate({
+            //     name: 'Restaurant',
+            //     params: restaurant.id,
+            //     merge: true,
+            //   });
+            // }}
+                  
+                  >
+
+
+
             <View horizontal={true}>
               <Text>{restaurant.displayName}</Text>
               <Image source={logo2}/>
