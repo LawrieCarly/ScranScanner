@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import RestaurantPreview from '../components/RestaurantPreview';
+import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 
 
 const logo2 = {
@@ -21,10 +21,10 @@ const SearchResultsRestaurants = ({ navigation }) => (
           
           <ScrollView>
 
-              <RestaurantPreview/>
-              <RestaurantPreview/>
-              <RestaurantPreview/>
-              <RestaurantPreview/>
+              <RestaurantPreviewWide/>
+              <RestaurantPreviewWide/>
+              <RestaurantPreviewWide/>
+              <RestaurantPreviewWide/>
 
 
           </ScrollView>

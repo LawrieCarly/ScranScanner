@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
-import RestaurantPreview from '../components/RestaurantPreview';
+import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
@@ -12,7 +12,8 @@ const FavouritesScreen = ({ navigation }) => {
                 <Text style={styles.textH1}>Places to try and those you already love:</Text>
             </View>
             <View style={{ flex: 3, padding: 16 }}>
-                <RestaurantPreview/>
+                <RestaurantPreviewWide/>
+                <RestaurantPreviewWide/>
             </View>
 
         </View>
