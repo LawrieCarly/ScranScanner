@@ -1,23 +1,19 @@
 import * as React from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
+import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
-const logo2 = {
-    uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    width: '100%'  
-  };
-
-
-const RestaurantPreview = ({ navigation }) => {
+const FavouritesScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-        <View style={{maxWidth: 50 }}>
+        <View style={{ flex: 1, padding: 16 }}>
             <View style={styles.mainView}>
-                <Text style={styles.textH1}>Restaurant Name</Text>
-                <Image source={logo2}/>
-                <Text style={styles.textH2}>Details</Text>
-                <Text style={styles.textH2}>Details</Text>
-                <Text style={styles.textH2}>Details</Text>
+                <Text style={styles.textH1}>Places to try and those you already love:</Text>
+            </View>
+            <View style={{ flex: 3, padding: 16 }}>
+                <RestaurantPreviewWide/>
+                <RestaurantPreviewWide/>
             </View>
 
         </View>
@@ -60,4 +56,4 @@ const RestaurantPreview = ({ navigation }) => {
         justifyContent: 'flex-start',
     }
     });
-export default RestaurantPreview;
+export default FavouritesScreen;

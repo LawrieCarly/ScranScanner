@@ -1,7 +1,7 @@
 
 
 export const getRestaurants = () => {
-  return fetch(`http://192.168.1.154:8080/restaurants`)
+  return fetch(`http://192.168.100.248:8080/restaurants`)
     .then(res => res.json());
     
 }

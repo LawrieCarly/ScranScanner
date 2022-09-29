@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
-import { SearchForm } from '../components/SearchForm';
+import { SearchForm } from '../components/searchForm';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
+
 
 
 const TabHomeScreen = ({ navigation }) => {
@@ -15,19 +16,20 @@ const TabHomeScreen = ({ navigation }) => {
     }, []);
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView >
             <ScrollView>
                 <View style={styles.mainView}>
 
                         <Text style={styles.textH1}>🍔 ScranScanner 🍔 </Text>
                         <Text style={styles.textH2}>Let's find ya some scran eh pal?</Text>
+
                         <TouchableOpacity
                             style={styles.button}
                             onPress={
                             () => navigation.navigate(
                                 'Search', { screen: 'SearchScreen' }
                             )}>
-                            <Text>Search_SEARCHSCREEN_ </Text>
+                            <Text>Search PlaceHolder </Text>
                         </TouchableOpacity>
 
                             <View>
@@ -36,6 +38,8 @@ const TabHomeScreen = ({ navigation }) => {
                                 #opendining
                                 </Text>
                             </View>
+
+
                             <View style={{paddingTop: 70}}>
                                 <FilteredRestaurants/>
                             </View>
@@ -54,7 +58,7 @@ const TabHomeScreen = ({ navigation }) => {
     const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: 'blue',
+        backgroundColor: 'black',
         padding: 10,
         width: 300,
         marginTop: 16,

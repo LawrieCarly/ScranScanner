@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
-import RestaurantPreview from '../components/RestaurantPreview';
+import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
+import FilteredRestaurants from '../containers/FilteredRestaurants';
 
 
 const ReservationsScreen = ({ navigation }) => {
@@ -10,9 +11,11 @@ const ReservationsScreen = ({ navigation }) => {
             <View style={styles.mainView}>
                 <Text style={styles.textH1}>Here's what you've booked:</Text>
             </View>
-            <View>
-                <RestaurantPreview/>
+          
+            <View style={styles.mainView}>
+                <RestaurantPreviewSmall/>
             </View>
+
 
         </View>
         </SafeAreaView>
