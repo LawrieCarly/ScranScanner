@@ -12,22 +12,11 @@ function TabProfileScreen({ navigation }) {
                         👤 Hello, [User Name]
                     </Text>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
 
-                    <Button style={styles.button}
-                    title="Go to Reservations"
-                    onPress={() => navigation.navigate('Reservations')}
-                    />
-                    
-                    <View style={{paddingTop: 50}}/>
+                <Text style={styles.textH1}>Preferences 1</Text>
+                <Text style={styles.textH1}>Preferences 2</Text>
+                <Text style={styles.textH1}>Preferences 3</Text>
 
-                    <Button
-                    title="Go to Favourites"
-                    onPress={() => navigation.navigate('Favourites')}
-                    />
-
-
-                </View>
 
             </ScrollView>
         </SafeAreaView>
@@ -44,7 +33,9 @@ function TabProfileScreen({ navigation }) {
     },
     textH1: {
         fontSize: 25,
-        textAlign: 'center',
+        textAlign: 'left',
+        padding: 50,
+
         marginBottom: 16,
         color: 'black'
     },

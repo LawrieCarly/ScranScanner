@@ -3,6 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+
 import TabHomeScreen from './screens/TabHomeScreen';
 import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
 import TabProfileScreen from './screens/TabProfileScreen';
@@ -25,6 +28,18 @@ function ProfileStackScreen() {
 }
 
 
+const TopTab = createMaterialTopTabNavigator();
+
+function MyTabsScreen() {
+  return (
+    <TopTab.Navigator>
+      <TopTab.Screen name="Reservations" component={ReservationsScreen} />
+      <TopTab.Screen name="Favourites" component={FavouritesScreen} />
+    </TopTab.Navigator>
+  );
+}
+
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -33,7 +48,8 @@ export default function App() {
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={TabHomeScreen} />
         <Tab.Screen name="Search" component={TabSearchResultsScreen} />
-        <Tab.Screen name="Profile" component={ProfileStackScreen} />
+        <Tab.Screen name="Notifications" component={MyTabsScreen} />
+        <Tab.Screen name="Profile" component={TabProfileScreen} />
 
 
         <Tab.Screen name="Restaurant" component={RestaurantScreen} 
