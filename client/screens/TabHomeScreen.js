@@ -19,7 +19,7 @@ const TabHomeScreen = ({ navigation }) => {
                             () => navigation.navigate(
                                 'Search', { screen: 'SearchScreen' }
                             )}>
-                            <Text>Search_SEARCHSCREEN_ </Text>
+                            <Text>Search PlaceHolder </Text>
                         </TouchableOpacity>
 
                             <View>
@@ -45,7 +45,7 @@ const TabHomeScreen = ({ navigation }) => {
     const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: 'blue',
+        backgroundColor: 'black',
         padding: 10,
         width: 300,
         marginTop: 16,
