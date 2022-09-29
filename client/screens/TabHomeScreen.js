@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
-import { SearchForm } from '../components/SearchForm';
+import { SearchForm } from '../components/searchForm';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
 
@@ -38,6 +38,8 @@ const TabHomeScreen = ({ navigation }) => {
                                 #opendining
                                 </Text>
                             </View>
+
+
                             <View style={{paddingTop: 70}}>
                                 <FilteredRestaurants/>
                             </View>
