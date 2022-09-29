@@ -41,7 +41,7 @@ const TabHomeScreen = ({ navigation }) => {
 
 
                             <View style={{paddingTop: 70}}>
-                                <FilteredRestaurants/>
+                                <FilteredRestaurants restaurants={restaurants}/>
                             </View>
 
                             {/* Weirdly can't get another component to APPEAR AND RENDER (the space is there....) */}
