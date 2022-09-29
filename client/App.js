@@ -58,4 +58,25 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-};
+}
+
+// WORKING V2 ===========================================================
+
+
+// import React from 'react';
+// import {SafeAreaView, ScrollView, StatusBar,StyleSheet,Text, useColorScheme,TouchableOpacity,View} from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createStackNavigator } from '@react-navigation/stack';
+
+
+// import TabTabHomeScreen from './screens/TabTabHomeScreen';
+// import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
+// import TabProfileScreen from './screens/TabProfileScreen';
+// import ReservationsScreen from './screens/ReservationsScreen';
+
+
+
+// const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
+

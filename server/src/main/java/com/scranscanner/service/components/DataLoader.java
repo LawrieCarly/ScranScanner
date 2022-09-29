@@ -1,5 +1,6 @@
 package com.scranscanner.service.components;
 
+import com.scranscanner.service.helpers.DateRange;
 import com.scranscanner.service.models.*;
 import com.scranscanner.service.repositories.*;
 import com.scranscanner.service.types.PermissionType;
@@ -8,6 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -22,18 +31,32 @@ public class DataLoader implements ApplicationRunner {
     RestaurantRepository restaurantRepository;
     @Autowired
     ReviewRepository reviewRepository;
+    @Autowired
+    AvailabilityRepository availabilityRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        availabilityRepository.deleteAll();
+        reviewRepository.deleteAll();
         bookingRepository.deleteAll();
         customerRepository.deleteAll();
         dinnerTableRepository.deleteAll();
         restaurantRepository.deleteAll();
-        reviewRepository.deleteAll();
 
+        LocalDate startDate = LocalDate.of(2022,9,28);
+        LocalDate endDate = LocalDate.of(2022,10,28);
 
+        LocalTime time1 = LocalTime.of(14,0,0);
+        LocalTime time2 = LocalTime.of(16,0,0);
+        LocalTime time3 = LocalTime.of(18,0,0);
 
+        List<LocalTime> times = new ArrayList<>();
+        times.add(time1);
+        times.add(time2);
+        times.add(time3);
+
+        List<LocalDate> dates = DateRange.getDatesBetween(startDate, endDate);
 
         Restaurant restaurant1 = new Restaurant("Palmyra", "palmyra@email.com", "password", PermissionType.RESTAURANT);
         restaurantRepository.save(restaurant1);
@@ -45,6 +68,17 @@ public class DataLoader implements ApplicationRunner {
 
         DinnerTable dinnerTable1 = new DinnerTable(1, 4, PriorityType.LOW, restaurant1);
         dinnerTableRepository.save(dinnerTable1);
+
+        List<Availability> availabilities1 = DateRange.getAvailabilities(dates, times, dinnerTable1);
+
+        for(Availability availability: availabilities1){
+            availabilityRepository.save(availability);
+            dinnerTable1.addAvailability(availability);
+            dinnerTableRepository.save(dinnerTable1);
+        }
+
+
+
         DinnerTable dinnerTable2 = new DinnerTable(2, 2, PriorityType.HIGH, restaurant2);
         dinnerTableRepository.save(dinnerTable2);
 

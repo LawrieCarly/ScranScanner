@@ -1,12 +1,15 @@
 package com.scranscanner.service.controllers;
 
+import com.scranscanner.service.models.DinnerTable;
 import com.scranscanner.service.models.Restaurant;
+import com.scranscanner.service.repositories.DinnerTableRepository;
 import com.scranscanner.service.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +18,27 @@ public class RestaurantController {
 
     @Autowired
     RestaurantRepository restaurantRepository;
+    @Autowired
+    DinnerTableRepository dinnerTableRepository;
 
     @GetMapping(value = "/restaurants")
-    public ResponseEntity<List<Restaurant>> getAllRestaurants(){
-        return new ResponseEntity<>(restaurantRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Restaurant>> getAllRestaurants(@RequestParam(required = false, name = "partySize") Integer partySize){
+        if (partySize == null){
+            return new ResponseEntity<>(restaurantRepository.findAll(), HttpStatus.OK);
+        }
+
+        // setup list to return based on searches
+        ArrayList<Restaurant> restaurantsToReturn = new ArrayList<>();
+        // look at each parameter
+        List<DinnerTable> dinnerTables = dinnerTableRepository.findBySizeGreaterThanEqual(partySize);
+        // for each table
+        for (DinnerTable dinnerTable: dinnerTables){
+            // get rest
+            Restaurant restaurant = dinnerTable.getRestaurant();
+            // append to returning list
+            restaurantsToReturn.add(restaurant);
+        }
+        return new ResponseEntity<>(restaurantsToReturn, HttpStatus.OK);
     }
 
     // Show

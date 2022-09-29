@@ -1,10 +1,20 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent} from 'react-native';
+import { SearchForm } from '../components/SearchForm';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
+import { getRestaurants } from '../services/SearchService'
 
 
 
 const TabHomeScreen = ({ navigation }) => {
+    
+    const [restaurants, setRestaurants] = useState([])
+
+    useEffect(() => {
+        getRestaurants()
+            .then(restaurants => setRestaurants(restaurants));
+    }, []);
+
     return (
         <SafeAreaView >
             <ScrollView>
@@ -23,6 +33,7 @@ const TabHomeScreen = ({ navigation }) => {
                         </TouchableOpacity>
 
                             <View>
+                                <SearchForm restaurants={restaurants}/>
                                 <Text style={{color:'black', paddingTop: 100, fontSize:30}}>
                                 #opendining
                                 </Text>
