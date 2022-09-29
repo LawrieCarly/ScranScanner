@@ -1,5 +1,6 @@
 package com.scranscanner.service.models;
 
+import ch.qos.logback.core.read.ListAppender;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.scranscanner.service.repositories.AvailabilityRepository;
 import com.scranscanner.service.types.PermissionType;
@@ -47,6 +48,9 @@ public class Restaurant extends User {
     @Column
     private HashMap<PriorityType, String> incentives;
 
+    @Column
+    private List<Availability> searchedAvailabilities;
+
     public Restaurant() {
     }
 
@@ -58,6 +62,7 @@ public class Restaurant extends User {
         this.customers = new ArrayList<>();
         this.attributes = new HashMap<>();
         this.incentives = new HashMap<>();
+        this.searchedAvailabilities = new ArrayList<>();
     }
 
     public List<Customer> getCustomers() {
@@ -126,5 +131,16 @@ public class Restaurant extends User {
         this.reviews.add(review);
     }
 
+    public List<Availability> getSearchedAvailabilities() {
+        return searchedAvailabilities;
+    }
+
+    public void setSearchedAvailabilities(List<Availability> searchedAvailabilities) {
+        this.searchedAvailabilities = searchedAvailabilities;
+    }
+
+    public void addSearchedAvailabilities(List<Availability> availabilities) {
+        this.searchedAvailabilities.addAll(availabilities);
+    }
 
 }

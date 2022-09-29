@@ -23,7 +23,7 @@ public class Availability {
 
     @ManyToOne
     @JoinColumn(name = "dinner_table_id", nullable = false)
-    @JsonIgnoreProperties({"availabilities", "bookings", "restaurant"})
+    @JsonIgnoreProperties({"availabilities", "bookings"})
     private DinnerTable dinnerTable;
 
     @Column

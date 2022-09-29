@@ -45,7 +45,7 @@ public class DataLoader implements ApplicationRunner {
         restaurantRepository.deleteAll();
 
         LocalDate startDate = LocalDate.of(2022,9,28);
-        LocalDate endDate = LocalDate.of(2022,10,28);
+        LocalDate endDate = LocalDate.of(2022,10,3);
 
         LocalTime time1 = LocalTime.of(14,0,0);
         LocalTime time2 = LocalTime.of(16,0,0);

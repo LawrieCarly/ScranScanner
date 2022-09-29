@@ -1,7 +1,9 @@
 package com.scranscanner.service.controllers;
 
+import com.scranscanner.service.models.Availability;
 import com.scranscanner.service.models.DinnerTable;
 import com.scranscanner.service.models.Restaurant;
+import com.scranscanner.service.repositories.AvailabilityRepository;
 import com.scranscanner.service.repositories.DinnerTableRepository;
 import com.scranscanner.service.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +22,43 @@ public class RestaurantController {
     RestaurantRepository restaurantRepository;
     @Autowired
     DinnerTableRepository dinnerTableRepository;
+    @Autowired
+    AvailabilityRepository availabilityRepository;
 
-    @GetMapping(value = "/restaurants")
-    public ResponseEntity<List<Restaurant>> getAllRestaurants(@RequestParam(required = false, name = "partySize") Integer partySize){
-        if (partySize == null){
-            return new ResponseEntity<>(restaurantRepository.findAll(), HttpStatus.OK);
-        }
+//    @GetMapping(value = "/restaurants")
+//    public ResponseEntity<List<Restaurant>> getAllRestaurants(@RequestParam(required = false, name = "partySize") Integer partySize){
+//        if (partySize == null){
+//            return new ResponseEntity<>(restaurantRepository.findAll(), HttpStatus.OK);
+//        }
+//
+//        // setup list to return based on searches
+//        ArrayList<Restaurant> restaurantsToReturn = new ArrayList<>();
+//        // look at each parameter
+//        List<DinnerTable> dinnerTables = dinnerTableRepository.findBySizeGreaterThanEqual(partySize);
+//        // for each table
+//        for (DinnerTable dinnerTable: dinnerTables){
+//            // get rest
+//            Restaurant restaurant = dinnerTable.getRestaurant();
+//            // append to returning list
+//            restaurantsToReturn.add(restaurant);
+//        }
+//        return new ResponseEntity<>(restaurantsToReturn, HttpStatus.OK);
+//    }
 
-        // setup list to return based on searches
-        ArrayList<Restaurant> restaurantsToReturn = new ArrayList<>();
-        // look at each parameter
-        List<DinnerTable> dinnerTables = dinnerTableRepository.findBySizeGreaterThanEqual(partySize);
-        // for each table
-        for (DinnerTable dinnerTable: dinnerTables){
-            // get rest
-            Restaurant restaurant = dinnerTable.getRestaurant();
-            // append to returning list
-            restaurantsToReturn.add(restaurant);
+    @GetMapping(value = "/restaurants/filtered")
+    public ResponseEntity<List<Restaurant>> getFilteredRestaurants(){
+        List<Restaurant> searchedRestaurants = new ArrayList<>();
+        List<Restaurant> allRestaurants = restaurantRepository.findAll();
+        for (Restaurant restaurant: allRestaurants){
+            List<Availability> listOfAvailabilities = availabilityRepository.findByIsAvailableAndDinnerTablesRestaurantOrderByDateIgnoreCase(true, restaurant);
+            if (listOfAvailabilities.size() != 0){
+                restaurant.addSearchedAvailabilities(listOfAvailabilities);
+                searchedRestaurants.add(restaurant);
+            }
         }
-        return new ResponseEntity<>(restaurantsToReturn, HttpStatus.OK);
+        return new ResponseEntity<>(searchedRestaurants, HttpStatus.OK);
     }
+
 
     // Show
     @GetMapping(value = "/restaurants/{id}")
