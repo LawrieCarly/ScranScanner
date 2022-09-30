@@ -21,15 +21,7 @@ public class BookingsController {
 
     @Autowired
     BookingRepository bookingRepository;
-
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    RestaurantRepository restaurantRepository;
-
-    @Autowired
-    DinnerTableRepository dinnerTableRepository;
+    Customer customer;
 
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBookings(){
@@ -40,6 +32,11 @@ public class BookingsController {
     @GetMapping(value = "/bookings/{id}")
     public ResponseEntity<Optional<Booking>> findBookingById(@PathVariable Long id){
         return new ResponseEntity<>(bookingRepository.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/bookings/customer/{id}")
+    public ResponseEntity<Optional<Booking>> findBookingByCustomer(@PathVariable Long id){
+            return new ResponseEntity<>(bookingRepository.findByCustomerId(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "/bookings")

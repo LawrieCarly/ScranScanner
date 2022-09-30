@@ -22,11 +22,6 @@ public class AvailabilityController {
     @Autowired
     AvailabilityRepository availabilityRepository;
 
-//    @GetMapping(value = "/availabilities/available")
-//    public ResponseEntity<List<Availability>> findAvailableDinnerTable(){
-//        return new ResponseEntity<>(availabilityRepository.findByIsAvailableOrderByDate(true), HttpStatus.OK);
-//    }
-
     @GetMapping(value = "/availabilities/restaurant/{id}/filtered")
     public ResponseEntity<List<Availability>> getFilteredAvailability(@PathVariable Long id, @RequestParam(name="partySize") Integer partySize, @RequestParam(name="date") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam(name="time") @DateTimeFormat(iso=DateTimeFormat.ISO.TIME) LocalTime time){
         return new ResponseEntity<>(availabilityRepository.findAvailableTablesByRestaurantNative(id, partySize, date, time), HttpStatus.OK);
