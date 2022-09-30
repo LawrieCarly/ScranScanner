@@ -151,6 +151,7 @@ public class DataLoader implements ApplicationRunner {
         palmyra.addAttribute("cuisine", "Pizza");
         palmyra.addAttribute("cuisine", "Falafel");
         palmyra.addAttribute("price", "£");
+        restaurantRepository.save(palmyra);
 
         DinnerTable palmyraTable1 = new DinnerTable(1,2,PriorityType.LOW,palmyra);
         dinnerTableRepository.save(palmyraTable1);
