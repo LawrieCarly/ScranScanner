@@ -24,7 +24,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
 
     // Converted state into strings to allow them to be passed as params to RestaurantScreen
-    const formattedDate = moment(date).format('DD-MM-YYYY')
+    const formattedDate = moment(date).format('YYYY-MM-DD')
     const formattedTime = moment(date).format('00:00')
 
     

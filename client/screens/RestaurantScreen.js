@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getRestaurantById } from '../services/SearchService';
-import { getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
+
+import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 
 
 
@@ -15,6 +15,8 @@ const logo2 = {
 
 
 const RestaurantScreen = ({ navigation, route }) => {
+
+    // State for restaurant (details?)
     
     const [restaurantById, setRestaurantById ] = useState({})
     const IsFocused = useIsFocused();
@@ -24,14 +26,43 @@ const RestaurantScreen = ({ navigation, route }) => {
         .then(returnedResto => setRestaurantById(returnedResto))
         }, [IsFocused]);
 
+    //  State for retreiving filtered bookings from selected resto
+
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState({})
     useEffect( () => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        }, [IsFocused]);
+        }, [getRestaurantById]);
 
 
-    console.log(filteredAvailablitiesOfRestaurant);
+        //     useEffect(() => {
+            // const searchNodes = 
+            // searchResults.map((searchResult, index) => { 
+            //     return (
+
+            //         // Params passed to RestaurantScreen route.
+            //         // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
+
+            //         <TouchableOpacity
+            //         onPress={
+            //             () => navigation.navigate(
+            //                 // params are stringified above (not objects)
+            //                 'Restaurant', { restaurantId: searchResult.id, partysize: partySize, date: formattedDate, time: formattedTime })}
+            //         >
+            //         <View>
+            //             <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+            //             <Image source={logo2}/>
+            //         </View>
+            //         </TouchableOpacity>
+                
+            //     );
+            //     })
+            //     setSearchNodes(searchNodes)
+            //     // console.log(searchNodes);
+
+    }, [searchResults])
+
+    console.log("RESTO AVAILS >>>>>>>>>" + filteredAvailablitiesOfRestaurant);
     // console.log(restaurantById);
 
     return (
@@ -45,8 +76,30 @@ const RestaurantScreen = ({ navigation, route }) => {
                 <Text style={styles.textH2}>Details: date: {route.params.date} </Text>
                 <Text style={styles.textH2}>Details time: {route.params.time}</Text>
             </View>
+        </View>
+
+        <View >
+
+        <Text style={styles.textH2}>Booking options:</Text>
+
+            <ScrollView>
+                <View>
+                    {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+                    return ( 
+                            <TouchableOpacity
+                            // onPress={() => TRIGGER BOOKING }
+                            >
+                                    <View horizontal={true}>
+                                    <Text style={styles.textH2} key={index} index={index} >{availability.date}</Text>
+                                    <Text style={styles.textH3} key={index} index={index} >{availability.time}</Text>
+                                    </View>
+                            </TouchableOpacity>
+                    );})}
+                </View>
+            </ScrollView>
 
         </View>
+
         </SafeAreaView>
 
 

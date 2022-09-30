@@ -12,9 +12,8 @@ export async function getRestaurantById(id) {
 }
 
 export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
-  const formattedDate = moment(date).format('YYYY-MM-DD')
-  const formattedTime = moment(date).format('00:00')
-  const data = await fetch(baseURLBooking + restaurantId + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime);
+  // Don't need to format date/time here because it was already formatted before being passed from SearchResults to RestoScreen
+  const data = await fetch(baseURLBooking + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
   return data.json() 
 }
 
