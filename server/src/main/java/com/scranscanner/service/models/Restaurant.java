@@ -18,6 +18,15 @@ import java.util.List;
 @Table(name = "restaurants")
 public class Restaurant extends User {
 
+    @Column
+    private String description;
+
+    @Column
+    private String imageURL;
+
+    @Column
+    private Double rating;
+
     @OneToMany(mappedBy = "restaurant")
     @JsonIgnoreProperties({"restaurant", "bookings", "availabilities"})
     private List<DinnerTable> dinnerTables;
@@ -56,8 +65,11 @@ public class Restaurant extends User {
     public Restaurant() {
     }
 
-    public Restaurant(String displayName, String email, String password, PermissionType permissionType) {
+    public Restaurant(String displayName, String email, String password, PermissionType permissionType, String description, String imageURL) {
         super(displayName, email, password, permissionType);
+        this.description = description;
+        this.imageURL = imageURL;
+        this.rating = 0.00;
         this.dinnerTables = new ArrayList<>();
         this.bookings = new ArrayList<>();
         this.reviews = new ArrayList<>();
@@ -124,6 +136,12 @@ public class Restaurant extends User {
     }
 
     public void addAttribute(String key, String value) {
+        if (this.attributes.containsKey(key)){
+            List<String> currentValues = this.attributes.get(key);
+            currentValues.add(value);
+            this.attributes.replace(key, currentValues);
+            return;
+        }
         ArrayList<String> array = new ArrayList<>();
         array.add(value);
         this.attributes.put(key, array);
