@@ -92,8 +92,8 @@ public class DataLoader implements ApplicationRunner {
 
         Booking bookingEthan = new Booking(customer1, restaurant1, dinnerTable1, 4);
         bookingRepository.save(bookingEthan);
-        Booking bookingSam = new Booking(customer2, restaurant2, dinnerTable2, 2);
-        bookingRepository.save(bookingSam);
+        Booking bookingEthan2 = new Booking(customer1, restaurant2, dinnerTable2, 2);
+        bookingRepository.save(bookingEthan2);
 
         Review reviewEthan = new Review("Ethan", 4.5, "Fabtastic", restaurant1);
         reviewRepository.save(reviewEthan);
@@ -109,12 +109,12 @@ public class DataLoader implements ApplicationRunner {
 
         customer1.addBooking(bookingEthan);
         customerRepository.save(customer1);
-        customer2.addBooking(bookingSam);
+        customer2.addBooking(bookingEthan2);
         customerRepository.save(customer2);
 
         restaurant1.addBooking(bookingEthan);
         restaurantRepository.save(restaurant1);
-        restaurant2.addBooking(bookingSam);
+        restaurant2.addBooking(bookingEthan2);
         restaurantRepository.save(restaurant2);
 
 

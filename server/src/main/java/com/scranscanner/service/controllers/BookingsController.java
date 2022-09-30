@@ -35,7 +35,7 @@ public class BookingsController {
     }
 
     @GetMapping(value = "/bookings/customer/{id}")
-    public ResponseEntity<Optional<Booking>> findBookingByCustomer(@PathVariable Long id){
+    public ResponseEntity <List<Optional<Booking>>> findBookingByCustomer(@PathVariable Long id){
             return new ResponseEntity<>(bookingRepository.findByCustomerId(id), HttpStatus.OK);
     }
 
