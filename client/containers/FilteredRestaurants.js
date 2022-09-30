@@ -34,7 +34,7 @@ const FilteredRestaurants = ({restaurants, route}) => {
 
   return (
   <>
-        <ScrollView>{restaurants.map((restaurant) => { 
+        <ScrollView>{restaurants.map((restaurant, index) => { 
           return ( 
             <TouchableOpacity 
             onPress={
@@ -52,9 +52,8 @@ const FilteredRestaurants = ({restaurants, route}) => {
                   >
 
 
-
             <View horizontal={true}>
-              <Text>{restaurant.displayName}</Text>
+              <Text key={index} index={index} >{restaurant.displayName}</Text>
               <Image source={logo2}/>
             </View>
             </TouchableOpacity>

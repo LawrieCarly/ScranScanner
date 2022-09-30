@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getRestaurantById } from '../services/SearchService'
+import { getRestaurantById } from '../services/SearchService';
+
+
 
 
 const logo2 = {
@@ -16,15 +18,29 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState({})
     const IsFocused = useIsFocused();
 
-    useEffect(async () => {
-        await getRestaurantById(route.params.restaurantId)
-            .then(returnedResto => {
-                console.log("resto returned",returnedResto)
-                setRestaurantById(returnedResto)
-                console.log("resto state: ", restaurantById)
-            }
-                );
-    }, [IsFocused]);
+    useEffect( () => {
+        getRestaurantById(route.params.restaurantId)
+        .then(returnedResto => setRestaurantById(returnedResto))
+        }, [IsFocused]);
+
+    // useEffect(async () => {
+    //     await getRestaurantById(route.params.restaurantId)
+    //         .then(returnedResto => {
+    //             console.log("resto returned",returnedResto)
+    //             setRestaurantById(returnedResto)
+    //             console.log("resto state: ", restaurantById)
+    //         }
+    //             );
+    // }, [IsFocused]);
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //       // You can await here
+    //       const response = await MyAPI.getData(someId);
+    //       // ...
+    //     }
+    //     fetchData();
+    //   }, [someId]); // Or [] if effect doesn't need props or state
     
 
     // console.log(route.params.restaurantId);

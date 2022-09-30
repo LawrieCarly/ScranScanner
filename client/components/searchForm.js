@@ -61,8 +61,8 @@ return (
             onCancel={() => { setOpen(false)}}
         />
         <View>
-            {restaurants.map((restaurant) => { return (
-            <View><Text style={styles.buttonText}>{restaurant.displayName}</Text></View>
+            {restaurants.map((restaurant, index) => { return (
+            <View><Text id={restaurant.id} key={index} style={styles.buttonText}>{restaurant.displayName}</Text></View>
             );})}
         </View>
         <Pressable style={styles.button} onPress={handleSubmit}>
