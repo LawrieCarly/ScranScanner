@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView } from 'react-native';
+import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
 import SearchResultsRestaurants from '../containers/SearchResultsRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
-import moment from 'moment';
 import { getSearchResults } from '../services/SearchService';
 
-
+const logo2 = {
+    uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    width: 160,
+    height: 120
+};
 
 const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const IsFocused = useIsFocused();
@@ -14,28 +17,37 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
     const [partySize, setPartySize] = React.useState("");
     const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(new Date());
     const [open, setOpen] = useState(false);
     const [searchResults, setSearchResults] = React.useState([]);
 
 
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const newSearch =  {
+    //         partySize: partySize,
+    //         date: moment(date).format('YYYY-MM-DD'),
+    //     }
+    //     // console.log(restaurantList)
+    //     setPartySize("");
+    //     setDate(new Date());
+    // }
+
+    
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        const searchCriteria =  {
-            partySize: partySize,
-            date: moment(date).format('YYYY-MM-DD'),
-        }
+        getSearchResults(partySize, date, time) 
         // console.log(restaurantList)
         setPartySize("");
         setDate(new Date());
     }
 
-    useEffect( () => {
-        getSearchResults()
-        .then(searchResults => setSearchResults(searchResults))
-        }, [IsFocused]);
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
+    
+        <Text style={styles.textH1}>🔎 Search Page </Text>
+
 
         <View>
             <Text>Search for a table!</Text>
@@ -53,7 +65,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 modal
                 open={open}
                 date={date}
-                onConfirm={(date) => {setOpen(false), setDate(date)}}
+                onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
                 onCancel={() => { setOpen(false)}}
             />
             <Pressable style={styles.button} onPress={handleSubmit}>
@@ -64,11 +76,24 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 <ScrollView>
 
                     <View style={{flex: 2}}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={
+                            () => navigation.navigate(
+                            'Restaurant')}
+                        >
                         <View>
-                        {searchResults.map((searchResult, index) => { return (
-                        <View><Text style={styles.textH1} id={searchResult.id} key={index}>{searchResult.displayName}</Text></View>
-                        );})}
+                            {searchResults.map((searchResult, index) => { 
+                                return (
+                                    <View>
+                                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+                                        <Image source={logo2}/>
+                                    </View>
+                                
+                                );
+                                })}
                         </View>
+                </TouchableOpacity>
                     
                     <ScrollView>
 
@@ -81,26 +106,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         
         </View>
 
-
-
-
-        <View style={{ flex: 1, padding: 16 }}>
-            <View >
-            <Text style={styles.textH1}>🔎 Search Page </Text>
-            
-            <Text style={styles.textH2}>SEARCH FORM WILL BE HERE</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={
-                () => navigation.navigate(
-                    'Search', { screen: 'SearchScreen' }
-                )}>
-                <Text>Search PlaceHolder </Text>
-            </TouchableOpacity>
-            </View>
-            <SearchResultsRestaurants/>
-
-        </View>
         </SafeAreaView>
 
 

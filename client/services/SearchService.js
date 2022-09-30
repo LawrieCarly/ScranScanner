@@ -1,4 +1,6 @@
 
+import moment from 'moment';
+
 const baseURL = 'http://192.168.0.4:8080/restaurants/';
 
 export const getRestaurants = () => {
@@ -13,8 +15,10 @@ export async function getRestaurantById(id) {
     
 }
 
-export async function getSearchResults() {
-  const data = await fetch(baseURL);
+export async function getSearchResults(partySize, date, time) {
+  const formattedDate = moment(date).format('YYYY-MM-DD')
+  const formattedTime = moment(date).format('00:00')
+  const data = await fetch(baseURL + '?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime);
   return data.json()
     
 }
