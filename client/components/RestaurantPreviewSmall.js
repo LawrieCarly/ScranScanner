@@ -13,6 +13,27 @@ const logo2 = {
 const RestaurantPreviewSmall = () => {
     const navigation = useNavigation();
     return (
+    //     <SafeAreaView style={{ flex: 1 }}>
+    //     <ScrollView>
+    //         <View style={styles.mainView}>
+
+    //                 <TouchableOpacity
+    //                     style={styles.button}
+    //                     onPress={
+    //                     () => navigation.navigate(
+    //                         'Search', { screen: 'SearchScreen' }
+    //                     )}>
+    //                     <Text>Search_SEARCHSCREEN_ </Text>
+    //                 </TouchableOpacity>
+
+
+
+    //                     {/* Weirdly can't get another component to APPEAR AND RENDER (the space is there....) */}
+
+
+    //         </View>
+    //     </ScrollView>
+    // </SafeAreaView>
 
         <View>
 

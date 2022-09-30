@@ -1,7 +1,10 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { getRestaurantById } from '../services/SearchService';
+
+
 
 
 const logo2 = {
@@ -10,12 +13,46 @@ const logo2 = {
   };
 
 
-const RestaurantScreen = ({ navigation }) => {
+const RestaurantScreen = ({ navigation, route }) => {
+    
+    const [restaurantById, setRestaurantById ] = useState({})
+    const IsFocused = useIsFocused();
+
+    useEffect( () => {
+        getRestaurantById(route.params.restaurantId)
+        .then(returnedResto => setRestaurantById(returnedResto))
+        }, [IsFocused]);
+
+    // useEffect(async () => {
+    //     await getRestaurantById(route.params.restaurantId)
+    //         .then(returnedResto => {
+    //             console.log("resto returned",returnedResto)
+    //             setRestaurantById(returnedResto)
+    //             console.log("resto state: ", restaurantById)
+    //         }
+    //             );
+    // }, [IsFocused]);
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //       // You can await here
+    //       const response = await MyAPI.getData(someId);
+    //       // ...
+    //     }
+    //     fetchData();
+    //   }, [someId]); // Or [] if effect doesn't need props or state
+    
+
+    // console.log(route.params.restaurantId);
+    console.log(restaurantById);
+
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16 }}>
+            
             <View style={styles.mainView}>
-                <Text style={styles.textH1}>RESTAURANT PAGE</Text>
+                <Text style={styles.textH1}>{route.params.restaurantId}{restaurantById["displayName"]}</Text>
                 <Image source={logo2}/>
                 <Text style={styles.textH2}>Details</Text>
                 <Text style={styles.textH2}>Details</Text>
