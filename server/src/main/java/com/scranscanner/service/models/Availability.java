@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "availabilities")
@@ -23,11 +24,16 @@ public class Availability {
 
     @ManyToOne
     @JoinColumn(name = "dinner_table_id", nullable = false)
-    @JsonIgnoreProperties({"availabilities", "bookings", "restaurant"})
+    @JsonIgnoreProperties({"availabilities", "bookings"})
     private DinnerTable dinnerTable;
 
     @Column
     private boolean isAvailable;
+
+//    @ManyToOne
+//    @JoinColumn(name = "restaurant_id", nullable = false)
+//    @JsonIgnoreProperties({"searchedAvailabilities", "bookings", "tables", "reviews"})
+//    private Restaurant restaurant;
 
     public Availability() {
     }

@@ -45,7 +45,7 @@ public class DataLoader implements ApplicationRunner {
         restaurantRepository.deleteAll();
 
         LocalDate startDate = LocalDate.of(2022,9,28);
-        LocalDate endDate = LocalDate.of(2022,10,28);
+        LocalDate endDate = LocalDate.of(2022,10,3);
 
         LocalTime time1 = LocalTime.of(14,0,0);
         LocalTime time2 = LocalTime.of(16,0,0);
@@ -68,19 +68,22 @@ public class DataLoader implements ApplicationRunner {
 
         DinnerTable dinnerTable1 = new DinnerTable(1, 4, PriorityType.LOW, restaurant1);
         dinnerTableRepository.save(dinnerTable1);
-
         List<Availability> availabilities1 = DateRange.getAvailabilities(dates, times, dinnerTable1);
-
         for(Availability availability: availabilities1){
             availabilityRepository.save(availability);
             dinnerTable1.addAvailability(availability);
-            dinnerTableRepository.save(dinnerTable1);
-        }
-
-
+            dinnerTableRepository.save(dinnerTable1);}
 
         DinnerTable dinnerTable2 = new DinnerTable(2, 2, PriorityType.HIGH, restaurant2);
         dinnerTableRepository.save(dinnerTable2);
+
+        DinnerTable dinnerTable3 = new DinnerTable(3, 6, PriorityType.MEDIUM, restaurant1);
+        dinnerTableRepository.save(dinnerTable3);
+        List<Availability> availabilities2 = DateRange.getAvailabilities(dates, times, dinnerTable3);
+        for(Availability availability: availabilities2){
+            availabilityRepository.save(availability);
+            dinnerTable3.addAvailability(availability);
+            dinnerTableRepository.save(dinnerTable3);}
 
         Customer customer1 = new Customer("Ethan Baird", "ethan@email.com", "password", PermissionType.CUSTOMER);
         customerRepository.save(customer1);
