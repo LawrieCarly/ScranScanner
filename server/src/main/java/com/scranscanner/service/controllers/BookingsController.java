@@ -44,16 +44,8 @@ public class BookingsController {
 
     @PostMapping(value = "/bookings")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
-        Customer customer = booking.getCustomer();
-        customer.addBooking(booking);
-        customerRepository.save(customer);
-        Restaurant restaurant = booking.getRestaurant();
-        restaurant.addBooking(booking);
-        restaurantRepository.save(restaurant);
-        DinnerTable dinnerTable = booking.getDinnerTable();
-        dinnerTable.addBooking(booking);
-        dinnerTableRepository.save(dinnerTable);
-        return new ResponseEntity<>(bookingRepository.save(booking), HttpStatus.CREATED);
+        bookingRepository.save(booking);
+        return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/bookings/{id}")
