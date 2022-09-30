@@ -34,10 +34,16 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     useEffect(() => {
             const searchNodes = searchResults.map((searchResult, index) => { 
                 return (
+                    <TouchableOpacity
+                    onPress={
+                        () => navigation.navigate(
+                            'Restaurant', { restaurantId: searchResult.id })}
+                    >
                     <View>
                         <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
                         <Image source={logo2}/>
                     </View>
+                    </TouchableOpacity>
                 
                 );
                 })
@@ -78,15 +84,10 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 <ScrollView>
 
                     <View style={{flex: 2}}>
-                    <TouchableOpacity
-                        onPress={
-                            () => navigation.navigate(
-                            'Restaurant')}
-                        >
                         <View>
                             {searchNodes}
                         </View>
-                    </TouchableOpacity>
+
                     
                     <ScrollView>
 

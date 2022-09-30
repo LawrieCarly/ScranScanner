@@ -44,7 +44,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     
 
     // console.log(route.params.restaurantId);
-    console.log(restaurantById);
+    // console.log(restaurantById);
 
 
     return (

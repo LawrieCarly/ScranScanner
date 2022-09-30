@@ -40,15 +40,6 @@ const FilteredRestaurants = ({restaurants, route}) => {
             onPress={
               () => navigation.navigate(
                   'Restaurant', { restaurantId: restaurant.id })}
-            // onPress={() => {
-            //   // Pass and merge params back to home screen
-            //   navigation.navigate({
-            //     name: 'Restaurant',
-            //     params: restaurant.id,
-            //     merge: true,
-            //   });
-            // }}
-                  
                   >
 
 
