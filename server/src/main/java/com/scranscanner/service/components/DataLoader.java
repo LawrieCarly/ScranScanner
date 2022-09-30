@@ -98,9 +98,9 @@ public class DataLoader implements ApplicationRunner {
         Review reviewEthan = new Review("Ethan", 4.5, "Fabtastic", restaurant1);
         reviewRepository.save(reviewEthan);
         restaurant1.addReview(reviewEthan);
-        Review reviewSam = new Review("Sam", 4, "Great, but not this morning...", restaurant2);
-        reviewRepository.save(reviewSam);
-        restaurant2.addReview((reviewSam));
+        Review reviewEthan2 = new Review("Ethan", 4, "Great, but not this morning...", restaurant1);
+        reviewRepository.save(reviewEthan2);
+        restaurant1.addReview((reviewEthan2));
 
         restaurant1.addDinnerTable(dinnerTable1);
         restaurantRepository.save(restaurant1);
