@@ -11,7 +11,7 @@ export async function getRestaurantById(id) {
     
 }
 
-export async function getFilteredAvailablitiesByRestaurant(restaurantId, partySize, date, time) {
+export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
   const formattedDate = moment(date).format('YYYY-MM-DD')
   const formattedTime = moment(date).format('00:00')
   const data = await fetch(baseURLBooking + restaurantId + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime);

@@ -3,6 +3,7 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-n
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getRestaurantById } from '../services/SearchService';
+import { getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 
 
 
@@ -23,8 +24,14 @@ const RestaurantScreen = ({ navigation, route }) => {
         .then(returnedResto => setRestaurantById(returnedResto))
         }, [IsFocused]);
 
+    const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState({})
+    useEffect( () => {
+        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+        }, [IsFocused]);
 
-    // console.log(route.params.restaurantId);
+
+    console.log(filteredAvailablitiesOfRestaurant);
     // console.log(restaurantById);
 
     return (
@@ -35,8 +42,8 @@ const RestaurantScreen = ({ navigation, route }) => {
                 <Text style={styles.textH1}>{route.params.restaurantId}{restaurantById["displayName"]}</Text>
                 <Image source={logo2}/>
                 <Text style={styles.textH2}>Details: partySize: {route.params.partysize} </Text>
-                <Text style={styles.textH2}>Details: partySize: {route.params.date} </Text>
-                <Text style={styles.textH2}>Details</Text>
+                <Text style={styles.textH2}>Details: date: {route.params.date} </Text>
+                <Text style={styles.textH2}>Details time: {route.params.time}</Text>
             </View>
 
         </View>
