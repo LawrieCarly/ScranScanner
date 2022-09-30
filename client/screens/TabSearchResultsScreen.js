@@ -1,29 +1,108 @@
-import * as React from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
 import SearchResultsRestaurants from '../containers/SearchResultsRestaurants';
+import { useIsFocused } from '@react-navigation/native';
+import DatePicker from 'react-native-date-picker'
+import { getSearchResults } from '../services/SearchService';
+
+const logo2 = {
+    uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    width: 160,
+    height: 120
+};
+
+const TabSearchResultsScreen = ({ navigation, restaurants }) => {
+    const IsFocused = useIsFocused();
 
 
+    const [partySize, setPartySize] = React.useState("");
+    const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(new Date());
+    const [open, setOpen] = useState(false);
+    const [searchResults, setSearchResults] = React.useState([]);
 
-const TabSearchResultsScreen = ({ navigation }) => {
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const newSearch =  {
+    //         partySize: partySize,
+    //         date: moment(date).format('YYYY-MM-DD'),
+    //     }
+    //     // console.log(restaurantList)
+    //     setPartySize("");
+    //     setDate(new Date());
+    // }
+
+    
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        getSearchResults(partySize, date, time) 
+        // console.log(restaurantList)
+        setPartySize("");
+        setDate(new Date());
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, padding: 16 }}>
-            <View >
-            <Text style={styles.textH1}>🔎 Search Page </Text>
-            
-            <Text style={styles.textH2}>SEARCH FORM WILL BE HERE</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={
-                () => navigation.navigate(
-                    'Search', { screen: 'SearchScreen' }
-                )}>
-                <Text>Search PlaceHolder </Text>
-            </TouchableOpacity>
-            </View>
-            <SearchResultsRestaurants/>
+    
+        <Text style={styles.textH1}>🔎 Search Page </Text>
+        <View>
+            <Text>Search for a table!</Text>
+            <TextInput
+                style={styles.input}
+                onChangeText={(input) => setPartySize(input)}
+                value={partySize}
+                placeholder="eg. 4"
+                keyboardType='numeric'
+                />
+            <Pressable style={styles.button} onPress={() => setOpen(true)}>
+                <Text style={styles.buttonText} >Select date/time</Text>
+            </Pressable>
+            <DatePicker
+                modal
+                open={open}
+                date={date}
+                onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
+                onCancel={() => { setOpen(false)}}
+            />
+            <Pressable style={styles.button} onPress={handleSubmit}>
+                <Text style={styles.buttonText}>Find Restaurants</Text>
+            </Pressable>
 
+            <View >
+                <ScrollView>
+
+                    <View style={{flex: 2}}>
+                    <TouchableOpacity
+                        onPress={
+                            () => navigation.navigate(
+                            'Restaurant')}
+                        >
+                        <View>
+                            {searchResults.map((searchResult, index) => { 
+                                return (
+                                    <View>
+                                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+                                        <Image source={logo2}/>
+                                    </View>
+                                
+                                );
+                                })}
+                        </View>
+                </TouchableOpacity>
+                    
+                    <ScrollView>
+
+
+                    </ScrollView>
+                    </View>
+                </ScrollView>
+            </View>
+
+        
         </View>
+
         </SafeAreaView>
 
 
@@ -58,6 +137,99 @@ const TabSearchResultsScreen = ({ navigation }) => {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-    }
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
+    button: {
+        height: 40,
+        margin: 12,
+        padding: 10,
+        backgroundColor:"black"
+    },
+    buttonText: {
+        color:'white'
+
+    },
     });
 export default TabSearchResultsScreen;
+
+
+
+// import React, {useState} from 'react'
+// import { SafeAreaView, StyleSheet, TextInput, View, Text, Pressable } from "react-native";
+// import DatePicker from 'react-native-date-picker'
+// import moment from 'moment';
+
+// export const SearchForm = ({restaurants}) => {
+
+// const [location, setLocation] = React.useState("");
+// const [partySize, setPartySize] = React.useState("");
+// const [date, setDate] = useState(new Date())
+// const [open, setOpen] = useState(false)
+
+// const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const searchCriteria =  {
+//         location: location,
+//         partySize: partySize,
+//         date: moment(date).format('YYYY-MM-DD'),
+//     }
+//     // console.log(restaurantList)
+//     setLocation("");
+//     setPartySize("");
+//     setDate(new Date());
+// }
+
+// console.log(restaurants)
+
+// // const restaurantList = () => { restaurants.map((restaurant) => {
+// //         return (
+// //         <View>
+// //             <Text>{restaurant.title}</Text>
+// //         </View>
+// //         );
+// //     });
+// // };
+
+// return (
+//     <View>
+//         <Text>Search for a table!</Text>
+//         <TextInput
+//             style={styles.input}
+//             onChangeText={(input) => setLocation(input)}
+//             placeholder="Edinburgh"
+//             value={location}
+//             />
+//         <TextInput
+//             style={styles.input}
+//             onChangeText={(input) => setPartySize(input)}
+//             value={partySize}
+//             placeholder="eg. 4"
+//             keyboardType='numeric'
+//             />
+//         <Pressable style={styles.button} onPress={() => setOpen(true)}>
+//             <Text style={styles.buttonText} >Select date/time</Text>
+//         </Pressable>
+//         <DatePicker
+//             modal
+//             open={open}
+//             date={date}
+//             onConfirm={(date) => {setOpen(false), setDate(date)}}
+//             onCancel={() => { setOpen(false)}}
+//         />
+//         <View>
+//             {restaurants.map((restaurant, index) => { return (
+//             <View><Text id={restaurant.id} key={index} style={styles.buttonText}>{restaurant.displayName}</Text></View>
+//             );})}
+//         </View>
+//         <Pressable style={styles.button} onPress={handleSubmit}>
+//             <Text style={styles.buttonText}>Find Restaurants</Text>
+//         </Pressable>
+
+        
+//     </View>
+// )}
