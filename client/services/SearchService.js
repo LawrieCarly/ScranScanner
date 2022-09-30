@@ -13,6 +13,12 @@ export async function getRestaurantById(id) {
     
 }
 
+export async function getSearchResults() {
+  const data = await fetch(baseURL);
+  return data.json()
+    
+}
+
 
 
 // export const getRestaurantById = (id) => {
@@ -22,4 +28,4 @@ export async function getRestaurantById(id) {
     
     
 // }
-// `http://192.168.100.139:8080/restaurants?location=${location}partSize=${partySize}&date=${date}`
+// `http://192.168.100.139:8080/restaurants?partSize=${partySize}&date=${date}`
