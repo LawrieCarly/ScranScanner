@@ -32,12 +32,14 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     }
 
     useEffect(() => {
-            const searchNodes = searchResults.map((searchResult, index) => { 
+            const searchNodes = 
+            searchResults.map((searchResult, index) => { 
                 return (
                     <TouchableOpacity
                     onPress={
                         () => navigation.navigate(
-                            'Restaurant', { restaurantId: searchResult.id })}
+                            // might have to stringify these params if they cause issues 
+                            'Restaurant', { restaurantId: searchResult.id, partysize: partySize, date: date, time: time })}
                     >
                     <View>
                         <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
@@ -87,18 +89,13 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                         <View>
                             {searchNodes}
                         </View>
-
-                    
-                    <ScrollView>
-
-
-                    </ScrollView>
                     </View>
+
                 </ScrollView>
             </View>
 
         
-        </View>
+            </View>
 
         </SafeAreaView>
 
