@@ -42,7 +42,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 );
                 })
                 setSearchNodes(searchNodes)
-                console.log(searchNodes);
+                // console.log(searchNodes);
     }, [searchResults])
 
 
@@ -86,7 +86,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                         <View>
                             {searchNodes}
                         </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
                     
                     <ScrollView>
 
