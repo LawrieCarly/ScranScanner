@@ -1,5 +1,6 @@
 package com.scranscanner.service.controllers;
 
+import com.scranscanner.service.models.Booking;
 import com.scranscanner.service.models.DinnerTable;
 import com.scranscanner.service.models.Review;
 import com.scranscanner.service.repositories.DinnerTableRepository;
@@ -28,6 +29,12 @@ public class ReviewController {
     public ResponseEntity<Optional<Review>> findReviewById(@PathVariable Long id){
         return new ResponseEntity<>(reviewRepository.findById(id), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/reviews/restaurant/{id}")
+    public ResponseEntity <List<Optional<Review>>> findBookingByRestaurant(@PathVariable Long id){
+        return new ResponseEntity<>(reviewRepository.findByRestaurantId(id), HttpStatus.OK);
+    }
+
 
     @PostMapping(value = "/reviews")
     public ResponseEntity<Review> createReview(@RequestBody Review review){

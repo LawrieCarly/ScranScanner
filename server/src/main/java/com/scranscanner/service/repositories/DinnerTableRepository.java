@@ -8,5 +8,4 @@ import java.util.List;
 public interface DinnerTableRepository extends JpaRepository<DinnerTable, Long> {
     List<DinnerTable> findBySizeGreaterThanEqual(int partySize);
 
-
 }
