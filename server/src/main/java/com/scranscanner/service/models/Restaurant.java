@@ -19,7 +19,7 @@ import java.util.List;
 public class Restaurant extends User {
 
     @OneToMany(mappedBy = "restaurant")
-    @JsonIgnoreProperties({"restaurant", "bookings"})
+    @JsonIgnoreProperties({"restaurant", "bookings", "availabilities"})
     private List<DinnerTable> dinnerTables;
 
     @OneToMany(mappedBy = "restaurant")
@@ -48,8 +48,10 @@ public class Restaurant extends User {
     @Column
     private HashMap<PriorityType, String> incentives;
 
-    @Column
-    private List<Availability> searchedAvailabilities;
+//    @OneToMany(mappedBy = "restaurant")
+//    @JsonIgnoreProperties({"restaurants"})
+//    @Column
+//    private List<Availability> searchedAvailabilities;
 
     public Restaurant() {
     }
@@ -62,7 +64,7 @@ public class Restaurant extends User {
         this.customers = new ArrayList<>();
         this.attributes = new HashMap<>();
         this.incentives = new HashMap<>();
-        this.searchedAvailabilities = new ArrayList<>();
+//        this.searchedAvailabilities = new ArrayList<>();
     }
 
     public List<Customer> getCustomers() {
@@ -131,16 +133,16 @@ public class Restaurant extends User {
         this.reviews.add(review);
     }
 
-    public List<Availability> getSearchedAvailabilities() {
-        return searchedAvailabilities;
-    }
+//    public List<Availability> getSearchedAvailabilities() {
+//        return searchedAvailabilities;
+//    }
 
-    public void setSearchedAvailabilities(List<Availability> searchedAvailabilities) {
-        this.searchedAvailabilities = searchedAvailabilities;
-    }
-
-    public void addSearchedAvailabilities(List<Availability> availabilities) {
-        this.searchedAvailabilities.addAll(availabilities);
-    }
+//    public void setSearchedAvailabilities(List<Availability> searchedAvailabilities) {
+//        this.searchedAvailabilities = searchedAvailabilities;
+//    }
+//
+//    public void addSearchedAvailabilities(List<Availability> availabilities) {
+//        this.searchedAvailabilities.addAll(availabilities);
+//    }
 
 }

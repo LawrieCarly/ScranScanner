@@ -128,5 +128,7 @@ public class DinnerTable {
     public void addAvailability(Availability availability) {
         this.availabilities.add(availability);
     }
+
+    public void addBooking(Booking booking){this.bookings.add(booking);}
 }
 
