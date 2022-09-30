@@ -47,8 +47,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         <SafeAreaView style={{ flex: 1 }}>
     
         <Text style={styles.textH1}>🔎 Search Page </Text>
-
-
         <View>
             <Text>Search for a table!</Text>
             <TextInput
@@ -77,7 +75,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
                     <View style={{flex: 2}}>
                     <TouchableOpacity
-                        style={styles.button}
                         onPress={
                             () => navigation.navigate(
                             'Restaurant')}
@@ -140,7 +137,23 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-    }
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
+    button: {
+        height: 40,
+        margin: 12,
+        padding: 10,
+        backgroundColor:"black"
+    },
+    buttonText: {
+        color:'white'
+
+    },
     });
 export default TabSearchResultsScreen;
 
@@ -220,23 +233,3 @@ export default TabSearchResultsScreen;
         
 //     </View>
 // )}
-
-// const styles = StyleSheet.create({
-//     input: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//     },
-//     button: {
-//         height: 40,
-//         margin: 12,
-//         padding: 10,
-//         backgroundColor:"black"
-//     },
-//     buttonText: {
-//         color:'black'
-
-//     },
-
-// });
