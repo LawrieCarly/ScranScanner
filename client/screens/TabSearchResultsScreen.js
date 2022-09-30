@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
-import SearchResultsRestaurants from '../containers/SearchResultsRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
 import { getSearchResults } from '../services/SearchService';
@@ -20,28 +19,33 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const [time, setTime] = useState(new Date());
     const [open, setOpen] = useState(false);
     const [searchResults, setSearchResults] = React.useState([]);
-
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const newSearch =  {
-    //         partySize: partySize,
-    //         date: moment(date).format('YYYY-MM-DD'),
-    //     }
-    //     // console.log(restaurantList)
-    //     setPartySize("");
-    //     setDate(new Date());
-    // }
+    const [searchNodes, setSearchNodes] = React.useState([]);
 
     
-    
-    const handleSubmit = (event) => {
+    function handleSubmit(event) {
         event.preventDefault();
-        getSearchResults(partySize, date, time) 
-        // console.log(restaurantList)
-        setPartySize("");
-        setDate(new Date());
+        getSearchResults(partySize, date, time)
+            .then((returnedResults) => {
+                const uniqueResults = [... new Set(returnedResults)]
+                setSearchResults(uniqueResults);
+            })
     }
+
+    useEffect(() => {
+            const searchNodes = searchResults.map((searchResult, index) => { 
+                return (
+                    <View>
+                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+                        <Image source={logo2}/>
+                    </View>
+                
+                );
+                })
+                setSearchNodes(searchNodes)
+                console.log(searchNodes);
+    }, [searchResults])
+
+
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -80,15 +84,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                             'Restaurant')}
                         >
                         <View>
-                            {searchResults.map((searchResult, index) => { 
-                                return (
-                                    <View>
-                                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
-                                        <Image source={logo2}/>
-                                    </View>
-                                
-                                );
-                                })}
+                            {searchNodes}
                         </View>
                 </TouchableOpacity>
                     

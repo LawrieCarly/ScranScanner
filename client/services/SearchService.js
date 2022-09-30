@@ -15,11 +15,14 @@ export async function getRestaurantById(id) {
     
 }
 
-export async function getSearchResults(partySize, date, time) {
+export const getSearchResults = (partySize, date, time) => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
-  const formattedTime = moment(date).format('00:00')
-  const data = await fetch(baseURL + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime);
-  return data.json()
+  const formattedTime = moment(date).format('HH:MM')
+  console.log(formattedDate)
+  console.log(formattedTime)
+
+  return fetch(baseURL + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
+  .then(data => data.json());
     
 }
 
