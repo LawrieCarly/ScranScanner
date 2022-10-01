@@ -1,7 +1,6 @@
 package com.scranscanner.service.helpers;
 
-import com.scranscanner.service.models.Availability;
-import com.scranscanner.service.models.DinnerTable;
+import com.scranscanner.service.models.*;
 import com.scranscanner.service.repositories.AvailabilityRepository;
 import com.scranscanner.service.repositories.DinnerTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,4 @@ public class DataLoaderHelper {
             }
         }
         return availabilities;
-    }
-    public static void buildTableAvail(DinnerTable dinnerTable, List<Availability> availabilities){
-
-    }
 }

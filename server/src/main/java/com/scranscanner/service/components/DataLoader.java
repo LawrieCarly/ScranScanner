@@ -258,6 +258,86 @@ public class DataLoader implements ApplicationRunner {
             chezJulesTable3.addAvailability(availability);
             dinnerTableRepository.save(chezJulesTable3);}
 
+        // adds resto 4 - The Chanter
+
+        Restaurant theChanter = new Restaurant(
+                "The Chanter",
+                "thechanter@email.com",
+                "password",
+                PermissionType.RESTAURANT,
+                "Bar serving food and drinks. Student deals available.",
+                "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80");
+        restaurantRepository.save(theChanter);
+
+        theChanter.addAttribute("cuisine", "Burger");
+        theChanter.addAttribute("cuisine", "Bar Food");
+        theChanter.addAttribute("access", "Wheelchair Accessible");
+        theChanter.addAttribute("price", "£");
+        restaurantRepository.save(theChanter);
+
+        DinnerTable theChanterTable1 = new DinnerTable(1,8,PriorityType.LOW, theChanter);
+        dinnerTableRepository.save(theChanterTable1);
+        List<Availability> theChanterAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1300, theChanterTable1);
+        for(Availability availability: theChanterAvail1){
+            availabilityRepository.save(availability);
+            theChanterTable1.addAvailability(availability);
+            dinnerTableRepository.save(theChanterTable1);}
+
+        DinnerTable theChanterTable2 = new DinnerTable(2,4,PriorityType.HIGH,theChanter);
+        dinnerTableRepository.save(theChanterTable2);
+        List<Availability> theChanterAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1315, theChanterTable2);
+        for(Availability availability: theChanterAvail2){
+            availabilityRepository.save(availability);
+            theChanterTable2.addAvailability(availability);
+            dinnerTableRepository.save(theChanterTable2);}
+
+        DinnerTable theChanterTable3 = new DinnerTable(3,4,PriorityType.HIGH,theChanter);
+        dinnerTableRepository.save(theChanterTable3);
+        List<Availability> theChanterAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, theChanterTable3);
+        for(Availability availability: theChanterAvail3){
+            availabilityRepository.save(availability);
+            theChanterTable3.addAvailability(availability);
+            dinnerTableRepository.save(theChanterTable3);}
+
+        // rest 5 - Bread Meets Bread
+
+        Restaurant breadMeatsBread = new Restaurant(
+                "Bread Meats Bread",
+                "bmb@email.com",
+                "password",
+                PermissionType.RESTAURANT,
+                "Award Winning Gourmet Burgers & Sandwiches.",
+                "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80");
+        restaurantRepository.save(breadMeatsBread);
+
+        breadMeatsBread.addAttribute("cuisine", "Burger");
+        breadMeatsBread.addAttribute("price", "££");
+        restaurantRepository.save(breadMeatsBread);
+
+        DinnerTable breadMeatsBreadTable1 = new DinnerTable(1,2,PriorityType.LOW, breadMeatsBread);
+        dinnerTableRepository.save(breadMeatsBreadTable1);
+        List<Availability> breadMeatsBreadAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1200, breadMeatsBreadTable1);
+        for(Availability availability: breadMeatsBreadAvail1){
+            availabilityRepository.save(availability);
+            breadMeatsBreadTable1.addAvailability(availability);
+            dinnerTableRepository.save(breadMeatsBreadTable1);}
+
+        DinnerTable breadMeatsBreadTable2 = new DinnerTable(2,4,PriorityType.MEDIUM,breadMeatsBread);
+        dinnerTableRepository.save(theChanterTable2);
+        List<Availability> breadMeatsBreadAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1315, breadMeatsBreadTable2);
+        for(Availability availability: breadMeatsBreadAvail2){
+            availabilityRepository.save(availability);
+            breadMeatsBreadTable2.addAvailability(availability);
+            dinnerTableRepository.save(breadMeatsBreadTable2);}
+
+        DinnerTable breadMeetsBreadTable3 = new DinnerTable(3,4,PriorityType.HIGH,breadMeatsBread);
+        dinnerTableRepository.save(breadMeetsBreadTable3);
+        List<Availability> breadMeatsBreadAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, breadMeetsBreadTable3);
+        for(Availability availability: breadMeatsBreadAvail3){
+            availabilityRepository.save(availability);
+            breadMeetsBreadTable3.addAvailability(availability);
+            dinnerTableRepository.save(breadMeetsBreadTable3);}
+
 
 //        Restaurant tastyNoodles = new Restaurant("Tasty Noodles", "tastynoodles@email.com", "password", PermissionType.RESTAURANT);
 //        restaurantRepository.save(tastyNoodles);
