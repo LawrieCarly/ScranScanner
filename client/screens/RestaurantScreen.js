@@ -16,39 +16,37 @@ const logo2 = {
 
 const RestaurantScreen = ({ navigation, route }) => {
 
-    // State for restaurant (details?)
+    // State for restaurant (check if more details have been added?)
+    const IsFocused = useIsFocused();
     
     const [restaurantById, setRestaurantById ] = useState({})
-    const IsFocused = useIsFocused();
-
+    const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState({})
+    
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
-        .then(returnedResto => setRestaurantById(returnedResto))
-        }, [IsFocused]);
+        .then(returnedResto => setRestaurantById(returnedResto)),
+        
+        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+    }, 
+    
+    [IsFocused]);
 
-    //  State for retreiving filtered bookings from selected resto
-
-    const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState({})
+    
     useEffect( () => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        }, [getRestaurantById]);
+        }, [setRestaurantById]);
 
 
         //     useEffect(() => {
-            // const searchNodes = 
+            // const availabilityNodes = 
             // searchResults.map((searchResult, index) => { 
             //     return (
 
-            //         // Params passed to RestaurantScreen route.
-            //         // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
-
             //         <TouchableOpacity
-            //         onPress={
-            //             () => navigation.navigate(
-            //                 // params are stringified above (not objects)
-            //                 'Restaurant', { restaurantId: searchResult.id, partysize: partySize, date: formattedDate, time: formattedTime })}
-            //         >
+    //                      onPress( BOOK AVAILABILITY SLOT)
+            //          >
             //         <View>
             //             <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
             //             <Image source={logo2}/>
@@ -58,9 +56,9 @@ const RestaurantScreen = ({ navigation, route }) => {
             //     );
             //     })
             //     setSearchNodes(searchNodes)
-            //     // console.log(searchNodes);
+    //         //     // console.log(searchNodes);
 
-    }, [searchResults])
+    // }, [searchResults])
 
     console.log("RESTO AVAILS >>>>>>>>>" + filteredAvailablitiesOfRestaurant);
     // console.log(restaurantById);
@@ -75,28 +73,27 @@ const RestaurantScreen = ({ navigation, route }) => {
                 <Text style={styles.textH2}>Details: partySize: {route.params.partysize} </Text>
                 <Text style={styles.textH2}>Details: date: {route.params.date} </Text>
                 <Text style={styles.textH2}>Details time: {route.params.time}</Text>
+        
+
+
+                <Text style={styles.textH2}>Booking options:</Text>
+                <ScrollView >
+                    <View>
+                        {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+                        return ( 
+                                <TouchableOpacity
+                                // onPress={() => TRIGGER BOOKING }
+                                >
+                                        <View horizontal={true}>
+                                        <Text style={styles.textH2} key={availability.id} index={index} >{availability.date}</Text>
+                                        <Text style={styles.textH3} key={availability.id} index={index} >{availability.time}</Text>
+                                        </View>
+                                </TouchableOpacity>
+                        );})}
+                    </View>
+                </ScrollView>
+
             </View>
-        </View>
-
-        <View >
-
-        <Text style={styles.textH2}>Booking options:</Text>
-
-            <ScrollView>
-                <View>
-                    {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-                    return ( 
-                            <TouchableOpacity
-                            // onPress={() => TRIGGER BOOKING }
-                            >
-                                    <View horizontal={true}>
-                                    <Text style={styles.textH2} key={index} index={index} >{availability.date}</Text>
-                                    <Text style={styles.textH3} key={index} index={index} >{availability.time}</Text>
-                                    </View>
-                            </TouchableOpacity>
-                    );})}
-                </View>
-            </ScrollView>
 
         </View>
 

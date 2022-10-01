@@ -22,20 +22,20 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const [searchResults, setSearchResults] = React.useState([]);
     const [searchNodes, setSearchNodes] = React.useState([]);
 
-
-    // Converted state into strings to allow them to be passed as params to RestaurantScreen
-    const formattedDate = moment(date).format('YYYY-MM-DD')
-    const formattedTime = moment(date).format('00:00')
-
+    
     
     function handleSubmit(event) {
         event.preventDefault();
         getSearchResults(partySize, date, time)
-            .then((returnedResults) => {
-                const uniqueResults = [... new Set(returnedResults)]
-                setSearchResults(uniqueResults);
-            })
+        .then((returnedResults) => {
+            const uniqueResults = [... new Set(returnedResults)]
+            setSearchResults(uniqueResults);
+        })
     }
+    
+        // Converted state into strings here instead of in the service, to allow them to be passed as params to RestaurantScreen
+        const formattedDate = moment(date).format('YYYY-MM-DD')
+        const formattedTime = moment(date).format('00:00')
 
     useEffect(() => {
             const searchNodes = 
