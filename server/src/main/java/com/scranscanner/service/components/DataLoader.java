@@ -307,7 +307,7 @@ public class DataLoader implements ApplicationRunner {
                 "password",
                 PermissionType.RESTAURANT,
                 "Award Winning Gourmet Burgers & Sandwiches.",
-                "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80");
+                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YnVyZ2Vyc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
         restaurantRepository.save(breadMeatsBread);
 
         breadMeatsBread.addAttribute("cuisine", "Burger");
@@ -337,6 +337,27 @@ public class DataLoader implements ApplicationRunner {
             availabilityRepository.save(availability);
             breadMeetsBreadTable3.addAvailability(availability);
             dinnerTableRepository.save(breadMeetsBreadTable3);}
+
+        // CUSTOMERS
+
+        Customer ethan = new Customer("Ethan Baird", "ethan@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(ethan);
+        Customer lawrie = new Customer("Lawrie Davidson", "lawrie@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(lawrie);
+        Customer sam = new Customer("Samuel Serrano Ferraro", "sam@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(sam);
+        Customer jack = new Customer("Jack Knowles", "jack@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(jack);
+
+        //
+
+        
+
+
+
+
+
+
 
 
 //        Restaurant tastyNoodles = new Restaurant("Tasty Noodles", "tastynoodles@email.com", "password", PermissionType.RESTAURANT);
