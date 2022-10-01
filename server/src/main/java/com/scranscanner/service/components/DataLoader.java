@@ -136,7 +136,7 @@ public class DataLoader implements ApplicationRunner {
         timesfrom1345.add(time1745);
         timesfrom1345.add(time1945);
 
-        // creates 10  unique restaurants
+        // Details for Rest 1 = palmyra
 
         Restaurant palmyra = new Restaurant(
                 "Palmyra",
@@ -176,6 +176,87 @@ public class DataLoader implements ApplicationRunner {
             availabilityRepository.save(availability);
             palmyraTable3.addAvailability(availability);
             dinnerTableRepository.save(palmyraTable3);}
+
+        // details for rest 2 - Six By Nico
+
+        Restaurant sixByNico = new Restaurant(
+                "Six By Nico",
+                "sixbynico@email.com",
+                "password",
+                PermissionType.RESTAURANT,
+                "Siz course tasting menu on a six week rotation.",
+                "https://images.unsplash.com/photo-1559847844-d9d2bc807d82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80");
+        restaurantRepository.save(sixByNico);
+
+        sixByNico.addAttribute("cuisine", "Tasting Menu");
+        sixByNico.addAttribute("cuisine", "Fine Dining");
+        sixByNico.addAttribute("access", "Wheelchair accessible");
+        sixByNico.addAttribute("price", "£££");
+        restaurantRepository.save(sixByNico);
+
+        DinnerTable sixByNicoTable1 = new DinnerTable(1,2,PriorityType.LOW,sixByNico);
+        dinnerTableRepository.save(sixByNicoTable1);
+        List<Availability> sixByNicoAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1200, sixByNicoTable1);
+        for(Availability availability: sixByNicoAvail1){
+            availabilityRepository.save(availability);
+            sixByNicoTable1.addAvailability(availability);
+            dinnerTableRepository.save(sixByNicoTable1);}
+
+        DinnerTable sixByNicoTable2 = new DinnerTable(2,6,PriorityType.MEDIUM,sixByNico);
+        dinnerTableRepository.save(sixByNicoTable2);
+        List<Availability> sixByNicoAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1245, sixByNicoTable2);
+        for(Availability availability: sixByNicoAvail2){
+            availabilityRepository.save(availability);
+            sixByNicoTable2.addAvailability(availability);
+            dinnerTableRepository.save(sixByNicoTable2);}
+
+        DinnerTable sixByNicoTable3 = new DinnerTable(3,4,PriorityType.HIGH,sixByNico);
+        dinnerTableRepository.save(sixByNicoTable3);
+        List<Availability> sixByNicoAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, sixByNicoTable3);
+        for(Availability availability: sixByNicoAvail3){
+            availabilityRepository.save(availability);
+            sixByNicoTable3.addAvailability(availability);
+            dinnerTableRepository.save(sixByNicoTable3);}
+
+        // adds resto 3 - Chez Jules
+
+        Restaurant chezJules = new Restaurant(
+                "Chez Jules",
+                "chezjules@email.com",
+                "password",
+                PermissionType.RESTAURANT,
+                "French Bistro serving rustic home-style dishes.",
+                "https://images.unsplash.com/photo-1642231877874-ce3e205f39c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80");
+        restaurantRepository.save(chezJules);
+
+        chezJules.addAttribute("cuisine", "French");
+        chezJules.addAttribute("cuisine", "Rustic");
+        chezJules.addAttribute("price", "££");
+        restaurantRepository.save(sixByNico);
+
+        DinnerTable chezJulesTable1 = new DinnerTable(1,2,PriorityType.LOW,chezJules);
+        dinnerTableRepository.save(chezJulesTable1);
+        List<Availability> chezJulesAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1300, chezJulesTable1);
+        for(Availability availability: chezJulesAvail1){
+            availabilityRepository.save(availability);
+            chezJulesTable1.addAvailability(availability);
+            dinnerTableRepository.save(chezJulesTable1);}
+
+        DinnerTable chezJulesTable2 = new DinnerTable(2,4,PriorityType.HIGH,chezJules);
+        dinnerTableRepository.save(chezJulesTable2);
+        List<Availability> chezJulesAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1245, chezJulesTable2);
+        for(Availability availability: chezJulesAvail2){
+            availabilityRepository.save(availability);
+            chezJulesTable2.addAvailability(availability);
+            dinnerTableRepository.save(chezJulesTable2);}
+
+        DinnerTable chezJulesTable3 = new DinnerTable(3,4,PriorityType.HIGH,chezJules);
+        dinnerTableRepository.save(chezJulesTable3);
+        List<Availability> chezJulesAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, chezJulesTable3);
+        for(Availability availability: chezJulesAvail3){
+            availabilityRepository.save(availability);
+            chezJulesTable3.addAvailability(availability);
+            dinnerTableRepository.save(chezJulesTable3);}
 
 
 //        Restaurant tastyNoodles = new Restaurant("Tasty Noodles", "tastynoodles@email.com", "password", PermissionType.RESTAURANT);
