@@ -24,6 +24,7 @@ public class DataLoaderHelper {
 
     public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
 
+
         long numOfDaysBetween = ChronoUnit.DAYS.between(startDate, endDate);
         return IntStream.iterate(0, i -> i + 1)
                 .limit(numOfDaysBetween)
@@ -32,15 +33,22 @@ public class DataLoaderHelper {
     }
 
     public static List<Availability> getAvailabilities(List<LocalDate> dates, List<LocalTime> times, DinnerTable dinnerTable){
+        int counter = 0;
+
         List<Availability> availabilities = new ArrayList<>();
         // for each date in dates
         for (LocalDate date: dates){
             // for each time in times
             for(LocalTime time: times){
                 // create a new Avail object
+                counter++;
                 Availability availability = new Availability(date, time, dinnerTable);
+                if(counter % 4 == 0){
+                    availability.setAvailable(false);
+                }
                 availabilities.add(availability);
             }
         }
         return availabilities;
+    }
 }

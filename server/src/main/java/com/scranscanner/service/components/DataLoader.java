@@ -136,6 +136,17 @@ public class DataLoader implements ApplicationRunner {
         timesfrom1345.add(time1745);
         timesfrom1345.add(time1945);
 
+        // customers
+
+        Customer ethan = new Customer("Ethan Baird", "ethan@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(ethan);
+        Customer lawrie = new Customer("Lawrie Davidson", "lawrie@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(lawrie);
+        Customer sam = new Customer("Samuel Serrano Ferraro", "sam@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(sam);
+        Customer jack = new Customer("Jack Knowles", "jack@email.com", "password", PermissionType.CUSTOMER);
+        customerRepository.save(jack);
+
         // Details for Rest 1 = palmyra
 
         Restaurant palmyra = new Restaurant(
@@ -338,20 +349,9 @@ public class DataLoader implements ApplicationRunner {
             breadMeetsBreadTable3.addAvailability(availability);
             dinnerTableRepository.save(breadMeetsBreadTable3);}
 
-        // CUSTOMERS
 
-        Customer ethan = new Customer("Ethan Baird", "ethan@email.com", "password", PermissionType.CUSTOMER);
-        customerRepository.save(ethan);
-        Customer lawrie = new Customer("Lawrie Davidson", "lawrie@email.com", "password", PermissionType.CUSTOMER);
-        customerRepository.save(lawrie);
-        Customer sam = new Customer("Samuel Serrano Ferraro", "sam@email.com", "password", PermissionType.CUSTOMER);
-        customerRepository.save(sam);
-        Customer jack = new Customer("Jack Knowles", "jack@email.com", "password", PermissionType.CUSTOMER);
-        customerRepository.save(jack);
 
-        //
 
-        
 
 
 
