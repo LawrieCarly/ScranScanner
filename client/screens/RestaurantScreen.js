@@ -6,29 +6,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 
 
-
-
 const logo2 = {
     uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    width: 400,
-    height: 300
+    width: 350,
+    height: 250
 };
 
 
 const RestaurantScreen = ({ navigation, route }) => {
 
-    // State for restaurant (check if more details have been added?)
     const IsFocused = useIsFocused();
     
     const [restaurantById, setRestaurantById ] = useState({});
-    const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = React.useState([]);
-    const [availabilityNodes, setAvailabilityNodes] = React.useState([]);
+    const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState([]);
+    const [availabilityNodes, setAvailabilityNodes] = useState([]);
     
+
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
     }, 
-    
     [IsFocused]);
 
 
@@ -44,80 +41,113 @@ const RestaurantScreen = ({ navigation, route }) => {
     // console.log('====================================');
     
 
-        // Attempt#3 to mirror nodes from search page
-
-
-            useEffect(() => {
-            const effectAvailabilityNodes = 
-                filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-                    return (
-    
-                                    <TouchableOpacity
-                                    // onPress={() => TRIGGER BOOKING }
-                                    >
-                                            <View 
-                                            >
-                                            <Text style={styles.textH4} key={availability.id} index={index} >{availability.date}</Text>
-                                            <Text style={styles.textH4} key={availability.id} index={index} >{availability.time}</Text>
-                                            </View>
-                                    </TouchableOpacity>
-                    
-                    );
-                    })
-                    setAvailabilityNodes(effectAvailabilityNodes)
+    // const availabilitiesMappingFunction = () => {
+    //     const effectAvailabilityNodes = 
+    //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+    //             return (
+    //                             <TouchableOpacity
+    //                             // onPress={() => TRIGGER BOOKING }
+    //                             >
+    //                                     <View 
+    //                                     >
+    //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.date}</Text>
+    //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.time}</Text>
+    //                                     </View>
+    //                             </TouchableOpacity>
                 
-            }, [filteredAvailablitiesOfRestaurant]);
+    //             );
+    //             })
+    //             setAvailabilityNodes(effectAvailabilityNodes)    
+    //         }
+
+    // 2nd useEffect maps availabilities only once FilteredAvailablitiesOfRestaurant has been returned
+    useEffect(() => {
+    const effectAvailabilityNodes = 
+        filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+            return (
+                            <TouchableOpacity
+                            // onPress={() => TRIGGER BOOKING }
+                            >
+                                    <View 
+                                        style={styles.availability}
+                                    >
+                                    <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+                                    <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+                                    </View>
+                            </TouchableOpacity>
+            
+            );
+            })
+            setAvailabilityNodes(effectAvailabilityNodes)
+                
+            }, [
+                // IsFocused
+                filteredAvailablitiesOfRestaurant
+            ]);
+
+// COPY
+
+        // useEffect(() => {
+        //     const effectAvailabilityNodes = 
+        //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+        //             return (
+        //                             <TouchableOpacity
+        //                             // onPress={() => TRIGGER BOOKING }
+        //                             >
+        //                                     <View 
+        //                                     >
+        //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.date}</Text>
+        //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.time}</Text>
+        //                                     </View>
+        //                             </TouchableOpacity>
+                    
+        //             );
+        //             })
+        //             setAvailabilityNodes(effectAvailabilityNodes)
+                        
+        //             // POTENTIAL ISSUE WITH RE-LOADING AND DISPLAYING CORRECT DATA
+        
+        //             }, [
+        //                 // IsFocused
+        //                 filteredAvailablitiesOfRestaurant
+        //             ]);
             
             
-            // console.log('================= FILTERED AVAILS===================');
-            // console.log(availabilityNodes);
-            // console.log('====================================');
+            console.log('================= FILTERED AVAILS===================');
+            console.log(availabilityNodes);
+            console.log('====================================');
 
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, padding: 16 }}>
-            
-        <Text style={styles.textH1}>{restaurantById["displayName"]} - db ID: {route.params.restaurantId}</Text>
 
-            <View style={styles.mainView}>
-                <Image source={logo2}/>
-                <Text style={styles.textH3}>Details: partySize: {route.params.partysize} </Text>
-                <Text style={styles.textH3}>Details: date: {route.params.date} </Text>
-                <Text style={styles.textH3}>Details time: {route.params.time}</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1, padding: 16 }}>
+                
+            <Text style={styles.textH1}>{restaurantById["displayName"]} - db ID: {route.params.restaurantId}</Text>
+
+                <View style={styles.mainView}>
+                    <Image style={{paddingBottom: 50}} source={logo2}/>
+                    <TouchableOpacity style={styles.button}>
+                        <Text>Save Restaurant</Text>
+                    </TouchableOpacity>
+
+                    <Text style={styles.textH2}> Details</Text>
+                    <Text style={styles.textH3}> [LOCATION]</Text>
+                    <Text style={styles.textH3}> [CUISINE]</Text>
+                    <Text style={styles.textH3}> [PRICE-RANGE]</Text>
         
 
+                    <Text style={styles.textH1}>Searched Availabilities:</Text>
 
-                <Text style={styles.textH3}>Booking options:</Text>
-                <ScrollView
-                horizontal={true}
-                >
-
-                    <View>
-                        
+                    <ScrollView horizontal={true}> 
                         <Text>
                             {availabilityNodes}
                         </Text>
-                    </View>
+                    </ScrollView>
 
-                    {/* <View>
-                        {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-                        return ( 
-                                <TouchableOpacity
-                                // onPress={() => TRIGGER BOOKING }
-                                >
-                                        <View>
-                                        <Text style={styles.textH2} key={availability.id} index={index} >{availability.date}</Text>
-                                        <Text style={styles.textH3} key={availability.id} index={index} >{availability.time}</Text>
-                                        </View>
-                                </TouchableOpacity>
-                        );})}
-                    </View> */}
-                </ScrollView>
+                </View>
 
             </View>
-
-        </View>
 
         </SafeAreaView>
 
@@ -130,22 +160,33 @@ const RestaurantScreen = ({ navigation, route }) => {
     const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: 'blue',
+        backgroundColor: 'gray',
         padding: 10,
-        width: 300,
+        width: 350,
         marginTop: 16,
+    },
+    availability: {
+        alignItems: 'center',
+        backgroundColor: 'red',
+        margin: 50
+    },
+    availabilityText: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: 'black',
     },
     textH1: {
         fontSize: 25,
         textAlign: 'left',
         marginBottom: 16,
-        color: 'black'
+        color: 'black',
+        paddingTop: 10
     },
     textH2: {
         fontSize: 18,
         textAlign: 'center',
         color: 'black',
-        paddingTop: 100
+        paddingTop: 10
 
     },
     textH3: {
@@ -164,7 +205,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     },
     mainView: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
     }
     });

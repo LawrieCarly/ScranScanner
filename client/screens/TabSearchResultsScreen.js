@@ -52,7 +52,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                             'Restaurant', { restaurantId: searchResult.id, partysize: partySize, date: formattedDate, time: formattedTime })}
                     >
                     <View>
-                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+                        <Text id={searchResult.id} key={index} style={{color: 'black'}}>{searchResult.displayName}</Text> 
                         <Image source={logo2}/>
                     </View>
                     </TouchableOpacity>
