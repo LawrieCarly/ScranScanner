@@ -23,7 +23,7 @@ const handleSubmit = (event) => {
     setDate(new Date());
 }
 
-console.log(restaurants)
+// console.log(restaurants)
 
 // const restaurantList = () => { restaurants.map((restaurant) => {
 //         return (

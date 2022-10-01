@@ -15,8 +15,22 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
   // Don't need to format date/time here because it was already formatted before being passed from SearchResults to RestoScreen
   const data = await fetch(baseURLBooking + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
   return data.json() 
-
 }
+
+
+// useEffect(() => {
+//   // declare the data fetching function
+//   const fetchData = async () => {
+//     const data = await fetch('https://yourapi.com');
+//   }
+
+//   // call the function
+//   fetchData()
+//     // make sure to catch any error
+//     .catch(console.error);
+// }, [])
+
+
 
 // Booking route POST
 
