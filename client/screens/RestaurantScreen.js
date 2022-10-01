@@ -69,7 +69,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                             // onPress={() => TRIGGER BOOKING }
                             >
                                     <View 
-                                        style={styles.availability}
+                                        style={styles.availabilityButton}
                                     >
                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
@@ -85,37 +85,24 @@ const RestaurantScreen = ({ navigation, route }) => {
                 filteredAvailablitiesOfRestaurant
             ]);
 
-// COPY
+            // console.log('================= FILTERED AVAILS ===================');
+            // console.log(availabilityNodes);
+            // console.log('====================================');
 
-        // useEffect(() => {
-        //     const effectAvailabilityNodes = 
-        //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-        //             return (
-        //                             <TouchableOpacity
-        //                             // onPress={() => TRIGGER BOOKING }
-        //                             >
-        //                                     <View 
-        //                                     >
-        //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.date}</Text>
-        //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.time}</Text>
-        //                                     </View>
-        //                             </TouchableOpacity>
-                    
-        //             );
-        //             })
-        //             setAvailabilityNodes(effectAvailabilityNodes)
+
+
+        const restaurantReviews = 
+            restaurantById.reviews.map((review, index) => { 
+                return (
+                    <View style={styles.textH4} key={review.id} index={review.id} >
+                        <Text> Name: {review.customerName}</Text>
+                        <Text> Rating: {review.rating}</Text>
+                        <Text> Comment: {review.comment} </Text>
+                        <Text> =======</Text>
+                    </View>
+                )});
+
                         
-        //             // POTENTIAL ISSUE WITH RE-LOADING AND DISPLAYING CORRECT DATA
-        
-        //             }, [
-        //                 // IsFocused
-        //                 filteredAvailablitiesOfRestaurant
-        //             ]);
-            
-            
-            console.log('================= FILTERED AVAILS===================');
-            console.log(availabilityNodes);
-            console.log('====================================');
 
 
     return (
@@ -123,21 +110,23 @@ const RestaurantScreen = ({ navigation, route }) => {
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, padding: 16 }}>
                 
-            <Text style={styles.textH1}>{restaurantById["displayName"]} - db ID: {route.params.restaurantId}</Text>
+            <Text style={styles.textH1}>{restaurantById["displayName"]} - db: ID={route.params.restaurantId}</Text>
 
                 <View style={styles.mainView}>
+                <ScrollView>
+
                     <Image style={{paddingBottom: 50}} source={logo2}/>
                     <TouchableOpacity style={styles.button}>
                         <Text>Save Restaurant</Text>
                     </TouchableOpacity>
 
-                    <Text style={styles.textH2}> Details</Text>
-                    <Text style={styles.textH3}> [LOCATION]</Text>
-                    <Text style={styles.textH3}> [CUISINE]</Text>
-                    <Text style={styles.textH3}> [PRICE-RANGE]</Text>
+                    <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
+                    <Text style={styles.textH3}> CUISINE: db: {restaurantById.attributes["cuisine"]}</Text>
+                    <Text style={styles.textH3}> [PRICE: ££]</Text>
+                    <Text style={styles.textH3}> [RATING: ⭐️⭐️⭐️⭐️]</Text>
         
 
-                    <Text style={styles.textH1}>Searched Availabilities:</Text>
+                    <Text style={styles.textH1}>Booking Results:</Text>
 
                     <ScrollView horizontal={true}> 
                         <Text>
@@ -145,6 +134,19 @@ const RestaurantScreen = ({ navigation, route }) => {
                         </Text>
                     </ScrollView>
 
+                    <TouchableOpacity style={styles.button2}>
+                        <Text>See more times</Text>
+                    </TouchableOpacity>
+
+
+                    <View>
+                        <Text style={styles.textH1}>Reviews:</Text>  
+                        {restaurantReviews}
+                    </View>
+
+
+
+                </ScrollView>
                 </View>
 
             </View>
@@ -165,15 +167,31 @@ const RestaurantScreen = ({ navigation, route }) => {
         width: 350,
         marginTop: 16,
     },
-    availability: {
+    button2: {
+        alignItems: 'center',
+        backgroundColor: 'purple',
+        padding: 10,
+        width: 120,
+        marginTop: 16,
+        fontSize: 10,
+
+    },
+    availabilityButton: {
         alignItems: 'center',
         backgroundColor: 'red',
-        margin: 50
+        padding: 10,
+        margin: 10
     },
     availabilityText: {
         fontSize: 16,
         textAlign: 'center',
+    },
+    review: {
+        fontSize: 16,
+        alignItems: 'flex-start',
         color: 'black',
+        padding: 10,
+        margin: 10
     },
     textH1: {
         fontSize: 25,
@@ -184,9 +202,10 @@ const RestaurantScreen = ({ navigation, route }) => {
     },
     textH2: {
         fontSize: 18,
-        textAlign: 'center',
+        textAlign: 'left',
         color: 'black',
-        paddingTop: 10
+        paddingTop: 20,
+        paddingBottom: 10
 
     },
     textH3: {
