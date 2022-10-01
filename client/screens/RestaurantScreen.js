@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 
@@ -29,8 +31,6 @@ const RestaurantScreen = ({ navigation, route }) => {
     [IsFocused]);
 
 
-    // Attempt#1 for useEffect
-
     useEffect( () => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
@@ -41,32 +41,15 @@ const RestaurantScreen = ({ navigation, route }) => {
     // console.log('====================================');
     
 
-    // const availabilitiesMappingFunction = () => {
-    //     const effectAvailabilityNodes = 
-    //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-    //             return (
-    //                             <TouchableOpacity
-    //                             // onPress={() => TRIGGER BOOKING }
-    //                             >
-    //                                     <View 
-    //                                     >
-    //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.date}</Text>
-    //                                     <Text style={styles.textH4} key={availability.id} index={availability.id} >{availability.time}</Text>
-    //                                     </View>
-    //                             </TouchableOpacity>
-                
-    //             );
-    //             })
-    //             setAvailabilityNodes(effectAvailabilityNodes)    
-    //         }
-
-    // 2nd useEffect maps availabilities only once FilteredAvailablitiesOfRestaurant has been returned
+    // try useFocusEffect???
     useEffect(() => {
     const effectAvailabilityNodes = 
         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
             return (
                             <TouchableOpacity
-                            // onPress={() => TRIGGER BOOKING }
+                            // onPress={ () => 
+                            //     // TRIGGER BOOKING 
+                            // }
                             >
                                     <View 
                                         style={styles.availabilityButton}
@@ -79,28 +62,31 @@ const RestaurantScreen = ({ navigation, route }) => {
             );
             })
             setAvailabilityNodes(effectAvailabilityNodes)
-                
+
+            // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y
             }, [
                 // IsFocused
                 filteredAvailablitiesOfRestaurant
             ]);
 
-            // console.log('================= FILTERED AVAILS ===================');
+            // console.log('====================================');
             // console.log(availabilityNodes);
             // console.log('====================================');
 
 
+        
+    //  REVIEWS MAP - SOMETIMES WORKS BUT NEED TO SOLVE ISSUES WITH STATE UPDATING
 
-        const restaurantReviews = 
-            restaurantById.reviews.map((review, index) => { 
-                return (
-                    <View style={styles.textH4} key={review.id} index={review.id} >
-                        <Text> Name: {review.customerName}</Text>
-                        <Text> Rating: {review.rating}</Text>
-                        <Text> Comment: {review.comment} </Text>
-                        <Text> =======</Text>
-                    </View>
-                )});
+    // const restaurantReviews = 
+    //     restaurantById.reviews.map((review, index) => { 
+    //         return (
+    //             <View style={styles.textH4} key={review.id} index={review.id} >
+    //                 <Text> Name: {review.customerName}</Text>
+    //                 <Text> Rating: {review.rating}</Text>
+    //                 <Text> Comment: {review.comment} </Text>
+    //                 <Text> =======</Text>
+    //             </View>
+    //         )});
 
                         
 
@@ -121,7 +107,10 @@ const RestaurantScreen = ({ navigation, route }) => {
                     </TouchableOpacity>
 
                     <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
-                    <Text style={styles.textH3}> CUISINE: db: {restaurantById.attributes["cuisine"]}</Text>
+                    {/* <Text style={styles.textH3}> CUISINE: db: 
+                    RENDERING ISSUES - strange as it's never affected the resto name
+                    {restaurantById.attributes["cuisine"]}
+                    </Text> */}
                     <Text style={styles.textH3}> [PRICE: ££]</Text>
                     <Text style={styles.textH3}> [RATING: ⭐️⭐️⭐️⭐️]</Text>
         
@@ -141,7 +130,9 @@ const RestaurantScreen = ({ navigation, route }) => {
 
                     <View>
                         <Text style={styles.textH1}>Reviews:</Text>  
-                        {restaurantReviews}
+                        {/* <View>
+                            {restaurantReviews}
+                        </View> */}
                     </View>
 
 
