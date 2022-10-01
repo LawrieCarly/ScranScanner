@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 const baseURL = 'http://192.168.0.4:8080/restaurants/';
+const baseURLAvailabilities = 'http://192.168.0.4:8080/availabilities/restaurant/';
 
-const baseURLBooking = 'http://192.168.0.4:8080/availabilities/restaurant/';
 
 
 export async function getRestaurantById(id) {
@@ -13,27 +13,33 @@ export async function getRestaurantById(id) {
 
 export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
   // Don't need to format date/time here because it was already formatted before being passed from SearchResults to RestoScreen
-  const data = await fetch(baseURLBooking + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
+  const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
   return data.json() 
 }
 
+// Add booking to user profile
+// export function addBookingToUserProfile(booking) {
+//   return fetch(baseURL, {
+//     method: 'POST',
+//     body: JSON.stringify(booking),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(res => res.json());
+// };
 
-// useEffect(() => {
-//   // declare the data fetching function
-//   const fetchData = async () => {
-//     const data = await fetch('https://yourapi.com');
-//   }
-
-//   // call the function
-//   fetchData()
-//     // make sure to catch any error
-//     .catch(console.error);
-// }, [])
-
-
-
-// Booking route POST
-
+// Update selected boking availability to false 
+// updateBookingAvailabilityToFalse(booking) {
+//   return fetch(baseURL + booking._id, {
+//     method: 'PUT',
+//     body: JSON.stringify(booking),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(res => res.json());
+// };
 
     
 // }

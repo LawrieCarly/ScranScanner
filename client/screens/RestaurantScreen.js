@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
-
 
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 
@@ -30,16 +29,12 @@ const RestaurantScreen = ({ navigation, route }) => {
     }, 
     [IsFocused]);
 
-
     useEffect( () => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, [restaurantById]);
     
-    // console.log('====================================');
-    // console.log(filteredAvailablitiesOfRestaurant);
-    // console.log('====================================');
-    
+
 
     // try useFocusEffect???
     useEffect(() => {
@@ -47,9 +42,23 @@ const RestaurantScreen = ({ navigation, route }) => {
         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
             return (
                             <TouchableOpacity
-                            // onPress={ () => 
-                            //     // TRIGGER BOOKING 
-                            // }
+                            // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
+                            onPress={ () => {
+                                Alert.alert(
+                                  `'${restaurantById.displayName}' Confirmation:`,
+                                  `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+
+                                  [
+                                    {text: 'Book Now', onPress: () => console.log('set booking availability to false, add to customer reservations, add to restaurant')},
+                                    {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+                                  ],
+                                  { 
+                                    cancelable: true 
+                                  }
+                                );
+                            }
+                        
+                        }
                             >
                                     <View 
                                         style={styles.availabilityButton}
@@ -63,7 +72,7 @@ const RestaurantScreen = ({ navigation, route }) => {
             })
             setAvailabilityNodes(effectAvailabilityNodes)
 
-            // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y
+            // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
             }, [
                 // IsFocused
                 filteredAvailablitiesOfRestaurant
@@ -75,7 +84,7 @@ const RestaurantScreen = ({ navigation, route }) => {
 
 
         
-    //  REVIEWS MAP - SOMETIMES WORKS BUT NEED TO SOLVE ISSUES WITH STATE UPDATING
+    //  REVIEWS MAP - SOMETIMES WORKS BUT NEED TO SOLVE SAME ISSUES WITH STATE UPDATING
 
     // const restaurantReviews = 
     //     restaurantById.reviews.map((review, index) => { 
@@ -108,7 +117,7 @@ const RestaurantScreen = ({ navigation, route }) => {
 
                     <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
                     {/* <Text style={styles.textH3}> CUISINE: db: 
-                    RENDERING ISSUES - strange as it's never affected the resto name
+                    MORE RENDERING ISSUES - strange as it's never affected the resto name
                     {restaurantById.attributes["cuisine"]}
                     </Text> */}
                     <Text style={styles.textH3}> [PRICE: ££]</Text>
