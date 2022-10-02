@@ -44,9 +44,6 @@ public class DinnerTable {
     @OneToMany(mappedBy = "dinnerTable")
     private List<Availability> availabilities;
 
-    @OneToMany(mappedBy = "dinnerTable")
-    private List<Booking> bookings;
-
     public DinnerTable() {
     }
 
@@ -57,15 +54,6 @@ public class DinnerTable {
 //        this.joinables = new ArrayList<>();
         this.availabilities = new ArrayList<>();
         this.restaurant = restaurant;
-        this.bookings = new ArrayList<>();
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
     }
 
     public Restaurant getRestaurant() {
@@ -128,7 +116,5 @@ public class DinnerTable {
     public void addAvailability(Availability availability) {
         this.availabilities.add(availability);
     }
-
-    public void addBooking(Booking booking){this.bookings.add(booking);}
 }
 

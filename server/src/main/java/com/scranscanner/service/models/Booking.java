@@ -24,9 +24,9 @@ public class Booking {
     private Restaurant restaurant;
 
     @ManyToOne
-    @JoinColumn(name = "dinner_table_id", nullable = false)
+    @JoinColumn(name = "availability_id", nullable = false)
     @JsonIgnoreProperties({"bookings", "restaurant", "availabilities"})
-    private DinnerTable dinnerTable;
+    private Availability availability;
 
     @Column
     private int numberOfGuests;
@@ -34,10 +34,10 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Customer customer, Restaurant restaurant, DinnerTable dinnerTable, int numberOfGuests) {
+    public Booking(Customer customer, Restaurant restaurant, Availability availability, int numberOfGuests) {
         this.customer = customer;
         this.restaurant = restaurant;
-        this.dinnerTable = dinnerTable;
+        this.availability = availability;
         this.numberOfGuests = numberOfGuests;
     }
 
@@ -65,12 +65,12 @@ public class Booking {
         this.restaurant = restaurant;
     }
 
-    public DinnerTable getDinnerTable() {
-        return dinnerTable;
+    public Availability getAvailability() {
+        return availability;
     }
 
-    public void setDinnerTable(DinnerTable dinnerTable) {
-        this.dinnerTable = dinnerTable;
+    public void setDinnerTable(Availability availability) {
+        this.availability = availability;
     }
 
     public int getNumberOfGuests() {

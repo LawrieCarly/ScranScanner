@@ -30,6 +30,9 @@ public class Availability {
     @Column
     private boolean isAvailable;
 
+    @OneToMany(mappedBy = "availability")
+    private List<Booking> bookings;
+
 //    @ManyToOne
 //    @JoinColumn(name = "restaurant_id", nullable = false)
 //    @JsonIgnoreProperties({"searchedAvailabilities", "bookings", "tables", "reviews"})
