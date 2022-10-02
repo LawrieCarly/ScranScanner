@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
+import { postBooking } from '../services/BookingService';
+import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
 
 
 const logo2 = {
@@ -12,6 +14,8 @@ const logo2 = {
     width: 350,
     height: 250
 };
+
+const customerId = 1
 
 
 const RestaurantScreen = ({ navigation, route }) => {
@@ -21,7 +25,6 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState({});
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState([]);
     const [availabilityNodes, setAvailabilityNodes] = useState([]);
-    // ADD - customerById state - set GLOBAL
     
 
 
@@ -44,8 +47,6 @@ const RestaurantScreen = ({ navigation, route }) => {
         // const filteredRestos = () =>{ 
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        
-
         
         return () => setFilteredAvailablitiesOfRestaurant([]);
         
@@ -70,14 +71,37 @@ const RestaurantScreen = ({ navigation, route }) => {
                                       `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
     
                                       [
-                                        {text: 'Book Now', onPress: () => 
+                                        {text: 'Book Now', onPress: () => {
+                                            
+                                        // POST - 'add booking to customer reservations'
+                                        const bookingObject = {
+                                            "customer": {
+                                                "id": customerId
+                                            },
+                                            "restaurant": {
+                                                "id": route.params.restaurantId
+                                            },
+                                            "availability": {
+                                                "id": availability.id
+                                            },
+                                            "numberOfGuests": route.params.partysize
+                                        }
+                                        postBooking(bookingObject)
 
-                                        // PUT  'set booking availability to false'
+                                        // PUT - 'set booking availability to false'
+                                        const availabilityObject = {
+                                            "id": availability.id,
+                                            "date": availability.date,
+                                            "time": availability.time,
+                                            "dinnerTable": availability.dinnerTable,
+                                            "available": false
+                                        }
+                                        updateBookingAvailabilityToFalse(availabilityObject);
 
-                                        // POST 'add booking to customer reservations'
 
-                                        // NAVIGATE to reservations page
-                                        navigation.navigate('Notifications')},
+                                        // NAVIGATE - to reservations page
+                                        navigation.navigate('Notifications')}
+                                        },
         
                                         {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
                                       ],
@@ -102,7 +126,9 @@ const RestaurantScreen = ({ navigation, route }) => {
                 }, [filteredAvailablitiesOfRestaurant]);
     
     //   *====================================================================================
-    //*  REVIEWS MAP - sometimes works but issues with rendering in time, put in useEffect?
+    //*  REVIEWS MAP - sometimes works but issues with rendering in time, put in useEffect? / NEW COMPONENT
+
+    
 
     // const restaurantReviews = 
     //     restaurantById.reviews.map((review, index) => { 
@@ -134,10 +160,10 @@ const RestaurantScreen = ({ navigation, route }) => {
 
                     <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
                     
-                    {/* <Text style={styles.textH3}> CUISINE: db: 
-                    MORE RENDERING ISSUES - strange as it's never affected the resto name
-                    {restaurantById.attributes["cuisine"]}
-                    </Text> */}
+                    <Text style={styles.textH3}> CUISINE: db: 
+                    {/* MORE RENDERING ISSUES - strange as it's never affected the resto name */}
+                    {/* {restaurantById.attributes["cuisine"]} */}
+                    </Text>
 
                     <Text style={styles.textH3}> [PRICE: ££]</Text>
                     <Text style={styles.textH3}> [RATING: ⭐️⭐️⭐️⭐️]</Text>

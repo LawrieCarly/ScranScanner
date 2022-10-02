@@ -19,33 +19,6 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
 
 
 
-// IDEAS FOR BOOKING ROUTES ⬇️
-
-
-// Add booking to user profile
-// export function addBookingToUserProfile(booking) {
-//   return fetch(baseURL, {
-//     method: 'POST',
-//     body: JSON.stringify(booking),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//     .then(res => res.json());
-// };
-
-// Update selected boking availability to false 
-// updateBookingAvailabilityToFalse(booking) {
-//   return fetch(baseURL + booking._id, {
-//     method: 'PUT',
-//     body: JSON.stringify(booking),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//     .then(res => res.json());
-// };
-
     
 // }
 // `http://192.168.100.139:8080/restaurants?partSize=${partySize}&date=${date}`
