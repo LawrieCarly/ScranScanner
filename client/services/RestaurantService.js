@@ -19,6 +19,7 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
 
 
 
+// IDEAS FOR BOOKING ROUTES ⬇️
 
 
 // Add booking to user profile

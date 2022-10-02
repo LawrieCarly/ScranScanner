@@ -21,8 +21,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState({});
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState([]);
     const [availabilityNodes, setAvailabilityNodes] = useState([]);
-
-    // ADD - customerById state
+    // ADD - customerById state - set GLOBAL
     
 
 
@@ -46,61 +45,18 @@ const RestaurantScreen = ({ navigation, route }) => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
         
-        // const clearFilteredAvailabilities = navigation.addListener('blur', () => {
-        //     // Do something when the screen blurs
-        //     setFilteredAvailablitiesOfRestaurant([])
-        //     });
-        //   return () => clearFilteredAvailabilities();
-        console.log('==============FOCUSED======================');
-        console.log(filteredAvailablitiesOfRestaurant);
-        console.log('====================================');
 
-          return () => setFilteredAvailablitiesOfRestaurant([]);
-        }, [restaurantById])
+        
+        return () => setFilteredAvailablitiesOfRestaurant([]);
+        
+    }, [restaurantById]));
     
-        );
-
-
-    //*  Trying to set filteredAvailablitiesOfRestaurant state to empty when page unfocused
-        
-    // React.useEffect(() => {
-    //     const clearFilteredAvailabilities = navigation.addListener('blur', () => {
-        //     // Do something when the screen blurs
-        //     setFilteredAvailablitiesOfRestaurant([])
-        //     });
-        
-        //     return clearFilteredAvailabilities;
-        // }, [navigation]);
-        
-        
-                console.log('===============UNFOCUSED====================');
-                console.log(filteredAvailablitiesOfRestaurant);
-                console.log('====================================');
-
-
-    //! Version 2 ====
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //     // const filteredRestos = () =>{ 
-    //     getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        
-    //     //   return () => filteredRestos();
-    //     }, [restaurantById])
-    //     );
-    
-    console.log('=');      
-    //! Version 1 =====
-
-    // useEffect( () => {
-        //     getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-        //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        // }, [IsFocused]);
-
-    console.log('=');  
+    console.log('==============FOCUSED======================');
+    console.log(filteredAvailablitiesOfRestaurant);
+    console.log('====================================');
 
     //  *====================================================================================
-    //* useEffect #3 - maps availabilities in touchable opacity
+    //* useEffect #3 - maps availabilities in touchable opacity and provides onPress action for booking actions
 
     useEffect(() => {
         const mappedAvailabilityNodes = 
@@ -117,13 +73,12 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         {text: 'Book Now', onPress: () => 
 
                                         // PUT  'set booking availability to false'
+
                                         // POST 'add booking to customer reservations'
-                                        // POST 'add to resto bookings?'
-                                        
+
+                                        // NAVIGATE to reservations page
                                         navigation.navigate('Notifications')},
-    
-                                        console.log('booked'),
-    
+        
                                         {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
                                       ],
                                       { cancelable: true }
