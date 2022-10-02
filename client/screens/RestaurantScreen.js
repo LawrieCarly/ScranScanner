@@ -15,7 +15,7 @@ const logo2 = {
     height: 250
 };
 
-const customerId = 21
+const customerId = 1
 
 
 const RestaurantScreen = ({ navigation, route }) => {
@@ -89,8 +89,14 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         postBooking(bookingObject)
 
                                         // PUT - 'set booking availability to false'
-                                        availability.available = false             
-                                        updateBookingAvailabilityToFalse(availability);
+                                        const availabilityObject = {
+                                            "id": availability.id,
+                                            "date": availability.date,
+                                            "time": availability.time,
+                                            "dinnerTable": availability.dinnerTable,
+                                            "available": false
+                                        }
+                                        updateBookingAvailabilityToFalse(availabilityObject);
 
 
                                         // NAVIGATE - to reservations page
@@ -156,7 +162,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                     
                     <Text style={styles.textH3}> CUISINE: db: 
                     {/* MORE RENDERING ISSUES - strange as it's never affected the resto name */}
-                    {restaurantById.attributes["cuisine"]}
+                    {/* {restaurantById.attributes["cuisine"]} */}
                     </Text>
 
                     <Text style={styles.textH3}> [PRICE: ££]</Text>

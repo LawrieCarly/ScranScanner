@@ -18,15 +18,3 @@ export function postBooking(booking) {
     .then(res => res.json());
 };
 
-
-// Update selected booking availability to false 
-// updateBookingAvailabilityToFalse(booking) {
-//   return fetch(baseURL + booking._id, {
-//     method: 'PUT',
-//     body: JSON.stringify(booking),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//     .then(res => res.json());
-// };
