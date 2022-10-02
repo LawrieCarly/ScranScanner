@@ -56,7 +56,12 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                     onPress={
                         () => navigation.navigate(
                             // params are stringified above (not objects)
-                            'Restaurant', { restaurantId: searchResult.id, partysize: partySize, date: formattedDate, time: formattedTime })}
+                            'Restaurant', { 
+                                restaurantId: searchResult.id, 
+                                partysize: partySize, 
+                                date: formattedDate, 
+                                time: formattedTime 
+                            })}
                     >
                     <View>
                         <Text id={searchResult.id} key={index} style={{color: 'black'}}>{searchResult.displayName}</Text> 

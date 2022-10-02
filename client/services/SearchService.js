@@ -17,7 +17,7 @@ export const getRestaurants = () => {
 
 export const getSearchResults = (partySize, date, time) => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
-  const formattedTime = moment(date).format('HH:MM')
+  const formattedTime = moment(date).format('HH:mm')
   // console.log(formattedDate)
   // console.log(formattedTime)
 

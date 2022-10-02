@@ -17,6 +17,10 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
   return data.json() 
 }
 
+
+
+
+
 // Add booking to user profile
 // export function addBookingToUserProfile(booking) {
 //   return fetch(baseURL, {

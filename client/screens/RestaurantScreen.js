@@ -21,50 +21,89 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState({});
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState([]);
     const [availabilityNodes, setAvailabilityNodes] = useState([]);
+
+    // ADD - customerById state
     
 
-    // useEffect #1 - uses route params id passed from search screen to get RestaurantById
+
+    //  *====================================================================================
+    //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
+
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
     }, 
     [IsFocused]);
-
-
-        console.log('====================================');
-        console.log(route.params.date, route.params.time);
-        console.log('====================================');
-
-
-    // useEffect #2 - uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
-
-
-    // useFocusEffect(
-    //     React.useCallback(() => {
-            
-    //     const filteredRestos = getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     
-    //       return () => filteredRestos;
-    //     }, [restaurantById])
 
-    //     );
-        
-    //     console.log('====================================');
-    //     console.log(filteredAvailablitiesOfRestaurant);
-    //     console.log('====================================');    
+    //  *====================================================================================
+    //* useEffect #2 - uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
 
-
-
-    useEffect( () => {
+    //! Version 3 ====
+    useFocusEffect(
+        React.useCallback(() => {
+        // const filteredRestos = () =>{ 
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-    }, [IsFocused]);
+        
+        // const clearFilteredAvailabilities = navigation.addListener('blur', () => {
+        //     // Do something when the screen blurs
+        //     setFilteredAvailablitiesOfRestaurant([])
+        //     });
+        //   return () => clearFilteredAvailabilities();
+        console.log('==============FOCUSED======================');
+        console.log(filteredAvailablitiesOfRestaurant);
+        console.log('====================================');
+
+          return () => setFilteredAvailablitiesOfRestaurant([]);
+        }, [restaurantById])
+    
+        );
 
 
-    // useEffect #3 to map availabilities
+    //*  Trying to set filteredAvailablitiesOfRestaurant state to empty when page unfocused
+        
+    // React.useEffect(() => {
+    //     const clearFilteredAvailabilities = navigation.addListener('blur', () => {
+        //     // Do something when the screen blurs
+        //     setFilteredAvailablitiesOfRestaurant([])
+        //     });
+        
+        //     return clearFilteredAvailabilities;
+        // }, [navigation]);
+        
+        
+                console.log('===============UNFOCUSED====================');
+                console.log(filteredAvailablitiesOfRestaurant);
+                console.log('====================================');
+
+
+    //! Version 2 ====
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //     // const filteredRestos = () =>{ 
+    //     getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+    //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+        
+    //     //   return () => filteredRestos();
+    //     }, [restaurantById])
+    //     );
+    
+    console.log('=');      
+    //! Version 1 =====
+
+    // useEffect( () => {
+        //     getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+        // }, [IsFocused]);
+
+    console.log('=');  
+
+    //  *====================================================================================
+    //* useEffect #3 - maps availabilities in touchable opacity
+
     useEffect(() => {
-        const effectAvailabilityNodes = 
+        const mappedAvailabilityNodes = 
             filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                 return (
                                 <TouchableOpacity
@@ -76,8 +115,9 @@ const RestaurantScreen = ({ navigation, route }) => {
     
                                       [
                                         {text: 'Book Now', onPress: () => 
-                                        //  PUT 'set booking availability to false'
-                                        //  POST 'add to customer reservations'
+
+                                        // PUT  'set booking availability to false'
+                                        // POST 'add booking to customer reservations'
                                         // POST 'add to resto bookings?'
                                         
                                         navigation.navigate('Notifications')},
@@ -86,9 +126,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     
                                         {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
                                       ],
-                                      { 
-                                        cancelable: true 
-                                      }
+                                      { cancelable: true }
                                     );
                                 }
                             
@@ -104,76 +142,12 @@ const RestaurantScreen = ({ navigation, route }) => {
                 
                 );
                 })
-                setAvailabilityNodes(effectAvailabilityNodes)
+                setAvailabilityNodes(mappedAvailabilityNodes)
     
-                // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
-                }, [
-                    // IsFocused
-                    filteredAvailablitiesOfRestaurant
-                ]);
+                }, [filteredAvailablitiesOfRestaurant]);
     
-
-
-
-
-
-    // COPY OF #2 useEFFECT
-    // useEffect(() => {
-    // const effectAvailabilityNodes = 
-    //     filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-    //         return (
-    //                         <TouchableOpacity
-    //                         // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
-    //                         onPress={ () => {
-    //                             Alert.alert(
-    //                               `'${restaurantById.displayName}' Confirmation:`,
-    //                               `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
-
-    //                               [
-    //                                 {text: 'Book Now', onPress: () => 
-    //                                 //  PUT 'set booking availability to false'
-    //                                 //  POST 'add to customer reservations'
-    //                                 // POST 'add to resto bookings?'
-                                    
-    //                                 navigation.navigate('Notifications')},
-
-    //                                 console.log('booked'),
-
-    //                                 {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
-    //                               ],
-    //                               { 
-    //                                 cancelable: true 
-    //                               }
-    //                             );
-    //                         }
-                        
-    //                     }
-    //                         >
-    //                                 <View 
-    //                                     style={styles.availabilityButton}
-    //                                 >
-    //                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
-    //                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
-    //                                 </View>
-    //                         </TouchableOpacity>
-            
-    //         );
-    //         })
-    //         setAvailabilityNodes(effectAvailabilityNodes)
-
-    //         // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
-    //         }, [
-    //             // IsFocused
-    //             filteredAvailablitiesOfRestaurant
-    //         ]);
-
-            // console.log('====================================');
-            // console.log(availabilityNodes);
-        
-            console.log('====================================');
-
-        
-    //  REVIEWS MAP - SOMETIMES WORKS BUT NEED TO SOLVE SAME ISSUES WITH STATE UPDATING
+    //   *====================================================================================
+    //*  REVIEWS MAP - sometimes works but issues with rendering in time, put in useEffect?
 
     // const restaurantReviews = 
     //     restaurantById.reviews.map((review, index) => { 
@@ -187,7 +161,6 @@ const RestaurantScreen = ({ navigation, route }) => {
     //         )});
 
                         
-
 
     return (
 
@@ -205,10 +178,12 @@ const RestaurantScreen = ({ navigation, route }) => {
                     </TouchableOpacity>
 
                     <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
+                    
                     {/* <Text style={styles.textH3}> CUISINE: db: 
                     MORE RENDERING ISSUES - strange as it's never affected the resto name
                     {restaurantById.attributes["cuisine"]}
                     </Text> */}
+
                     <Text style={styles.textH3}> [PRICE: ££]</Text>
                     <Text style={styles.textH3}> [RATING: ⭐️⭐️⭐️⭐️]</Text>
         
@@ -228,9 +203,11 @@ const RestaurantScreen = ({ navigation, route }) => {
 
                     <View>
                         <Text style={styles.textH1}>Reviews:</Text>  
-                        {/* <View>
+
+                        {/* <View style={styles.textH3}>
                             {restaurantReviews}
                         </View> */}
+
                     </View>
 
 
