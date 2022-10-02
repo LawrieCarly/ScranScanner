@@ -43,7 +43,7 @@ public class DataLoaderHelper {
                 // create a new Avail object
                 counter++;
                 Availability availability = new Availability(date, time, dinnerTable);
-                if(counter % 4 == 0){
+                if (counter % 4 == 0){
                     availability.setAvailable(false);
                 }
                 availabilities.add(availability);

@@ -334,7 +334,7 @@ public class DataLoader implements ApplicationRunner {
             dinnerTableRepository.save(breadMeatsBreadTable1);}
 
         DinnerTable breadMeatsBreadTable2 = new DinnerTable(2,4,PriorityType.MEDIUM,breadMeatsBread);
-        dinnerTableRepository.save(theChanterTable2);
+        dinnerTableRepository.save(breadMeatsBreadTable2);
         List<Availability> breadMeatsBreadAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1315, breadMeatsBreadTable2);
         for(Availability availability: breadMeatsBreadAvail2){
             availabilityRepository.save(availability);
