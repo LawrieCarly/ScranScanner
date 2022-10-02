@@ -350,6 +350,18 @@ public class DataLoader implements ApplicationRunner {
             dinnerTableRepository.save(breadMeetsBreadTable3);}
 
 
+        // adds some saved restos to customers
+
+        ethan.addSavedRestaurant(palmyra);
+        ethan.addSavedRestaurant(breadMeatsBread);
+        customerRepository.save(ethan);
+        jack.addSavedRestaurant(chezJules);
+        customerRepository.save(jack);
+        sam.addSavedRestaurant(palmyra);
+        customerRepository.save(sam);
+        lawrie.addSavedRestaurant(sixByNico);
+        customerRepository.save(lawrie);
+
 
 
 

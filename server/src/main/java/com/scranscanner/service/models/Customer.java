@@ -68,4 +68,8 @@ public class Customer extends User {
     public void addBooking(Booking booking){
         this.bookings.add(booking);
     }
+
+    public void addSavedRestaurant(Restaurant restaurant) {
+        this.savedRestaurants.add(restaurant);
+    }
 }
