@@ -23,7 +23,7 @@ const handleSubmit = (event) => {
     setDate(new Date());
 }
 
-console.log(restaurants)
+// console.log(restaurants)
 
 // const restaurantList = () => { restaurants.map((restaurant) => {
 //         return (
@@ -62,7 +62,7 @@ return (
         />
         <View>
             {restaurants.map((restaurant, index) => { return (
-            <View><Text id={restaurant.id} key={index} style={styles.buttonText}>{restaurant.displayName}</Text></View>
+            <View><Text id={restaurant.id} key={restaurant.id} style={styles.buttonText}>{restaurant.displayName}</Text></View>
             );})}
         </View>
         <Pressable style={styles.button} onPress={handleSubmit}>

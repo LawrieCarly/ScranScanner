@@ -24,7 +24,7 @@ const RestaurantPreviewWide = () => {
 
                 
                         <Text style={{ fontSize: 16, color: 'black', paddingBottom: 20}}>
-                        RESTAURANT NAME
+                        EXAMPLE RESTAURANT
                         </Text>
                         <View>
                             <Image source={logo2} />

@@ -34,7 +34,7 @@ function MyTabsScreen() {
   return (
     <TopTab.Navigator>
       <TopTab.Screen name="Reservations" component={ReservationsScreen} />
-      <TopTab.Screen name="Favourites" component={FavouritesScreen} />
+      <TopTab.Screen name="Saved" component={FavouritesScreen} />
     </TopTab.Navigator>
   );
 }

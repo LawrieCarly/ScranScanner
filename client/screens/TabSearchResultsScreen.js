@@ -3,6 +3,7 @@ import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Press
 import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
 import { getSearchResults } from '../services/SearchService';
+import moment from 'moment';
 
 const logo2 = {
     uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
@@ -22,27 +23,56 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const [searchNodes, setSearchNodes] = React.useState([]);
 
     
+    
     function handleSubmit(event) {
         event.preventDefault();
         getSearchResults(partySize, date, time)
-            .then((returnedResults) => {
-                const uniqueResults = [... new Set(returnedResults)]
-                setSearchResults(uniqueResults);
-            })
+        .then((returnedResults) => {
+            const uniqueResults = [... new Set(returnedResults)]
+            setSearchResults(uniqueResults);
+        })
     }
+    
+        // Converted state into strings here instead of in the service, to allow them to be passed as params to RestaurantScreen
+        const formattedDate = moment(date).format('YYYY-MM-DD')
+        const formattedTime = moment(date).format('HH:mm')
+
+
+        // console.log('====================================');
+        // console.log(formattedDate);
+        // console.log(formattedTime);
+        // console.log('====================================');
+
 
     useEffect(() => {
-            const searchNodes = searchResults.map((searchResult, index) => { 
+            const searchNodes = 
+            searchResults.map((searchResult, index) => { 
                 return (
+
+                    // Params passed to RestaurantScreen route.
+                    // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
+
+                    <TouchableOpacity
+                    onPress={
+                        () => navigation.navigate(
+                            // params are stringified above (not objects)
+                            'Restaurant', { 
+                                restaurantId: searchResult.id, 
+                                partysize: partySize, 
+                                date: formattedDate, 
+                                time: formattedTime 
+                            })}
+                    >
                     <View>
-                        <Text id={searchResult.id} key={index}>{searchResult.displayName}</Text> 
+                        <Text id={searchResult.id} key={index} style={{color: 'black'}}>{searchResult.displayName}</Text> 
                         <Image source={logo2}/>
                     </View>
+                    </TouchableOpacity>
                 
                 );
                 })
                 setSearchNodes(searchNodes)
-                console.log(searchNodes);
+                // console.log(searchNodes);
     }, [searchResults])
 
 
@@ -78,26 +108,16 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 <ScrollView>
 
                     <View style={{flex: 2}}>
-                    <TouchableOpacity
-                        onPress={
-                            () => navigation.navigate(
-                            'Restaurant')}
-                        >
                         <View>
                             {searchNodes}
                         </View>
-                </TouchableOpacity>
-                    
-                    <ScrollView>
-
-
-                    </ScrollView>
                     </View>
+
                 </ScrollView>
             </View>
 
         
-        </View>
+            </View>
 
         </SafeAreaView>
 

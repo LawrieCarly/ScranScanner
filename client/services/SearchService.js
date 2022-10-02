@@ -9,17 +9,17 @@ export const getRestaurants = () => {
     
 }
 
-export async function getRestaurantById(id) {
-  const data = await fetch(baseURL + id);
-  return data.json()
+// export async function getRestaurantById(id) {
+//   const data = await fetch(baseURL + id);
+//   return data.json()
     
-}
+// }
 
 export const getSearchResults = (partySize, date, time) => {
   const formattedDate = moment(date).format('YYYY-MM-DD')
-  const formattedTime = moment(date).format('HH:MM')
-  console.log(formattedDate)
-  console.log(formattedTime)
+  const formattedTime = moment(date).format('HH:mm')
+  // console.log(formattedDate)
+  // console.log(formattedTime)
 
   return fetch(baseURL + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
   .then(data => data.json());
