@@ -35,7 +35,14 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     
         // Converted state into strings here instead of in the service, to allow them to be passed as params to RestaurantScreen
         const formattedDate = moment(date).format('YYYY-MM-DD')
-        const formattedTime = moment(date).format('00:00')
+        const formattedTime = moment(date).format('HH:mm')
+
+
+        // console.log('====================================');
+        // console.log(formattedDate);
+        // console.log(formattedTime);
+        // console.log('====================================');
+
 
     useEffect(() => {
             const searchNodes = 

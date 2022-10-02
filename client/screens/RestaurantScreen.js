@@ -23,65 +23,154 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [availabilityNodes, setAvailabilityNodes] = useState([]);
     
 
+    // useEffect #1 - uses route params id passed from search screen to get RestaurantById
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
     }, 
     [IsFocused]);
 
+
+        console.log('====================================');
+        console.log(route.params.date, route.params.time);
+        console.log('====================================');
+
+
+    // useEffect #2 - uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
+
+
+    // useFocusEffect(
+    //     React.useCallback(() => {
+            
+    //     const filteredRestos = getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+    //     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+    
+    //       return () => filteredRestos;
+    //     }, [restaurantById])
+
+    //     );
+        
+    //     console.log('====================================');
+    //     console.log(filteredAvailablitiesOfRestaurant);
+    //     console.log('====================================');    
+
+
+
     useEffect( () => {
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-    }, [restaurantById]);
+    }, [IsFocused]);
+
+
+    // useEffect #3 to map availabilities
+    useEffect(() => {
+        const effectAvailabilityNodes = 
+            filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+                return (
+                                <TouchableOpacity
+                                // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
+                                onPress={ () => {
+                                    Alert.alert(
+                                      `'${restaurantById.displayName}' Confirmation:`,
+                                      `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+    
+                                      [
+                                        {text: 'Book Now', onPress: () => 
+                                        //  PUT 'set booking availability to false'
+                                        //  POST 'add to customer reservations'
+                                        // POST 'add to resto bookings?'
+                                        
+                                        navigation.navigate('Notifications')},
+    
+                                        console.log('booked'),
+    
+                                        {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+                                      ],
+                                      { 
+                                        cancelable: true 
+                                      }
+                                    );
+                                }
+                            
+                            }
+                                >
+                                        <View 
+                                            style={styles.availabilityButton}
+                                        >
+                                        <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+                                        <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+                                        </View>
+                                </TouchableOpacity>
+                
+                );
+                })
+                setAvailabilityNodes(effectAvailabilityNodes)
+    
+                // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
+                }, [
+                    // IsFocused
+                    filteredAvailablitiesOfRestaurant
+                ]);
     
 
 
-    // try useFocusEffect???
-    useEffect(() => {
-    const effectAvailabilityNodes = 
-        filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-            return (
-                            <TouchableOpacity
-                            // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
-                            onPress={ () => {
-                                Alert.alert(
-                                  `'${restaurantById.displayName}' Confirmation:`,
-                                  `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
 
-                                  [
-                                    {text: 'Book Now', onPress: () => console.log('set booking availability to false, add to customer reservations, add to restaurant')},
-                                    {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
-                                  ],
-                                  { 
-                                    cancelable: true 
-                                  }
-                                );
-                            }
+
+
+    // COPY OF #2 useEFFECT
+    // useEffect(() => {
+    // const effectAvailabilityNodes = 
+    //     filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+    //         return (
+    //                         <TouchableOpacity
+    //                         // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
+    //                         onPress={ () => {
+    //                             Alert.alert(
+    //                               `'${restaurantById.displayName}' Confirmation:`,
+    //                               `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+
+    //                               [
+    //                                 {text: 'Book Now', onPress: () => 
+    //                                 //  PUT 'set booking availability to false'
+    //                                 //  POST 'add to customer reservations'
+    //                                 // POST 'add to resto bookings?'
+                                    
+    //                                 navigation.navigate('Notifications')},
+
+    //                                 console.log('booked'),
+
+    //                                 {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+    //                               ],
+    //                               { 
+    //                                 cancelable: true 
+    //                               }
+    //                             );
+    //                         }
                         
-                        }
-                            >
-                                    <View 
-                                        style={styles.availabilityButton}
-                                    >
-                                    <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
-                                    <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
-                                    </View>
-                            </TouchableOpacity>
+    //                     }
+    //                         >
+    //                                 <View 
+    //                                     style={styles.availabilityButton}
+    //                                 >
+    //                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+    //                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+    //                                 </View>
+    //                         </TouchableOpacity>
             
-            );
-            })
-            setAvailabilityNodes(effectAvailabilityNodes)
+    //         );
+    //         })
+    //         setAvailabilityNodes(effectAvailabilityNodes)
 
-            // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
-            }, [
-                // IsFocused
-                filteredAvailablitiesOfRestaurant
-            ]);
+    //         // ISSUE WITH RE-RENDERING NEW FILTERED AVAILABILITY - SOMETIMES STAYS THE SAME OR ADDS BOTH DATES - NEEDS SOMETHING USEEFFECT-Y?
+    //         }, [
+    //             // IsFocused
+    //             filteredAvailablitiesOfRestaurant
+    //         ]);
 
             // console.log('====================================');
             // console.log(availabilityNodes);
-            // console.log('====================================');
-
+        
+            console.log('====================================');
 
         
     //  REVIEWS MAP - SOMETIMES WORKS BUT NEED TO SOLVE SAME ISSUES WITH STATE UPDATING
