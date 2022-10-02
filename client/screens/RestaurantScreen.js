@@ -73,8 +73,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                                       [
                                         {text: 'Book Now', onPress: () => {
                                             
-                                        // POST 'add booking to customer reservations'
-
+                                        // POST - 'add booking to customer reservations'
                                         const bookingObject = {
                                             "customer": {
                                                 "id": customerId
@@ -89,17 +88,12 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         }
                                         postBooking(bookingObject)
 
-                                        // PUT  'set booking availability to false'
-
-                                        const availabilityObject = {
-                                            "id": availability.id,
-
-                                            "isAvailable": false
-                                        }
-                                        updateBookingAvailabilityToFalse(availabilityObject);
+                                        // PUT - 'set booking availability to false'
+                                        availability.available = false             
+                                        updateBookingAvailabilityToFalse(availability);
 
 
-                                        // NAVIGATE to reservations page
+                                        // NAVIGATE - to reservations page
                                         navigation.navigate('Notifications')}
                                         },
         
@@ -127,6 +121,8 @@ const RestaurantScreen = ({ navigation, route }) => {
     
     //   *====================================================================================
     //*  REVIEWS MAP - sometimes works but issues with rendering in time, put in useEffect? / NEW COMPONENT
+
+    
 
     // const restaurantReviews = 
     //     restaurantById.reviews.map((review, index) => { 
