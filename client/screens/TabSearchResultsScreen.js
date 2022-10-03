@@ -45,8 +45,24 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
 
     useEffect(() => {
-            const searchNodes = 
-            searchResults.map((searchResult, index) => { 
+            // let result = []
+            // searchResults.forEach((item, index) => {
+            //     if (searchResults.indexOf(item) == index){
+            //         result.push(item);
+            //     } 
+
+            const uniqueIds = [];
+
+            let result = searchResults.filter( (restaurant) => {
+                if(!uniqueIds.includes(restaurant.id)){
+                    uniqueIds.push(restaurant.id);
+                    return restaurant;
+                }
+            });
+
+            console.log("HELLO" + result);
+
+            const searchNodes = result.map((searchResult, index) => { 
                 return (
 
                     // Params passed to RestaurantScreen route.
