@@ -1,8 +1,12 @@
 
 import moment from 'moment';
 
+<<<<<<< HEAD
 const baseURL = 'http://192.168.100.139:8080/restaurants/';
 
+=======
+const baseURL = 'http://192.168.100.248:8080/restaurants/';
+>>>>>>> a8842d4 (added IPs)
 
 export const getRestaurants = () => {
   return fetch(baseURL)
