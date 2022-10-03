@@ -30,6 +30,6 @@ public class AvailabilityController {
     public ResponseEntity<List<Availability>> getAllAvailabilities(){
         return new ResponseEntity<>(availabilityRepository.findAll(), HttpStatus.OK);
     }
-    
+
 
 }

@@ -88,19 +88,6 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         }
                                         postBooking(bookingObject)
 
-                                        // PUT - 'set booking availability to false'
-                                        // const availabilityObject = {
-                                        //     "id": availability.id,
-                                        //     "date": availability.date,
-                                        //     "time": availability.time,
-                                        //     "dinnerTable": availability.dinnerTable,
-                                        //     "available": false
-                                        // }
-                                        // updateBookingAvailabilityToFalse(availabilityObject);
-
-                                        //Patch availability isAvailable: false
-                                        // patchAvaialbility(availability);
-
 
 
                                         // NAVIGATE - to reservations page
