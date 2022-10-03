@@ -1,13 +1,8 @@
-baseURL = "http://192.168.0.50/customers/byEmail"
+baseURL = "http://192.168.0.50:8080/customers/byEmail/"
 
 export const getCustomerByEmail = (email) => {
-    return fetch(baseURL, {
-        method: 'GET',
-        body: JSON.stringify(email),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+    console.log(email);
+    return fetch(baseURL + email)
         .then(res => res.json());
 
 }

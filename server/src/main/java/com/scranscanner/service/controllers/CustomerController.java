@@ -29,8 +29,8 @@ public class CustomerController {
         return new ResponseEntity<>(customerRepository.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/customers/byEmail")
-    public ResponseEntity<Optional<Customer>> findCustomerByEmail(@RequestBody String email){
+    @GetMapping(value = "/customers/byEmail/{email}")
+    public ResponseEntity<Optional<Customer>> findCustomerByEmail(@PathVariable String email){
         return new ResponseEntity<>(customerRepository.findByEmail(email), HttpStatus.OK);
     }
 
