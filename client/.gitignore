@@ -24,13 +24,15 @@ ios/.xcode.env.local
 
 # Android/IntelliJ
 #
-build/
+android/build/
 .idea
 .gradle
 local.properties
 *.iml
 *.hprof
 .cxx/
+
+android/app/build
 
 # node.js
 #
