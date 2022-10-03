@@ -61,7 +61,9 @@ export default function App() {
     <>
       {!loggedIn? 
       <>
-        <LoginContainer/>
+        <LoginContainer
+          flipLoggedIn={flipLoggedIn}
+        />
       </>
            : 
       <>

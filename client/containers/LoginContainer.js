@@ -1,8 +1,22 @@
-import { Text } from "react-native"
+import { Text, Button } from "react-native"
 
-const LoginContainer = () => {
+const LoginContainer = ({flipLoggedIn}) => {
+
+    const handleLogin = () => {
+        flipLoggedIn()
+
+    }
     return(
-        <Text>This is the login container</Text>
+        <>
+            <Text>This is the login container</Text>
+            <Button
+  onPress={() => {
+    flipLoggedIn();
+  }}
+  title="Press Me"
+/>
+        </>
+        
     )
 }
 
