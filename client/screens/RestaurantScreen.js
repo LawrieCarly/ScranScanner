@@ -34,8 +34,8 @@ const RestaurantScreen = ({ navigation, route }) => {
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
-        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-        .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+        // getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        // .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
 
@@ -44,12 +44,12 @@ const RestaurantScreen = ({ navigation, route }) => {
     // uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
     
     
-    // useFocusEffect(
-    //         React.useCallback(() => {
-    //                 getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //                 .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+    useFocusEffect(
+            React.useCallback(() => {
+                    getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+                    .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
                                 
-    //             }, [restaurantById]));
+                }, [restaurantById]));
                 
 
 
