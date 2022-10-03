@@ -20,7 +20,6 @@ const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
     const handleLogin = async () => {
         // GET customer by email
         const customer = await getCustomerByEmail(email)
-        console.log(customer);
 
         // IF customer.password == password
         if (customer.password == password){
