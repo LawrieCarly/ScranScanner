@@ -1,29 +1,76 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
+import { useIsFocused } from '@react-navigation/native';
+import { getCustomerById } from '../services/CustomerService';
 
 
-const ReservationsScreen = ({ navigation }) => {
-    return (
-        <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, padding: 16 }}>
-            <View style={styles.mainView}>
-                <Text style={styles.textH1}>Here's what you've booked:</Text>
-            </View>
-          
-            <View style={styles.mainView}>
-                <RestaurantPreviewSmall/>
-            </View>
+
+const ReservationsScreen = ({navigation}) => {
+
+    const id = "1"
+
+    const [customer, setCustomer] = useState({ bookings: [] })
+    const IsFocused = useIsFocused();
+
+    useEffect(() => {
+        getCustomerById(id)
+            .then(returnedCustomer => setCustomer(returnedCustomer))
+        }, [IsFocused]);
+
+        // console.log("customerView", customer)
+        // console.log("booking name", customer.bookings)
 
 
+        const bookingNodes = customer.bookings.map((booking, index) => {
+            return(
+                <View>
+                    <Text>{booking.restaurant.displayName}</Text>
+                </View>
+            )
+
+        })
+
+        // console.log("Customer bookings", bookingNodes)
+
+
+    return(
+        <View>
+            <Text>Text</Text>
+            <Text>{customer.displayName}</Text>
+            {bookingNodes}
         </View>
-        </SafeAreaView>
+    )
+
+// ? CODE TO START WITH =============================================
+
+    // return (
+        
+    //     <SafeAreaView style={{ flex: 1 }}>
+    //     <View style={{ flex: 1, padding: 16 }}>
+    //         <View style={styles.mainView}>
+    //             <Text style={styles.textH1}>Here's what you've booked:{customer.displayName}</Text>
+    //             <View>
+    //             </View>
+                
+
+    //         </View>
+          
+    //         <View style={styles.mainView}>
+    //             <RestaurantPreviewSmall/>
+    //         </View>
 
 
-    );
-    }
+    //     </View>
+    //     </SafeAreaView>
+
+
+    // );
     
+    // ? CODE TO START WITH =============================================
+
+    }
     const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
@@ -56,5 +103,7 @@ const ReservationsScreen = ({ navigation }) => {
         alignItems: 'center',
         justifyContent: 'flex-start',
     }
-    });
+    
+});
+
 export default ReservationsScreen;
