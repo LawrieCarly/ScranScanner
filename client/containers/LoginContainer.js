@@ -32,34 +32,40 @@ const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
             
 
         }
+        else {
+            // ELSE alert email or password incorrect
+            Alert.alert("Username or Password Incorrect")
+        }
 
             
 
-        // ELSE alert email or password incorrect
-        Alert.alert("Username or Password Incorrect")
+        
 
     }
 
     return(
-        <View>
-            <TextInput style={styles.input}
-                    onChangeText={handleEmailInput}
-                    name="email"
-                    placeholder="email"
-                    placeholderTextColor={"white"}
-                />
-            <TextInput style={styles.input}
-                    onChangeText={handlePasswordInput}
-                    name="password"
-                    placeholder="password"
-                    placeholderTextColor={"white"}
-                />
-            <Pressable
-                style={styles.button}
-                onPress={handleLogin}
-            >
-                <Text>Login</Text>
-            </Pressable>
+        <View style={styles.container}>
+            <Text style={styles.heading}>scranscanner</Text>
+            <View style={styles.form}>
+                <TextInput style={styles.input}
+                        onChangeText={handleEmailInput}
+                        placeholder="email"
+                        placeholderTextColor={"black"}
+                    />
+                <TextInput style={styles.input}
+                        onChangeText={handlePasswordInput}
+                        secureTextEntry={true}
+                        placeholder="password"
+                        placeholderTextColor={"black"}
+                    />
+                <Pressable
+                    style={styles.button}
+                    onPress={handleLogin}
+                >
+                    <Text style={styles.buttonText}>Login</Text>
+                </Pressable>
+            </View>
+            
            
             
         </View>
@@ -72,17 +78,32 @@ export default LoginContainer
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: "center",
-      paddingHorizontal: 10
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      paddingHorizontal: 10,
+      backgroundColor: "white"
+    },
+    heading: {
+        fontSize: 50,
+        color: "black"
+    },
+    form: {
+        borderWidth: 3,
+        padding: 10,
+        width: "80%",
+        borderRadius: 10
+    },
+    input: {
+        borderBottomWidth: 3,
+        marginBottom: 10,
+        color: "black"
     },
     button: {
       alignItems: "center",
-      backgroundColor: "#DDDDDD",
+      backgroundColor: "#ff6633",
       padding: 10
     },
-    imput: {},
-    countContainer: {
-      alignItems: "center",
-      padding: 10
+    buttonText: {
+        color: "white"
     }
   });
