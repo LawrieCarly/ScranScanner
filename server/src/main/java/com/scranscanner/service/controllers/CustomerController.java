@@ -29,6 +29,11 @@ public class CustomerController {
         return new ResponseEntity<>(customerRepository.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/customers/byEmail")
+    public ResponseEntity<Optional<Customer>> findCustomerByEmail(@RequestBody String email){
+        return new ResponseEntity<>(customerRepository.findByEmail(email), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/customers")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
         return new ResponseEntity<>(customerRepository.save(customer), HttpStatus.CREATED);
