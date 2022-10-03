@@ -1,5 +1,6 @@
 
-const baseURL = 'http://192.168.0.4:8080/bookings/';
+const baseURL = 'http://192.168.0.50:8080/bookings/';
+
 
 
 // IDEAS FOR BOOKING ROUTES ⬇️

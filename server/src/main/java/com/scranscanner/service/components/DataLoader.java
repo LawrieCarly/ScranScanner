@@ -34,9 +34,9 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        bookingRepository.deleteAll();
         availabilityRepository.deleteAll();
         reviewRepository.deleteAll();
-        bookingRepository.deleteAll();
         customerRepository.deleteAll();
         dinnerTableRepository.deleteAll();
         restaurantRepository.deleteAll();
