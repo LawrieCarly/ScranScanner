@@ -74,10 +74,10 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                                 time: formattedTime 
                             })}
                     >
-                    <View>
-                        <Text id={searchResult.id} key={index} style={{color: 'black'}}>{searchResult.displayName}</Text> 
-                        <Image source={logo2}/>
-                    </View>
+                    <ScrollView style={styles.restoPreview}>
+                        <Image style={styles.previewImage} source={logo2}/>
+                        <Text id={searchResult.id} key={index} style={styles.previewTitle}>{searchResult.displayName}</Text> 
+                    </ScrollView>
                     </TouchableOpacity>
                 
                 );
@@ -137,6 +137,17 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     }
     
     const styles = StyleSheet.create({
+    restoPreview: {
+        flexDirection: 'row',
+        borderWidth: 1,
+        padding: 10,
+        marginTop: 0,
+        margin: 20,
+    },
+    previewImage: {
+        resizeMode: 'cover',
+        height: 100
+    },    
     button: {
         alignItems: 'center',
         backgroundColor: 'black',
