@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AvailabilityController {
@@ -35,6 +36,12 @@ public class AvailabilityController {
         return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
     }
 
-    
+    @PatchMapping(value = "/availabilities/{id}/{available}")
+    public ResponseEntity<Availability> updateAvailabilityIsAvailable(@PathVariable(value = "id") Long id, @PathVariable(value = "available") Boolean avaialable){
+        Availability availability = availabilityRepository.findById(id).get();
+        availability.setAvailable(avaialable);
+        return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
+
+    }
 
 }
