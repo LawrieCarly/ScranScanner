@@ -15,7 +15,7 @@ const logo2 = {
     height: 250
 };
 
-const customerId = 21
+const customerId = 1
 
 
 const RestaurantScreen = ({ navigation, route }) => {
