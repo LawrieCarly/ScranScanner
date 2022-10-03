@@ -45,8 +45,19 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
 
     useEffect(() => {
-            const searchNodes = 
-            searchResults.map((searchResult, index) => { 
+
+            // filteres through all objects, removing the duplicates with same restaurant.id
+            
+            const uniqueIds = [];
+
+            let result = searchResults.filter( (restaurant) => {
+                if(!uniqueIds.includes(restaurant.id)){
+                    uniqueIds.push(restaurant.id);
+                    return restaurant;
+                }
+            });
+
+            const searchNodes = result.map((searchResult, index) => { 
                 return (
 
                     // Params passed to RestaurantScreen route.

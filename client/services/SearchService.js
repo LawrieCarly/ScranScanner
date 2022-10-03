@@ -1,7 +1,9 @@
 
 import moment from 'moment';
 
-const baseURL = 'http://192.168.0.4:8080/restaurants/';
+const baseURL = 'http://192.168.100.190:8080/restaurants/';
+
+
 
 export const getRestaurants = () => {
   return fetch(baseURL)
@@ -21,7 +23,7 @@ export const getSearchResults = (partySize, date, time) => {
   // console.log(formattedDate)
   // console.log(formattedTime)
 
-  return fetch(baseURL + 'filtered?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
+  return fetch(baseURL + 'filtered/?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
   .then(data => data.json());
     
 }

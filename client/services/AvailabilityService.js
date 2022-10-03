@@ -1,4 +1,4 @@
-const baseURL = 'http://192.168.0.4:8080/availabilities/';
+const baseURL = 'http://192.168.100.190:8080/availabilities/';
 
 
 // Update selected booking availability to false 
