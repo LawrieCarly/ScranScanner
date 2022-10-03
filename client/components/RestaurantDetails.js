@@ -6,15 +6,15 @@ import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaVi
 
 const RestaurantDetails = ({restaurantById}) => {
 
-    const logo2 = {
-        // uri: `${restaurantById.imageurl}`,
-        uri: 'https://images.unsplash.com/photo-1649138783888-0ec9c3ec2f21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    const logo = {
+        uri: restaurantById.imageURL,
+        // uri: 'https://images.unsplash.com/photo-1649138783888-0ec9c3ec2f21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
         width: 350,
         height: 200
     };
 
-    // console.log('restaurantById DETAILS====================================');
-    // console.log(restaurantById);
+    console.log('restaurantById IMG URL====================================');
+    console.log(restaurantById.imageurl);
     // console.log('restaurantById EXTRA====================================');
     // console.log(restaurantById.description);
 
@@ -24,14 +24,14 @@ const RestaurantDetails = ({restaurantById}) => {
         <SafeAreaView>
         <View>
         
-                <Image style={{paddingBottom: 50}} source={logo2}/>
+                <Image style={{paddingBottom: 50}} source={logo}/>
 
                 <TouchableOpacity style={styles.button}>
                     <Text>Save Restaurant</Text>
                 </TouchableOpacity>
     
                 <View>
-                    <Text style={styles.textH2}>DESCRIPTION PLACEHOLDER {restaurantById.description}</Text>
+                    <Text style={styles.textH2}>{restaurantById.description}</Text>
                     <View style={{paddingVertical: 10}}/>
                     <Text style={styles.textH2}>Cuisine: </Text >
                     {restaurantById.attributes.cuisine.map((res, index) => { 

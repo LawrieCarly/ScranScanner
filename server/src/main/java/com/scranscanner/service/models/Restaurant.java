@@ -151,7 +151,32 @@ public class Restaurant extends User {
         this.reviews.add(review);
     }
 
-//    public List<Availability> getSearchedAvailabilities() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+
+    //    public List<Availability> getSearchedAvailabilities() {
 //        return searchedAvailabilities;
 //    }
 

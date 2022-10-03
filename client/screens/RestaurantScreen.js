@@ -10,13 +10,6 @@ import { updateBookingAvailabilityToFalse } from '../services/AvailabilityServic
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
 
-
-const logo2 = {
-    uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    width: 350,
-    height: 250
-};
-
 const customerId = 1
 
 
@@ -34,8 +27,8 @@ const RestaurantScreen = ({ navigation, route }) => {
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
-        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-        .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+        // getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        // .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
 
@@ -44,12 +37,12 @@ const RestaurantScreen = ({ navigation, route }) => {
     // uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
     
     
-    // useFocusEffect(
-    //         React.useCallback(() => {
-    //                 getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //                 .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+    useFocusEffect(
+            React.useCallback(() => {
+                    getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+                    .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
                                 
-    //             }, [restaurantById]));
+                }, [restaurantById]));
                 
 
 
@@ -133,7 +126,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     return (
         
     <SafeAreaView style={{ flex: 1 }}>
-    {restaurantById ? 
+    {restaurantById && filteredAvailablitiesOfRestaurant ? 
 
         <View style={{ flex: 1, padding: 16 }}>
      
