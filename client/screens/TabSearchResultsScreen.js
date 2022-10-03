@@ -60,7 +60,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 }
             });
 
-            console.log("HELLO" + result);
+            console.log("HELLO" + uniqueIds);
 
             const searchNodes = result.map((searchResult, index) => { 
                 return (
