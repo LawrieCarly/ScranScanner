@@ -6,7 +6,9 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 import { postBooking } from '../services/BookingService';
-import { patchAvaialbility, updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
+import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
+import RestaurantDetails from '../components/RestaurantDetails';
+import RestaurantReviews from '../components/RestaurantReviews';
 
 
 const logo2 = {
@@ -19,14 +21,12 @@ const customerId = 1
 
 
 const RestaurantScreen = ({ navigation, route }) => {
-
     const IsFocused = useIsFocused();
     
-    const [restaurantById, setRestaurantById ] = useState({});
+    const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState([]);
     const [availabilityNodes, setAvailabilityNodes] = useState([]);
     
-
 
     //  *====================================================================================
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
@@ -34,29 +34,33 @@ const RestaurantScreen = ({ navigation, route }) => {
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
-    }, 
-    [IsFocused]);
-    
-
-    //  *====================================================================================
-    //* useEffect #2 - uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
-
-    //! Version 3 ====
-    useFocusEffect(
-        React.useCallback(() => {
-        // const filteredRestos = () =>{ 
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-        
-        return () => setFilteredAvailablitiesOfRestaurant([]);
-        
-    }, [restaurantById]));
-    
-    console.log('==============FOCUSED======================');
-    console.log(filteredAvailablitiesOfRestaurant);
-    console.log('====================================');
+    }, 
+    [IsFocused]);
 
-    //  *====================================================================================
+    
+    //* useEffect #2 (POTENTIALLY UN-NEEDED) *====================================================================================
+    // uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
+    
+    
+    // useFocusEffect(
+    //         React.useCallback(() => {
+    //                 getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+    //                 .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+                                
+    //             }, [restaurantById]));
+                
+
+
+                // console.log('restaurantById====================================');
+                // console.log(restaurantById);
+                // console.log('filteredAvailablitiesOfRestaurant=================');
+                // console.log(filteredAvailablitiesOfRestaurant);
+
+                console.log('====================================');
+                
+                //  *====================================================================================
     //* useEffect #3 - maps availabilities in touchable opacity and provides onPress action for booking actions
 
     useEffect(() => {
@@ -88,6 +92,15 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         }
                                         postBooking(bookingObject)
 
+                                        // PUT - 'set booking availability to false'
+                                        const availabilityObject = {
+                                            "id": availability.id,
+                                            "date": availability.date,
+                                            "time": availability.time,
+                                            "dinnerTable": availability.dinnerTable,
+                                            "available": false
+                                        }
+                                        updateBookingAvailabilityToFalse(availabilityObject);
 
 
                                         // NAVIGATE - to reservations page
@@ -116,70 +129,36 @@ const RestaurantScreen = ({ navigation, route }) => {
     
                 }, [filteredAvailablitiesOfRestaurant]);
     
-    //   *====================================================================================
-    //*  REVIEWS MAP - sometimes works but issues with rendering in time, put in useEffect? / NEW COMPONENT
-
-    
-
-    // const restaurantReviews = 
-    //     restaurantById.reviews.map((review, index) => { 
-    //         return (
-    //             <View style={styles.textH4} key={review.id} index={review.id} >
-    //                 <Text> Name: {review.customerName}</Text>
-    //                 <Text> Rating: {review.rating}</Text>
-    //                 <Text> Comment: {review.comment} </Text>
-    //                 <Text> =======</Text>
-    //             </View>
-    //         )});
-
-                        
 
     return (
+        
+    <SafeAreaView style={{ flex: 1 }}>
+    {restaurantById ? 
 
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, padding: 16 }}>
-                
-            <Text style={styles.textH1}>{restaurantById["displayName"]} - db: ID={route.params.restaurantId}</Text>
+        <View style={{ flex: 1, padding: 16 }}>
+     
+            <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
 
                 <View style={styles.mainView}>
-                <ScrollView>
-
-                    <Image style={{paddingBottom: 50}} source={logo2}/>
-                    <TouchableOpacity style={styles.button}>
-                        <Text>Save Restaurant</Text>
-                    </TouchableOpacity>
-
-                    <Text style={styles.textH2}> [LOCATION: 0.4 kilometres away]</Text>
                     
-                    <Text style={styles.textH3}> CUISINE: db: 
-                    {/* MORE RENDERING ISSUES - strange as it's never affected the resto name */}
-                    {/* {restaurantById.attributes["cuisine"]} */}
-                    </Text>
+                    <ScrollView>
+                    
+                    <RestaurantDetails restaurantById={restaurantById}/>
 
-                    <Text style={styles.textH3}> [PRICE: ££]</Text>
-                    <Text style={styles.textH3}> [RATING: ⭐️⭐️⭐️⭐️]</Text>
-        
-
-                    <Text style={styles.textH1}>Booking Results:</Text>
-
+                    <Text style={styles.textH1}>Your Booking Options:</Text>
+                    
                     <ScrollView horizontal={true}> 
-                        <Text>
-                            {availabilityNodes}
-                        </Text>
+                        {availabilityNodes} 
                     </ScrollView>
 
                     <TouchableOpacity style={styles.button2}>
-                        <Text>See more times</Text>
-                    </TouchableOpacity>
-
+                        <Text>See all times</Text>
+                    </TouchableOpacity> 
+ 
 
                     <View>
-                        <Text style={styles.textH1}>Reviews:</Text>  
-
-                        {/* <View style={styles.textH3}>
-                            {restaurantReviews}
-                        </View> */}
-
+                        <Text style={styles.textH1}>Reviews:</Text> 
+                        <RestaurantReviews restaurantById={restaurantById}/>
                     </View>
 
 
@@ -187,8 +166,12 @@ const RestaurantScreen = ({ navigation, route }) => {
                 </ScrollView>
                 </View>
 
-            </View>
-
+        </View>
+        
+        
+        :
+        <Text>Loading ... </Text> 
+        }
         </SafeAreaView>
 
 
