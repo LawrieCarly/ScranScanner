@@ -1,7 +1,8 @@
 import moment from 'moment';
 
-const baseURL = 'http://192.168.100.190:8080/restaurants/';
-const baseURLAvailabilities = 'http://192.168.100.190:8080/availabilities/restaurant/';
+const baseURL = 'http://192.168.0.50:8080/restaurants/';
+const baseURLAvailabilities = 'http://192.168.0.50:8080/availabilities/restaurant/';
+
 
 
 

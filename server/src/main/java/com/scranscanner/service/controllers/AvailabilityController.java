@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AvailabilityController {
@@ -30,9 +31,5 @@ public class AvailabilityController {
         return new ResponseEntity<>(availabilityRepository.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/availabilities/{id}")
-    public ResponseEntity<Availability> updateBooking(@RequestBody Availability availability, @PathVariable Long id){
-        return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
-    }
 
 }

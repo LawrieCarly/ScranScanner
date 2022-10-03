@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 import { postBooking } from '../services/BookingService';
-import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
+import { patchAvaialbility, updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
 
 
 const logo2 = {
@@ -15,7 +15,7 @@ const logo2 = {
     height: 250
 };
 
-const customerId = 1
+const customerId = 21
 
 
 const RestaurantScreen = ({ navigation, route }) => {
@@ -88,15 +88,6 @@ const RestaurantScreen = ({ navigation, route }) => {
                                         }
                                         postBooking(bookingObject)
 
-                                        // PUT - 'set booking availability to false'
-                                        const availabilityObject = {
-                                            "id": availability.id,
-                                            "date": availability.date,
-                                            "time": availability.time,
-                                            "dinnerTable": availability.dinnerTable,
-                                            "available": false
-                                        }
-                                        updateBookingAvailabilityToFalse(availabilityObject);
 
 
                                         // NAVIGATE - to reservations page
