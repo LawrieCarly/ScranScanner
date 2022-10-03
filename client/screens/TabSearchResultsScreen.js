@@ -45,12 +45,9 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
 
     useEffect(() => {
-            // let result = []
-            // searchResults.forEach((item, index) => {
-            //     if (searchResults.indexOf(item) == index){
-            //         result.push(item);
-            //     } 
 
+            // filteres through all objects, removing the duplicates with same restaurant.id
+            
             const uniqueIds = [];
 
             let result = searchResults.filter( (restaurant) => {
@@ -59,8 +56,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                     return restaurant;
                 }
             });
-
-            console.log("HELLO" + uniqueIds);
 
             const searchNodes = result.map((searchResult, index) => { 
                 return (
