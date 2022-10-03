@@ -30,18 +30,6 @@ public class AvailabilityController {
     public ResponseEntity<List<Availability>> getAllAvailabilities(){
         return new ResponseEntity<>(availabilityRepository.findAll(), HttpStatus.OK);
     }
-
-    @PutMapping(value = "/availabilities/{id}")
-    public ResponseEntity<Availability> updateBooking(@RequestBody Availability availability, @PathVariable Long id){
-        return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
-    }
-
-    @PatchMapping(value = "/availabilities/{id}/{available}")
-    public ResponseEntity<Availability> updateAvailabilityIsAvailable(@PathVariable(value = "id") Long id, @PathVariable(value = "available") Boolean avaialable){
-        Availability availability = availabilityRepository.findById(id).get();
-        availability.setAvailable(avaialable);
-        return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
-
-    }
+    
 
 }
