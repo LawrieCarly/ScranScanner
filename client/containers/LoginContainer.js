@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Text, Button, StyleSheet, View, Pressable, TextInput } from "react-native"
+import { Text, Button, StyleSheet, View, Pressable, TextInput, Alert } from "react-native"
+import { getCustomerByEmail } from "../services/CustomerService";
 
 
 
@@ -10,6 +11,10 @@ const LoginContainer = ({flipLoggedIn}) => {
 
     const handleEmailInput = (textInput) => {
         setEmail(textInput)
+    }
+    
+    const handlePasswordInput = (textInput) => {
+        setPassword(textInput)
     }
 
     const handleLogin = () => {
@@ -22,24 +27,29 @@ const LoginContainer = ({flipLoggedIn}) => {
             //flip login state
             flipLoggedIn()
             //send customer id to global
-            
+
         }
 
             
 
         // ELSE alert email or password incorrect
-        
-        
-        flipLoggedIn()
+        Alert.alert("Username or Password Incorrect")
 
     }
+
     return(
         <View>
             <TextInput style={styles.input}
                     onChangeText={handleEmailInput}
-                    name="name"
-                    placeholder="name"
-                    placeholderTextColor={"black"}
+                    name="email"
+                    placeholder="email"
+                    placeholderTextColor={"white"}
+                />
+            <TextInput style={styles.input}
+                    onChangeText={handlePasswordInput}
+                    name="password"
+                    placeholder="password"
+                    placeholderTextColor={"white"}
                 />
             <Pressable
                 style={styles.button}
