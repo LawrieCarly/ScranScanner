@@ -1,1 +1,1 @@
-const baseURL = 'http://192.168.0.50:8080/availabilities/';
+const baseURL = 'http://192.168.100.139:8080/availabilities/';
