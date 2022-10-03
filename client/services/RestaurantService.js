@@ -1,13 +1,7 @@
 import moment from 'moment';
 
-<<<<<<< HEAD
 const baseURL = 'http://192.168.100.139:8080/restaurants/';
 const baseURLAvailabilities = 'http://192.168.100.139:8080/availabilities/restaurant/';
-
-=======
-const baseURL = 'http://192.168.0.4:8080/restaurants/';
-const baseURLAvailabilities = 'http://192.168.100.248:8080/availabilities/restaurant/';
->>>>>>> a8842d4 (added IPs)
 
 
 

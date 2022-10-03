@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 const baseURL = 'http://192.168.100.139:8080/availabilities/';
-=======
-const baseURL = 'http://192.168.100.248:8080/availabilities/';
+
 
 
 // Update selected booking availability to false 
@@ -28,4 +26,3 @@ export function updateBookingAvailabilityToFalse(availabilityObject) {
       //     .then(res => res.json());
       // };
       
->>>>>>> a8842d4 (added IPs)
