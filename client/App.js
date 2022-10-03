@@ -14,6 +14,7 @@ import ReservationsScreen from './screens/ReservationsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
 import LoginContainer from './containers/LoginContainer';
+import AppContext from './components/AppContext';
 
 // Login states
 
@@ -51,18 +52,31 @@ const Tab = createBottomTabNavigator();
 export default function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // Global
   const [customerId, setCustomerId] = useState();
 
   const flipLoggedIn = () => {
     setLoggedIn(!loggedIn);
   }
 
+  const changeCustomerId = (id) => {
+    setCustomerId(id)
+  }
+
+  const customerHelper = {
+    customerId: customerId,
+    changeCustomerId,
+    flipLoggedIn
+  }
+
   return (
-    <>
+    <AppContext.Provider value={customerHelper}>
       {!loggedIn? 
       <>
         <LoginContainer
           flipLoggedIn={flipLoggedIn}
+          changeCustomerId={changeCustomerId}
         />
       </>
            : 
@@ -81,7 +95,7 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
       </>}
-    </>
+    </AppContext.Provider>
       
   
   );

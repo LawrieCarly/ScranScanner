@@ -4,7 +4,7 @@ import { getCustomerByEmail } from "../services/CustomerService";
 
 
 
-const LoginContainer = ({flipLoggedIn}) => {
+const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,7 +27,9 @@ const LoginContainer = ({flipLoggedIn}) => {
             // login in customer
             //flip login state
             flipLoggedIn()
+            changeCustomerId(customer.id)
             //send customer id to global
+            
 
         }
 

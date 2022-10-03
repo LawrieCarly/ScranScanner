@@ -13,7 +13,7 @@ import java.util.List;
 public class Customer extends User {
 
     @OneToMany(mappedBy = "customer")
-    @JsonIgnoreProperties({"customer"})
+    @JsonIgnoreProperties({"customer", "availability"})
     private List<Booking> bookings;
 
     @ManyToMany
