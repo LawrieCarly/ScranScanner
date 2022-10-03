@@ -35,4 +35,6 @@ public class AvailabilityController {
         return new ResponseEntity<>(availabilityRepository.save(availability), HttpStatus.OK);
     }
 
+    
+
 }
