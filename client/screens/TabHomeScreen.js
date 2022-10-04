@@ -3,8 +3,7 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Recycler
 import { SearchForm } from '../components/searchForm';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
-import logo from './ScanScannerLogo.png'
-
+import logo from './scranscanner-icon-white.png'
 
 const TabHomeScreen = ({ navigation }) => {
         
@@ -58,14 +57,16 @@ const TabHomeScreen = ({ navigation }) => {
     const styles = StyleSheet.create({
     logo: {
         resizeMode: "contain",
-        width: 300,
+        height: 100,
     },
         button: {
         alignItems: 'center',
         backgroundColor: 'white',
+        borderRadius: 10,
         padding: 10,
         width: 300,
         marginTop: 16,
+        fontWeight: 20,
     },
     textH1: {
         fontSize: 25,
