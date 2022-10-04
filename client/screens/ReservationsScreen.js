@@ -23,24 +23,40 @@ const ReservationsScreen = ({navigation}) => {
         // console.log("booking name", customer.bookings)
 
 
-        const bookingNodes = customer.bookings.map((booking, index) => {
-            return(
-                <View>
-                    <Text>{booking.restaurant.displayName}</Text>
-                </View>
-            )
+        // const bookingNodes = customer.bookings.map((booking, index) => {
+        //     return(
+        //         <View>
+        //             <Text>{booking.restaurant.displayName}</Text>
+        //         </View>
+        //     )
 
-        })
+        // })
 
         // console.log("Customer bookings", bookingNodes)
 
 
     return(
-        <View>
-            <Text>Text</Text>
-            <Text>{customer.displayName}</Text>
-            {bookingNodes}
-        </View>
+        <SafeAreaView>
+            {customer?
+
+            <View>
+                <Text>Text</Text>
+                <Text>{customer.displayName}</Text>
+                {/* {bookingNodes} */}
+                {customer.bookings.map((booking, index) => {
+                    return(
+                <View>
+                    <Text>{booking.restaurant.displayName}</Text>
+                    {/* <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/> */}
+                </View>
+            )
+                })}
+            </View>
+            :
+            <Text>Loading</Text>
+            }
+
+        </SafeAreaView>
     )
 
 // ? CODE TO START WITH =============================================

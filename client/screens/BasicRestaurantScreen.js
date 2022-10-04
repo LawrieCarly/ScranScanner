@@ -1,233 +1,244 @@
-import React, {useEffect, useState} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
-import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
-import { postBooking } from '../services/BookingService';
-import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
-import RestaurantDetails from '../components/RestaurantDetails';
-import RestaurantReviews from '../components/RestaurantReviews';
-import RestaurantAvailability from '../components/RestaurantAvailability';
-import { useFocusEffect } from '@react-navigation/native';
-const customerId = 1
+// import React, {useEffect, useState} from 'react';
+// import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
+// import { useIsFocused } from '@react-navigation/native';
+// import { getRestaurantById, getAllAvailablitiesOfRestaurant } from '../services/RestaurantService';
+// import { postBooking } from '../services/BookingService';
+// import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
+// import RestaurantDetails from '../components/RestaurantDetails';
+// import RestaurantReviews from '../components/RestaurantReviews';
+// import RestaurantAvailability from '../components/RestaurantAvailability';
+// import { useFocusEffect } from '@react-navigation/native';
+// import moment from 'moment';
 
 
-const BasicRestaurantScreen = ({ navigation, route }) => {
-    const IsFocused = useIsFocused();
+// const customerId = 1
+
+
+// const BasicRestaurantScreen = ({ navigation, route }) => {
+//     const IsFocused = useIsFocused();
     
-    const [restaurantById, setRestaurantById ] = useState(null);
-    const [availablitiesOfRestaurant, setAvailablitiesOfRestaurant ] = useState(null);
+//     const [restaurantById, setRestaurantById ] = useState(null);
+//     const [availablitiesOfRestaurant, setAvailablitiesOfRestaurant ] = useState(null);
     
 
-    //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
+//     let current_date = moment().format('YYYY-MM-DD')
+//     let current_time = moment().format('HH:mm')
 
-    useEffect( () => {
-        getRestaurantById(route.params.restaurantId)
-        .then(returnedResto => setRestaurantById(returnedResto))
-        getAvailablitiesOfRestaurant(route.params.restaurantId, route.params.date)
-        .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-    }, 
-    [IsFocused]);
+    
+    
+//     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
+    
+//     useEffect( () => {
+//         getRestaurantById(route.params.restaurantId)
+//         .then(returnedResto => setRestaurantById(returnedResto))
+//         getAllAvailablitiesOfRestaurant(route.params.restaurantId, current_date)
+//         .then(returnedAvailabilities => setAvailablitiesOfRestaurant(returnedAvailabilities))
+//     }, 
+//     [IsFocused]);
+    
+//     console.log('====================================');
+//     console.log("ID" + restaurantById +"AVAILS" + availablitiesOfRestaurant);
+//     console.log('====================================');
+//     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
+    
+//     // React.useEffect(() => {
+//     //     const cleanState = navigation.addListener('blur', () => {
+//     //         setRestaurantById(null),
+//     //         setAvailablitiesOfRestaurant(null)
+//     //         });
+    
+//     //     return cleanState;
+//     // }, [navigation]);
+    
+    
+
+//     return (
+        
+//         <SafeAreaView style={{ flex: 1 }}>
+    
+        
+//     {restaurantById 
+//     && availablitiesOfRestaurant
+//     // && availabilityNodes 
+//     ? 
+    
+    
+//     <View style={{ flex: 1, padding: 16 }}>
+        
+//         <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
             
-    //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
-    
-    React.useEffect(() => {
-        const cleanState = navigation.addListener('blur', () => {
-            setRestaurantById(null),
-            setFilteredAvailablitiesOfRestaurant(null)
-            });
-    
-        return cleanState;
-    }, [navigation]);
-    
-    
-
-    return (
-        
-        <SafeAreaView style={{ flex: 1 }}>
-    
-        
-    {restaurantById 
-    && filteredAvailablitiesOfRestaurant
-    // && availabilityNodes 
-    ? 
-    
-    
-    <View style={{ flex: 1, padding: 16 }}>
-        
-        <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
-            
-            <View style={styles.mainView}>
+//             <View style={styles.mainView}>
                     
-                    <ScrollView>
+//                     <ScrollView>
                     
-                    <RestaurantDetails restaurantById={restaurantById}/>
+//                     <RestaurantDetails restaurantById={restaurantById}/>
 
-                    <Text style={styles.textH1}>Your Booking Options:</Text>
+//                     <Text style={styles.textH1}>All Booking Options:</Text>
                                             
-                    <ScrollView horizontal={true}>
+//                     <ScrollView horizontal={true}>
                             
-                            {/* COLLAPSED MAP */}
-                            {availablitiesOfRestaurant.map((availability, index) => { 
-                                return (
-                                    <TouchableOpacity key={availability.id} index={availability.id}
-                                    // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
-                                    onPress={ () => {
-                                        Alert.alert(
-                                        `'${restaurantById.displayName}' Confirmation:`,
-                                        `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+//                             {/* COLLAPSED MAP */}
+//                             {availablitiesOfRestaurant.map((availability, index) => { 
+//                                 return (
+//                                     <TouchableOpacity key={availability.id} index={availability.id}
+//                                     // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
+//                                     onPress={ () => {
+//                                         Alert.alert(
+//                                         `'${restaurantById.displayName}' Confirmation:`,
+//                                         `Table for 2 customers, at ${availability.time} on ${availability.date}`,
         
-                                        [
-                                            {text: 'Book Now', onPress: () => {
+//                                         [
+//                                             {text: 'Book Now', onPress: () => {
                                                 
-                                            // POST - 'add booking to customer reservations'
-                                            const bookingObject = {
-                                                "customer": {
-                                                    "id": customerId
-                                                },
-                                                "restaurant": {
-                                                    "id": route.params.restaurantId
-                                                },
-                                                "availability": {
-                                                    "id": availability.id
-                                                },
-                                                "numberOfGuests": route.params.partysize
-                                            }
-                                            postBooking(bookingObject)
+//                                             // POST - 'add booking to customer reservations'
+//                                             const bookingObject = {
+//                                                 "customer": {
+//                                                     "id": customerId
+//                                                 },
+//                                                 "restaurant": {
+//                                                     "id": route.params.restaurantId
+//                                                 },
+//                                                 "availability": {
+//                                                     "id": availability.id
+//                                                 },
+//                                                 "numberOfGuests": "2"
+//                                             }
+//                                             postBooking(bookingObject)
 
-                                            // PUT - 'set booking availability to false'
-                                            const availabilityObject = {
-                                                "id": availability.id,
-                                                "date": availability.date,
-                                                "time": availability.time,
-                                                "dinnerTable": availability.dinnerTable,
-                                                "available": false
-                                            }
-                                            updateBookingAvailabilityToFalse(availabilityObject);
+//                                             // PUT - 'set booking availability to false'
+//                                             // const availabilityObject = {
+//                                             //     "id": availability.id,
+//                                             //     "date": availability.date,
+//                                             //     "time": availability.time,
+//                                             //     "dinnerTable": availability.dinnerTable,
+//                                             //     "available": false
+//                                             // }
+//                                             // updateBookingAvailabilityToFalse(availabilityObject);
 
 
-                                            // NAVIGATE - to reservations page
-                                            navigation.navigate('Notifications')}
-                                            },
+//                                             // NAVIGATE - to reservations page
+//                                             navigation.navigate('Notifications')}
+//                                             },
             
-                                            {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
-                                        ],
-                                        { cancelable: true }
-                                        );}}>
-                                            <View style={styles.availabilityButton}>
-                                                <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
-                                                <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
-                                            </View>
-                                    </TouchableOpacity>
+//                                             {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+//                                         ],
+//                                         { cancelable: true }
+//                                         );}}>
+//                                             <View style={styles.availabilityButton}>
+//                                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+//                                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+//                                             </View>
+//                                     </TouchableOpacity>
                     
-                                    );
-                            })}
+//                                     );
+//                             })}
 
-                    </ScrollView>
+//                     </ScrollView>
                   
 
-                    <TouchableOpacity style={styles.button2}>
-                        <Text>See all times</Text>
-                    </TouchableOpacity> 
+//                     <TouchableOpacity style={styles.button2}>
+//                         <Text>Search for more availability</Text>
+//                     </TouchableOpacity> 
  
 
-                    <View>
-                        <Text style={styles.textH1}>Reviews:</Text> 
-                        <RestaurantReviews restaurantById={restaurantById}/>
-                    </View>
+//                     <View>
+//                         <Text style={styles.textH1}>Reviews:</Text> 
+//                         <RestaurantReviews restaurantById={restaurantById}/>
+//                     </View>
 
 
 
-                </ScrollView>
-                </View>
+//                 </ScrollView>
+//                 </View>
 
-        </View>
+//         </View>
         
         
-        :
-        <Text style={styles.textLoading}>Loading ... </Text> 
-        }
-        </SafeAreaView>
+//         :
+//         <Text style={styles.textLoading}>Loading ... </Text> 
+//         }
+//         </SafeAreaView>
 
 
-    );
-    }
+//     );
+//     }
 
 
     
-    const styles = StyleSheet.create({
-    button: {
-        alignItems: 'center',
-        backgroundColor: 'gray',
-        padding: 10,
-        width: 350,
-        marginTop: 16,
-    },
-    button2: {
-        alignItems: 'center',
-        backgroundColor: 'purple',
-        padding: 10,
-        width: 120,
-        marginTop: 16,
-        fontSize: 10,
+//     const styles = StyleSheet.create({
+//     button: {
+//         alignItems: 'center',
+//         backgroundColor: 'gray',
+//         padding: 10,
+//         width: 350,
+//         marginTop: 16,
+//     },
+//     button2: {
+//         alignItems: 'center',
+//         backgroundColor: 'purple',
+//         padding: 10,
+//         width: 120,
+//         marginTop: 16,
+//         fontSize: 10,
 
-    },
-    availabilityButton: {
-        alignItems: 'center',
-        backgroundColor: 'red',
-        padding: 10,
-        margin: 10
-    },
-    availabilityText: {
-        fontSize: 16,
-        textAlign: 'center',
-    },
-    review: {
-        fontSize: 16,
-        alignItems: 'flex-start',
-        color: 'black',
-        padding: 10,
-        margin: 10
-    },
-    textH1: {
-        fontSize: 25,
-        textAlign: 'left',
-        marginBottom: 16,
-        color: 'black',
-        paddingTop: 10
-    },
-    textLoading: {
-        fontSize: 55,
-        textAlign: 'center',
-        marginBottom: 16,
-        color: 'black',
-        paddingTop: 50
-    },
-    textH2: {
-        fontSize: 18,
-        textAlign: 'left',
-        color: 'black',
-        paddingTop: 20,
-        paddingBottom: 10
+//     },
+//     availabilityButton: {
+//         alignItems: 'center',
+//         backgroundColor: 'red',
+//         padding: 10,
+//         margin: 10
+//     },
+//     availabilityText: {
+//         fontSize: 16,
+//         textAlign: 'center',
+//     },
+//     review: {
+//         fontSize: 16,
+//         alignItems: 'flex-start',
+//         color: 'black',
+//         padding: 10,
+//         margin: 10
+//     },
+//     textH1: {
+//         fontSize: 25,
+//         textAlign: 'left',
+//         marginBottom: 16,
+//         color: 'black',
+//         paddingTop: 10
+//     },
+//     textLoading: {
+//         fontSize: 55,
+//         textAlign: 'center',
+//         marginBottom: 16,
+//         color: 'black',
+//         paddingTop: 50
+//     },
+//     textH2: {
+//         fontSize: 18,
+//         textAlign: 'left',
+//         color: 'black',
+//         paddingTop: 20,
+//         paddingBottom: 10
 
-    },
-    textH3: {
-        fontSize: 16,
-        textAlign: 'left',
-        color: 'black',
-        paddingRight: 30
+//     },
+//     textH3: {
+//         fontSize: 16,
+//         textAlign: 'left',
+//         color: 'black',
+//         paddingRight: 30
 
-    },
-    textH4: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: 'black',
-        paddingRight: 10
+//     },
+//     textH4: {
+//         fontSize: 16,
+//         textAlign: 'center',
+//         color: 'black',
+//         paddingRight: 10
 
-    },
-    mainView: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    }
-    });
-export default BasicRestaurantScreen;
+//     },
+//     mainView: {
+//         flex: 1,
+//         alignItems: 'flex-start',
+//         justifyContent: 'flex-start',
+//     }
+//     });
+// export default BasicRestaurantScreen;

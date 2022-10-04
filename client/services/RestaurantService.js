@@ -24,7 +24,7 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
   }
 
 }
-export async function getAvailablitiesOfRestaurant(restaurantId, date) {
+export async function getAllAvailablitiesOfRestaurant(restaurantId, date) {
   try {
   const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?date=' + date);
   return data.json() 

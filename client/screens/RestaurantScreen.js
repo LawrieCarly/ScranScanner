@@ -18,6 +18,9 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
     // const [availabilityNodes, setAvailabilityNodes] = useState(null);
     
+console.log('===TEST=================================');
+console.log(restaurantById);
+console.log('====================================');
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
@@ -42,9 +45,9 @@ const RestaurantScreen = ({ navigation, route }) => {
     
 
     return (
+
         
     <SafeAreaView style={{ flex: 1 }}>
-    
         
     {restaurantById 
     && filteredAvailablitiesOfRestaurant

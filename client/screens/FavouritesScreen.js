@@ -23,29 +23,53 @@ const FavouritesScreen = ({ navigation }) => {
         // console.log("booking name", customer.savedRestaurants)
 
 
-        const savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
-            return(
+        // const savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+        //     return(
 
-                    <View>
-                        <Text>{savedRestaurant.displayName}</Text>
-                    </View>
-            )
+        //             <View>
+        //                 <Text>{savedRestaurant.displayName}</Text>
+        //             </View>
+        //     )
 
-        })
+        // })
 
         // console.log("Customer bookings", bookingNodes)
 
 
     return(
+
+        <SafeAreaView>
+            {customer?
+
+            <View>
+                <Text>Text</Text>
+                <Text>{customer.displayName}</Text>
+                {/* {bookingNodes} */}
+                {/* {savedRestoNodes}  */}
+               {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+            return(
+
+                    <View>
+                        <Text>{savedRestaurant.displayName}</Text>
+                    </View>
+                    )
+                  })}
+                
+            </View>
+            :
+            <Text>Loading</Text>
+            }
+        {/* 
+        </SafeAreaView>
         <SafeAreaView>
         <View>
             <View>
                 <Text>{customer.displayName}</Text>
                 <Text>Places to try and those you already love:</Text>
             </View>
-            {savedRestoNodes} 
-        </View>
-    </SafeAreaView>
+        </View> */}
+
+    </SafeAreaView> 
     )
 
 

@@ -38,6 +38,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         const formattedTime = moment(date).format('HH:mm')
 
 
+
         // console.log('====================================');
         // console.log(formattedDate);
         // console.log(formattedTime);
