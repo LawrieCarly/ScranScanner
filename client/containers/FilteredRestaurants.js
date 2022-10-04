@@ -58,9 +58,6 @@ const RestoImage = {
                     date: current_date, 
                     time: current_time 
                 })}
-                
-
-            
                   >
 
 
