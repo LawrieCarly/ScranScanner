@@ -87,7 +87,7 @@ export default function App() {
             <Tab.Screen name="Home" component={TabHomeScreen} options={{ tabBarIcon:() => (<Icon name="home" size={18} color="#27233A" />)  }}/>
             <Tab.Screen name="Search" component={TabSearchResultsScreen} options={{ tabBarIcon:() => (<Icon name="search" size={18} color="#27233A" />)  }} />
             <Tab.Screen name="Profile" component={MyTabsScreen} options={{ tabBarIcon:() => (<Icon name="account-circle" size={18} color="#27233A" />)  }} />
-            <Tab.Screen name="Profile" component={TabProfileScreen} />
+            {/* <Tab.Screen name="Profile" component={TabProfileScreen} /> */}
 
 
             <Tab.Screen name="Restaurant" component={RestaurantScreen} 
