@@ -195,7 +195,7 @@ public class DataLoader implements ApplicationRunner {
                 "sixbynico@email.com",
                 "password",
                 PermissionType.RESTAURANT,
-                "Siz course tasting menu on a six week rotation.",
+                "Six course tasting menu on a six week rotation.",
                 "https://images.unsplash.com/photo-1559847844-d9d2bc807d82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80");
         restaurantRepository.save(sixByNico);
 
@@ -361,6 +361,45 @@ public class DataLoader implements ApplicationRunner {
         customerRepository.save(sam);
         lawrie.addSavedRestaurant(sixByNico);
         customerRepository.save(lawrie);
+
+        // creates some reviews
+
+        Review chanterReview1 = new Review("P.Wize", 5.00, "taidy", theChanter);
+        reviewRepository.save(chanterReview1);
+        Review chanterReview2 = new Review("CRYPTOCHR!S", 3.00, "£3.50 pints good, £2 pool bad.", theChanter);
+        reviewRepository.save(chanterReview2);
+        Review chanterReview3 = new Review("Jacques", 1.00, "Burger was a disgrace, but they at least gave us some free jagerbombs", theChanter);
+        reviewRepository.save(chanterReview3);
+
+        Review palmyraReview1 = new Review("LankyGinge94", 5.00, "The most yaldi shawerma in Edinburgh", palmyra);
+        reviewRepository.save(palmyraReview1);
+        Review palmyraReview2 = new Review("SamuelGamgee", 4.50, "Great place, shame it's not Italian", palmyra);
+        reviewRepository.save(palmyraReview2);
+        Review palmyraReview3 = new Review("LawrieCarly", 5.00, "I'd merge the pizzas in this place to the main branch without review", palmyra);
+        reviewRepository.save(palmyraReview3);
+
+        Review sixByNicoReview1 = new Review("nathaniel", 2.50, "Fundamentally a tasting menu", sixByNico);
+        reviewRepository.save(sixByNicoReview1);
+        Review sixByNicoReview2 = new Review("JustKeith", 3.00, "why are they doing this?", sixByNico);
+        reviewRepository.save(sixByNicoReview2);
+        Review sixByNicoReview3 = new Review("MarTheStar", 5.00, "Six course tasting menu? More like SICK course tasting menu AMIRITE!", sixByNico);
+        reviewRepository.save(sixByNicoReview3);
+
+        Review breadMeatsBreadReview1 = new Review("JamieFromIreland", 4.20, "Perfect for after shinty", breadMeatsBread);
+        reviewRepository.save(breadMeatsBreadReview1);
+        Review breadMeatsBreadReview2 = new Review("JonZ", 1.00, "not enough anarchy for my taste personally", breadMeatsBread);
+        reviewRepository.save(breadMeatsBreadReview2);
+        Review breadMeatsBreadReview3 = new Review("James", 5.00, "Great place for some PDA marking", breadMeatsBread);
+        reviewRepository.save(breadMeatsBreadReview3);
+
+        Review chezJulesReview1 = new Review("Jacques", 5.00, "When I was living in Paris there was actually a petit bistrot tres similar to this un.", chezJules);
+        reviewRepository.save(chezJulesReview1);
+        Review chezJulesReview2 = new Review("SamuelGamgee", 1.00, "Still not Italian", chezJules);
+        reviewRepository.save(chezJulesReview2);
+        Review chezJulesReview3 = new Review("LawrieCarly", 5.00, "Thank you scracnscanner for helping me find this hidden gem!", chezJules);
+        reviewRepository.save(chezJulesReview3);
+        
+
 
 
 
