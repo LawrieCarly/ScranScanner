@@ -117,13 +117,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
             <View >
                 <ScrollView>
-
-                    <View style={{flex: 1}}>
-                        <View>
-                            {searchNodes}
-                        </View>
-                    </View>
-
+                        {searchNodes}
                 </ScrollView>
             </View>
 

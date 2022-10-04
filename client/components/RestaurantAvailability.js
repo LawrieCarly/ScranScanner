@@ -1,38 +1,90 @@
 // import React, {useState} from 'react';
-// import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
+// import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
+// import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
+// import { postBooking } from '../services/BookingService';
+// import { useNavigation } from '@react-navigation/native';
 
 
 
 
-// const RestaurantAvailability = ({restaurantById}) => {
+// const RestaurantAvailability = ({restaurantById, filteredAvailablitiesOfRestaurant}) => {
 
+//     const navigation = useNavigation();
     
+//         const mappedAvailabilityNodes = 
+//             filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+
+//                 return (
+//                                 <TouchableOpacity
+//                                 onPress={ () => {
+//                                     Alert.alert(
+//                                       `'${restaurantById.displayName}' Confirmation:`,
+//                                       `Table for ${availability.id} customers, at ${availability.time} on ${availability.date}`,
+    
+//                                       [
+//                                         {text: 'Book Now', onPress: () => {
+                                            
+//                                         // POST - 'add booking to customer reservations'
+//                                         const bookingObject = {
+//                                             "customer": {
+//                                                 "id": customerId
+//                                             },
+//                                             "restaurant": {
+//                                                 "id": route.params.restaurantId
+//                                             },
+//                                             "availability": {
+//                                                 "id": availability.id
+//                                             },
+//                                             "numberOfGuests": route.params.partysize
+//                                         }
+//                                         postBooking(bookingObject)
+
+//                                         // PUT - 'set booking availability to false'
+//                                         const availabilityObject = {
+//                                             "id": availability.id,
+//                                             "date": availability.date,
+//                                             "time": availability.time,
+//                                             "dinnerTable": availability.dinnerTable,
+//                                             "available": false
+//                                         }
+//                                         updateBookingAvailabilityToFalse(availabilityObject);
+
+
+//                                         // NAVIGATE - to reservations page
+//                                         navigation.navigate('Notifications')}
+//                                         },
+        
+//                                         {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+//                                       ],
+//                                       { cancelable: true }
+//                                     );
+//                                 }
+                            
+//                             }
+//                                 >
+//                                         <View 
+//                                             style={styles.availabilityButton}
+//                                         >
+//                                         <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+//                                         <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+//                                         </View>
+//                                 </TouchableOpacity>
+                
+//                 );
+//                 })
 
 
 //     return (
-
-    
-//         <SafeAreaView></SafeAreaView>
-//         <View>
-        
-//         <Text style={styles.textH3}>
-//             REVIEW COMPONENT PLACEHOLDER
-//          {restaurantById.reviews.map((review, index) => { 
-//             return (
-//                 <View style={styles.textH4} key={review.id} index={review.id} >
-//                     <Text> Name: {review.customerName}</Text>
-//                     <Text> Rating: {review.rating}</Text>
-//                     <Text> Comment: {review.comment} </Text>
-//                 </View>
-//             )})}
-//         </Text>
-
-    
-//         </View>
+// <>
+//         <SafeAreaView>
+//             <ScrollView horizontal={true}>
+//                 {mappedAvailabilityNodes}
+//             </ScrollView>
 //         </SafeAreaView>
-
+//         </>
     
-//     )};
+    
+//     );}
 
 
     
@@ -106,7 +158,6 @@
 //         }
 //         });
 
-
     
-
-// export default RestaurantReviews;
+    
+// export default RestaurantAvailability;
