@@ -10,6 +10,12 @@ import moment from 'moment';
 
 const ReservationsScreen = ({ navigation }) => {
 
+    const logo2 = {
+        uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+        width: 300,
+        height: 150
+    };
+
     const context = useContext(AppContext)
 
 
@@ -60,7 +66,7 @@ const ReservationsScreen = ({ navigation }) => {
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.mainView}>
             {bookings && customer ?
 
                 <View>
@@ -68,9 +74,11 @@ const ReservationsScreen = ({ navigation }) => {
                     {/* {bookingNodes} */}
                     {bookings.map((selectedBooking, index) => {
                         return (
-                            <View>
-                                <Text style={styles.textH2}>{selectedBooking.restaurant.displayName}</Text>
-                                <TouchableOpacity style={styles.btnStyle} onPress={() => {
+                            <View style={styles.map}>
+                                <Image source={logo2}/>
+                                <Text style={styles.textH3Dark}>{selectedBooking.restaurant.displayName}</Text>
+                                <Text style={styles.baseText}>{moment(selectedBooking.availability.date).format('Do MMM')}<Text style={styles.innerText}> {selectedBooking.availability.time}</Text></Text>
+                                <TouchableOpacity style={styles.button} onPress={() => {
                                     Alert.alert(
                                         "Delete this booking?",
                                         "Click delete if you want to cancel this booking",
@@ -82,7 +90,7 @@ const ReservationsScreen = ({ navigation }) => {
                                     );
                                 }
                                 }>
-                                    <Text>Delete</Text>
+                                    <Text style={styles.ButtonText}>Cancel Booking</Text>
                                 </TouchableOpacity>
                             </View>
                         )
@@ -102,6 +110,31 @@ const ReservationsScreen = ({ navigation }) => {
 
 }
 const styles = StyleSheet.create({
+    map: {
+        marginTop: 20,
+    },
+    mainView: {
+        padding: 40,
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    baseText: {
+        fontSize: 16,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
+    },
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     button: {
         alignItems: 'center',
         backgroundColor: 'blue',
@@ -119,6 +152,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'left',
         marginBottom: 5,
+        marginTop: 20,
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
@@ -133,11 +167,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
-    btnStyle: {
-        backgroundColor: 'blue',
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#F38599',
+        borderRadius: 10,
         padding: 10,
-        borderRadius: 8
-    }
+        width: 300,
+        marginTop: 16,
+    },
+    ButtonText: {
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontSize: 15,
+        color: '#27233A',
+    },
 
 });
 

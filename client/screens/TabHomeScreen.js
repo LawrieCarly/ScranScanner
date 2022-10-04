@@ -15,7 +15,7 @@ const TabHomeScreen = ({ navigation }) => {
     console.log('HLR====================================');
     console.log(highlightedResto);
     console.log('====================================');
-    const chanterId = '9'
+    const chanterId = '4'
 
 
     const highlightedRestoImage = {
