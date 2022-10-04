@@ -1,7 +1,7 @@
 
 import moment from 'moment';
 
-const baseURL = 'http://192.168.0.4:8080/restaurants/';
+const baseURL = 'http://192.168.100.190:8080/restaurants/';
 
 
 export const getRestaurants = () => {
