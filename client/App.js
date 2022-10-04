@@ -27,15 +27,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 // Navigator 'stack' function to allow page navigations from within the Profile Tab
 
 const ProfileStack = createNativeStackNavigator();
-function ProfileStackScreen() {
-  return (
-    <ProfileStack.Navigator >
-      <ProfileStack.Screen  name="My Profile" component={TabProfileScreen}  />
-      <ProfileStack.Screen name="Reservations" component={ReservationsScreen} />
-      <ProfileStack.Screen name="Favourites" component={FavouritesScreen} />
-    </ProfileStack.Navigator>
-  );
-}
+
+
+
+
+
+
+
 
 
 const TopTab = createMaterialTopTabNavigator();
@@ -95,9 +93,9 @@ export default function App() {
             <Tab.Screen name="Restaurant" component={RestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
             />
-            <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
+            {/* <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
-            />
+            /> */}
         </Tab.Navigator>
       </NavigationContainer>
       </>
@@ -107,24 +105,3 @@ export default function App() {
   
   );
 }
-
-// WORKING V2 ===========================================================
-
-
-// import React from 'react';
-// import {SafeAreaView, ScrollView, StatusBar,StyleSheet,Text, useColorScheme,TouchableOpacity,View} from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createStackNavigator } from '@react-navigation/stack';
-
-
-// import TabTabHomeScreen from './screens/TabTabHomeScreen';
-// import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
-// import TabProfileScreen from './screens/TabProfileScreen';
-// import ReservationsScreen from './screens/ReservationsScreen';
-
-
-
-// const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
-
