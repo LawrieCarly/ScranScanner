@@ -91,9 +91,9 @@ export default function App() {
             <Tab.Screen name="Restaurant" component={RestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
             />
-            <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
+            {/* <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
-            />
+            /> */}
         </Tab.Navigator>
       </NavigationContainer>
       </>
