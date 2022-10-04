@@ -43,6 +43,15 @@ const RestaurantScreen = ({ navigation, route }) => {
                     .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
                                 
                 }, [restaurantById]));
+
+                React.useEffect(() => {
+                    const cleanState = navigation.addListener('blur', () => {
+                        setRestaurantById(null),
+                        setFilteredAvailablitiesOfRestaurant(null)
+                        });
+                
+                    return cleanState;
+                }, [navigation]);
                 
 
 
@@ -56,8 +65,93 @@ const RestaurantScreen = ({ navigation, route }) => {
                 //  *====================================================================================
     //* useEffect #3 - maps availabilities in touchable opacity and provides onPress action for booking actions
 
-    useEffect(() => {
-        const mappedAvailabilityNodes = 
+    // useEffect(() => {
+    //     const mappedAvailabilityNodes = 
+    //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
+    //             return (
+    //                             <TouchableOpacity
+    //                             // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
+    //                             onPress={ () => {
+    //                                 Alert.alert(
+    //                                   `'${restaurantById.displayName}' Confirmation:`,
+    //                                   `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+    
+    //                                   [
+    //                                     {text: 'Book Now', onPress: () => {
+                                            
+    //                                     // POST - 'add booking to customer reservations'
+    //                                     const bookingObject = {
+    //                                         "customer": {
+    //                                             "id": customerId
+    //                                         },
+    //                                         "restaurant": {
+    //                                             "id": route.params.restaurantId
+    //                                         },
+    //                                         "availability": {
+    //                                             "id": availability.id
+    //                                         },
+    //                                         "numberOfGuests": route.params.partysize
+    //                                     }
+    //                                     postBooking(bookingObject)
+
+    //                                     // PUT - 'set booking availability to false'
+    //                                     const availabilityObject = {
+    //                                         "id": availability.id,
+    //                                         "date": availability.date,
+    //                                         "time": availability.time,
+    //                                         "dinnerTable": availability.dinnerTable,
+    //                                         "available": false
+    //                                     }
+    //                                     updateBookingAvailabilityToFalse(availabilityObject);
+
+
+    //                                     // NAVIGATE - to reservations page
+    //                                     navigation.navigate('Notifications')}
+    //                                     },
+        
+    //                                     {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
+    //                                   ],
+    //                                   { cancelable: true }
+    //                                 );
+    //                             }
+                            
+    //                         }
+    //                             >
+    //                                     <View 
+    //                                         style={styles.availabilityButton}
+    //                                     >
+    //                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+    //                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
+    //                                     </View>
+    //                             </TouchableOpacity>
+                
+    //             );
+    //             })
+    //             setAvailabilityNodes(mappedAvailabilityNodes)
+    
+    //             }, [filteredAvailablitiesOfRestaurant]);
+    
+
+    return (
+        
+    <SafeAreaView style={{ flex: 1 }}>
+    {restaurantById && filteredAvailablitiesOfRestaurant ? 
+
+        <View style={{ flex: 1, padding: 16 }}>
+     
+            <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
+
+                <View style={styles.mainView}>
+                    
+                    <ScrollView>
+                    
+                    <RestaurantDetails restaurantById={restaurantById}/>
+
+                    <Text style={styles.textH1}>Your Booking Options:</Text>
+                    
+                    <ScrollView horizontal={true}> 
+                        {/* {availabilityNodes}  */}
+                        {mappedAvailabilityNodes = 
             filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                 return (
                                 <TouchableOpacity
@@ -117,31 +211,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                                 </TouchableOpacity>
                 
                 );
-                })
-                setAvailabilityNodes(mappedAvailabilityNodes)
-    
-                }, [filteredAvailablitiesOfRestaurant]);
-    
-
-    return (
-        
-    <SafeAreaView style={{ flex: 1 }}>
-    {restaurantById && filteredAvailablitiesOfRestaurant ? 
-
-        <View style={{ flex: 1, padding: 16 }}>
-     
-            <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
-
-                <View style={styles.mainView}>
-                    
-                    <ScrollView>
-                    
-                    <RestaurantDetails restaurantById={restaurantById}/>
-
-                    <Text style={styles.textH1}>Your Booking Options:</Text>
-                    
-                    <ScrollView horizontal={true}> 
-                        {availabilityNodes} 
+                })}
                     </ScrollView>
 
                     <TouchableOpacity style={styles.button2}>
