@@ -18,6 +18,7 @@ const logo2 = {
 
 
 
+
 const FilteredRestaurants = ({restaurants, route}) => {
 
   const navigation = useNavigation();
@@ -30,6 +31,12 @@ const FilteredRestaurants = ({restaurants, route}) => {
 //         />
 //     )
 // })
+
+const RestoImage = {
+  uri: restaurants.imageURL,
+  width: 350,
+  height: 200
+};
 
 
   return (
