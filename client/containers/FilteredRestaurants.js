@@ -34,7 +34,7 @@ const FilteredRestaurants = ({restaurants, route}) => {
 
   return (
   <>
-        <ScrollView>{restaurants.map((restaurant, index) => { 
+        <ScrollView horizontal={true}>{restaurants.map((restaurant, index) => { 
           return ( 
             <TouchableOpacity key={index} index={index}
             onPress={
