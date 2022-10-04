@@ -1,35 +1,36 @@
-import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView} from 'react-native';
+import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Alert} from 'react-native';
 
 
-const deleteBooking = ({navigation, booking, onDeleteClick}) => {
+const DeleteBooking = ({navigation, booking, onDeleteClick}) => {  
+    
+    const onDelete = () => {
+
+        onDeleteClick(booking)
+
+    }
+
+    return(
         
-        const onDelete = (booking) => {
+        <SafeAreaView>
+        <View>
 
-            onDeleteClick(booking)
-            
-        }
+            <TouchableOpacity style={styles.btnStyle} onPress={ () => {
+                                Alert.alert(
+                                    'Delete Booking?',
+                                    'Click delete if you want to cancel this booking'    
+                                    [
+                                    {text: 'Delete Now', onPress: () => {onDelete}},
+                                    {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
+                                    ],
+                                    { cancelable: true }
+                                )}}>
+                <Text>Delete</Text>
+            </TouchableOpacity>
 
-        return(
-            <SafeAreaView>
-            <View>
+        </View>
+        </SafeAreaView>
 
-                <TouchableOpacity style={styles.btnStyle} onPress={ () => {
-                                    Alert.alert(
-                                        'Delete Booking?',
-                                        'Click delete if you want to cancel this booking'    
-                                      [
-                                        {text: 'Delete Now', onPress: () => {onDelete}},
-                                        {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
-                                      ],
-                                      { cancelable: true }
-                                    )}}>
-                    <Text>Delete</Text>
-                </TouchableOpacity>
-
-            </View>
-            </SafeAreaView>
-
-        )
+    )
 
 }
 
@@ -43,5 +44,5 @@ const styles = StyleSheet.create ({
 
 });
 
-export default deleteBooking;
+export default DeleteBooking;
 

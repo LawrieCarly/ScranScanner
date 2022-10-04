@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert, LogBox} from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
-import deleteBooking from '../components/DeleteBooking';
+import DeleteBooking from '../components/DeleteBooking';
 import { deleteBookingMethod } from '../services/BookingService';
 
 
@@ -12,8 +12,7 @@ const ReservationsScreen = ({navigation}) => {
 
     const id = "1"
 
-    const [customer, setCustomer] = useState({ bookings: [] });
-    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [customer, setCustomer] = useState(null);
     const IsFocused = useIsFocused();
 
     useEffect(() => {
@@ -25,31 +24,50 @@ const ReservationsScreen = ({navigation}) => {
         // console.log("booking name", customer.bookings)
 
         const onDeleteClick = function(booking) {
-            // delete booking from customer
-            setSelectedBooking(booking)
-            deleteBookingMethod(booking)
-            // refresh page
-        }
+                    // delete booking from customer
+                    deleteBookingMethod(booking)
+                    // refresh page
+                }
 
-        const bookingNodes = customer.bookings.map((booking, index) => {
-            return(
-                <View>
-                    <Text>{booking.restaurant.displayName}</Text>
-                    <deleteBooking booking={booking} onDeleteClick={onDeleteClick()}/>
-                </View>
-            )
+        // const bookingNodes = customer.bookings.map((booking, index) => {
+        //     return(
+        //         <View>
+        //             <Text>{booking.restaurant.displayName}</Text>
+        //             <deleteBooking booking={booking} onDeleteClick={onDeleteClick()}/>
+        //         </View>
+        //     )
+        // })
 
-        })
+        
 
         // console.log("Customer bookings", bookingNodes)
         
 
     return(
-        <View>
-            <Text>Text</Text>
-            <Text>{customer.displayName}</Text>
-            {bookingNodes}
-        </View>
+        <SafeAreaView>
+            {customer?
+
+            <View>
+                <Text>Text</Text>
+                <Text>{customer.displayName}</Text>
+                {/* {bookingNodes} */}
+                {customer.bookings.map((booking, index) => {
+                    return(
+                <View>
+                    <Text>{booking.restaurant.displayName}</Text>
+                    <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/>
+                </View>
+            )
+                })}
+            </View>
+            :
+            <Text>Loading</Text>
+            }
+
+        </SafeAreaView>
+        
+        
+
     )
 
 // ? CODE TO START WITH =============================================
