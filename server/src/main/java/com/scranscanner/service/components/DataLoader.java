@@ -398,7 +398,7 @@ public class DataLoader implements ApplicationRunner {
         reviewRepository.save(chezJulesReview2);
         Review chezJulesReview3 = new Review("LawrieCarly", 5.00, "Thank you scracnscanner for helping me find this hidden gem!", chezJules);
         reviewRepository.save(chezJulesReview3);
-        
+
 
 
 
