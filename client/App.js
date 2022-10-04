@@ -17,6 +17,8 @@ import BasicRestaurantScreen from './screens/BasicRestaurantScreen';
 import LoginContainer from './containers/LoginContainer';
 import AppContext from './components/AppContext';
 
+
+
 // Login states
 
 
@@ -84,7 +86,7 @@ export default function App() {
       <>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={TabHomeScreen} />
+            <Tab.Screen name="Home" component={TabHomeScreen} options={{ tabBarIcon:() => (<Icon name="home" size={18} color="white" />)}}/>
             <Tab.Screen name="Search" component={TabSearchResultsScreen} />
             <Tab.Screen name="Notifications" component={MyTabsScreen} />
             <Tab.Screen name="Profile" component={TabProfileScreen} />
