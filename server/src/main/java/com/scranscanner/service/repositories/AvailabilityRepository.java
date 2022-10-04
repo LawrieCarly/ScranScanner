@@ -16,8 +16,7 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
     List<Availability> findAvailableTablesByRestaurantNative(Long restaurantId, Integer partySize, LocalDate date, LocalTime time);
 
 
-}
-@Query(value = "SELECT * FROM availabilities INNER JOIN dinner_tables ON dinner_table_id=dinner_tables.id INNER JOIN restaurants ON restaurant_id=restaurants.id WHERE is_available=true AND restaurant_id=?1 AND date>=?2 ORDER BY date ASC, time ASC LIMIT 45", nativeQuery = true)
+@Query(value = "SELECT * FROM availabilities INNER JOIN dinner_tables ON dinner_table_id=dinner_tables.id INNER JOIN restaurants ON restaurant_id=restaurants.id WHERE is_available=true AND restaurant_id=?1 AND date>=?2 ORDER BY date ASC LIMIT 45", nativeQuery = true)
     List<Availability> findAllAvailableTablesByRestaurantNative(Long restaurantId, LocalDate date);
 
 
