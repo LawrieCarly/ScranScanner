@@ -1,21 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
-
-
+import AppContext from '../components/AppContext'
 
 const ReservationsScreen = ({navigation}) => {
 
-    const id = "1"
+    const context = useContext(AppContext)
+
 
     const [customer, setCustomer] = useState({ bookings: [] })
     const IsFocused = useIsFocused();
+    // const context = useContext(AppContext)
+
 
     useEffect(() => {
-        getCustomerById(id)
+        getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
         }, [IsFocused]);
 
@@ -23,24 +25,47 @@ const ReservationsScreen = ({navigation}) => {
         // console.log("booking name", customer.bookings)
 
 
-        const bookingNodes = customer.bookings.map((booking, index) => {
-            return(
-                <View>
-                    <Text>{booking.restaurant.displayName}</Text>
-                </View>
-            )
+        // const bookingNodes = customer.bookings.map((booking, index) => {
+        //     return(
+        //         <View>
+        //             <Text>{booking.restaurant.displayName}</Text>
+        //         </View>
+        //     )
 
-        })
+        // })
 
         // console.log("Customer bookings", bookingNodes)
 
 
     return(
-        <View>
-            <Text>Text</Text>
-            <Text>{customer.displayName}</Text>
-            {bookingNodes}
-        </View>
+        <SafeAreaView>
+            {customer?
+
+            <View>
+                <Text>Text</Text>
+                <Text>{customer.displayName}</Text>
+                {/* {bookingNodes} */}
+                {customer.bookings.map((booking, index) => {
+                    return(
+                <View>
+                    <Text>{booking.restaurant.displayName}</Text>
+                    {/* <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/> */}
+                </View>
+            )
+                })}
+            </View>
+            :
+            <Text>Loading</Text>
+            }
+
+        </SafeAreaView>
+
+
+        // <View>
+        //     <Text>Text</Text>
+        //     <Text>{customer.displayName}</Text>
+        //     {bookingNodes}
+        // </View>
     )
 
 // ? CODE TO START WITH =============================================
