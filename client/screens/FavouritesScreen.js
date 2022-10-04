@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
+import AppContext from '../components/AppContext';
 
 
 
 const FavouritesScreen = ({ navigation }) => {
 
-    const id = "1"
+    const context = useContext(AppContext)
 
     const [customer, setCustomer] = useState({ savedRestaurants: [] })
     const IsFocused = useIsFocused();
 
     useEffect(() => {
-        getCustomerById(id)
+        getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
         }, [IsFocused]);
 
@@ -23,29 +24,53 @@ const FavouritesScreen = ({ navigation }) => {
         // console.log("booking name", customer.savedRestaurants)
 
 
-        const savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
-            return(
+        // const savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+        //     return(
 
-                    <View>
-                        <Text>{savedRestaurant.displayName}</Text>
-                    </View>
-            )
+        //             <View>
+        //                 <Text>{savedRestaurant.displayName}</Text>
+        //             </View>
+        //     )
 
-        })
+        // })
 
         // console.log("Customer bookings", bookingNodes)
 
 
     return(
+
+        <SafeAreaView>
+            {customer?
+
+            <View>
+                <Text>Text</Text>
+                <Text>{customer.displayName}</Text>
+                {/* {bookingNodes} */}
+                {/* {savedRestoNodes}  */}
+               {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+            return(
+
+                    <View>
+                        <Text>{savedRestaurant.displayName}</Text>
+                    </View>
+                    )
+                  })}
+                
+            </View>
+            :
+            <Text>Loading</Text>
+            }
+        {/* 
+        </SafeAreaView>
         <SafeAreaView>
         <View>
             <View>
                 <Text>{customer.displayName}</Text>
                 <Text>Places to try and those you already love:</Text>
             </View>
-            {savedRestoNodes} 
-        </View>
-    </SafeAreaView>
+        </View> */}
+
+    </SafeAreaView> 
     )
 
 

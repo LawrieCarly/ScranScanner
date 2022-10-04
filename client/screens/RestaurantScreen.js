@@ -19,6 +19,12 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
     
+console.log('===TEST=================================');
+console.log(restaurantById);
+console.log('====================================');
+
+    //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
+
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
@@ -26,6 +32,8 @@ const RestaurantScreen = ({ navigation, route }) => {
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
+            
+    //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
     React.useEffect(() => {
         const cleanState = navigation.addListener('blur', () => {
@@ -36,7 +44,19 @@ const RestaurantScreen = ({ navigation, route }) => {
         return cleanState;
     }, [navigation]);
     
+
+    React.useEffect(() => {
+        const cleanState = navigation.addListener('blur', () => {
+            setRestaurantById(null),
+            setFilteredAvailablitiesOfRestaurant(null)
+            });
+    
+        return cleanState;
+    }, [navigation]);
+    
+
     return (
+
         
         <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.logoBar}>
@@ -60,6 +80,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                     
                         
                     <ScrollView horizontal={true}>
+                            
                             {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                                 return (
                                     <TouchableOpacity key={availability.id} index={availability.id}
