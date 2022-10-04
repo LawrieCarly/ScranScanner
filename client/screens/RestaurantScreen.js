@@ -19,6 +19,9 @@ const RestaurantScreen = ({ navigation, route }) => {
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
     // const [availabilityNodes, setAvailabilityNodes] = useState(null);
     
+console.log('===TEST=================================');
+console.log(restaurantById);
+console.log('====================================');
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
@@ -29,15 +32,6 @@ const RestaurantScreen = ({ navigation, route }) => {
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
-    
-    //* useEffect #2 - 
-
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //             getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //             .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-                            
-    //         }, [restaurantById]));
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
@@ -62,13 +56,12 @@ const RestaurantScreen = ({ navigation, route }) => {
     
 
     return (
+
         
-        <SafeAreaView style={{ flex: 1 }}>
-    
+    <SafeAreaView style={{ flex: 1 }}>
         
     {restaurantById 
     && filteredAvailablitiesOfRestaurant
-    // && availabilityNodes 
     ? 
     
     
@@ -88,10 +81,6 @@ const RestaurantScreen = ({ navigation, route }) => {
                         
                     <ScrollView horizontal={true}>
                             
-                            {/* COLLAPSED 'AVAILABILITY MAP' FOR EASE OF READING 
-                            - tried as a component but it was dependent on too many things being passed down (eg payload for POST) 
-                            - also tried availabilityNodes in a useEffect above
-                            */}
                             {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                                 return (
                                     <TouchableOpacity key={availability.id} index={availability.id}

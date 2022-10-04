@@ -22,4 +22,13 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
   } catch (error) {
     console.error(error);
   }
+
+}
+export async function getAllAvailablitiesOfRestaurant(restaurantId, date) {
+  try {
+  const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?date=' + date);
+  return data.json() 
+  } catch (error) {
+    console.error(error);
+  }
 }

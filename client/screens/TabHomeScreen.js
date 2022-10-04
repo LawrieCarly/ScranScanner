@@ -12,6 +12,9 @@ const TabHomeScreen = ({ navigation }) => {
     const [highlightedResto, setHightlightedResto] = useState({})
 
 
+    console.log('HLR====================================');
+    console.log(highlightedResto);
+    console.log('====================================');
     const chanterId = '4'
 
 
@@ -20,6 +23,11 @@ const TabHomeScreen = ({ navigation }) => {
         width: 350,
         height: 200
     };
+
+
+    console.log('HLRURL====================================');
+    console.log(highlightedResto.imageURL);
+    console.log('====================================');
 
     const RestoImage = {
         uri: restaurants.imageURL,
@@ -42,6 +50,7 @@ const TabHomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView >
+
             <ScrollView>
                 <View style={styles.mainView}>
                         <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>

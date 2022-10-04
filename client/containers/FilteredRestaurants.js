@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 
 const logo1 = {
   uri: 'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1878&q=80',
@@ -15,6 +16,10 @@ const logo2 = {
   height: 100
 
 };
+
+
+    let current_date = moment().format('YYYY-MM-DD')
+    let current_time = moment().format('HH:mm')
 
 
 
@@ -46,7 +51,13 @@ const RestoImage = {
             <TouchableOpacity key={index} index={index}
             onPress={
               () => navigation.navigate(
-                  'Restaurant', { restaurantId: restaurant.id })}
+                // params are stringified above (not objects)
+                'Restaurant', { 
+                    restaurantId: restaurant.id, 
+                    partysize: 2, 
+                    date: current_date, 
+                    time: current_time 
+                })}
                   >
 
 

@@ -26,6 +26,11 @@ public class AvailabilityController {
         return new ResponseEntity<>(availabilityRepository.findAvailableTablesByRestaurantNative(id, partySize, date, time), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/availabilities/restaurant/{id}/all")
+    public ResponseEntity<List<Availability>> getFilteredAvailability(@PathVariable Long id, @RequestParam(name="date") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date){
+        return new ResponseEntity<>(availabilityRepository.findAllAvailableTablesByRestaurantNative(id, date), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/availabilities")
     public ResponseEntity<List<Availability>> getAllAvailabilities(){
         return new ResponseEntity<>(availabilityRepository.findAll(), HttpStatus.OK);
