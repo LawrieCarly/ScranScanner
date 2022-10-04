@@ -12,3 +12,10 @@ export const getCustomerByEmail = (email) => {
         .then(res => res.json());
 
 }
+
+export const addRestaurantToCustomerFavourites = (customerId, restaurantId) => {
+    return fetch(baseURL + customerId + '/restaurant/' + restaurantId,{
+        method: "PATCH"
+    })
+        .then(res => res.json());
+}
