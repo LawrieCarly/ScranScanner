@@ -72,14 +72,14 @@ export default function App() {
 
   return (
     <AppContext.Provider value={customerHelper}>
-      {/* {!loggedIn? 
+      {!loggedIn? 
       <>
         <LoginContainer
           flipLoggedIn={flipLoggedIn}
           changeCustomerId={changeCustomerId}
         />
       </>
-           :  */}
+           : 
       <>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -95,7 +95,7 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
       </>
-        {/* } */}
+        }
     </AppContext.Provider>
       
   
