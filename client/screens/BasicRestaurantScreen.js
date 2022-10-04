@@ -28,7 +28,7 @@ const BasicRestaurantScreen = ({ navigation, route }) => {
     }, 
     [IsFocused]);
             
-    //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
+    //* Cleanup UseEffect, seems to remove the double dates we were getting in availability, but not sure it works
     
     React.useEffect(() => {
         const cleanState = navigation.addListener('blur', () => {
