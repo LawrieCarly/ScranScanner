@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/CoveredByYourGrace-Regular.ttf",
+      "sha1": "c2b2ff79a5c488c1afd4a7662559e37394d22d94"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Bold.ttf",
+      "sha1": "e43476d9509fb03868df27d0d9e84f13560d3605"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-BoldItalic.ttf",
+      "sha1": "728715e91463cd13ddf4398490d455c45e9c45d4"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold.ttf",
+      "sha1": "ab60125bff8ec78e97c5d2da7bf7f5a0867f723e"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBoldItalic.ttf",
+      "sha1": "74d19e7f958833a5fc18aa5f4a4a3a5716ff6a10"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraLight.ttf",
+      "sha1": "a05b5234ca0ebbc5824bfcc967354d8646441e60"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraLightItalic.ttf",
+      "sha1": "cf4d576153b58e15527b459da8915aba9290bef2"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Italic-VariableFont_wght.ttf",
+      "sha1": "1ce37ea1ffb09348b536a3a567ff3c34b5a8ec63"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Italic.ttf",
+      "sha1": "b99fbb07c5a40275116b745ba964faccf5f2a1e6"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light.ttf",
+      "sha1": "f497b415db464a455d9d01120a07765f773e17dd"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-LightItalic.ttf",
+      "sha1": "39b1a62e0cd94f7e8fbddf438fe702d62ffa15ca"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Medium.ttf",
+      "sha1": "15d3289b2a679f4efa90fe8a8f4da94030c1672f"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-MediumItalic.ttf",
+      "sha1": "fd364dfa824b2d1bb27eec9701b25bfed007eeea"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular.ttf",
+      "sha1": "0f239aa4f2a6cd8a69d5cc71e0c05601c80b62d0"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold.ttf",
+      "sha1": "87ecea40f62014ac2f67ec3772e7847945552b71"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBoldItalic.ttf",
+      "sha1": "6f29e274751e0de38776d1ffa03e7e89410131ab"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-VariableFont_wght.ttf",
+      "sha1": "f664520374b6760a97c1c9656251bb34bea8a9d8"
+    },
+    {
+      "path": "android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/RubikDirt-Regular.ttf",
+      "sha1": "01cefa26dca073d1b8c400d092caeac767bac895"
+    }
+  ]
+}

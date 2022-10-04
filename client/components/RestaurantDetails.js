@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
-
+import AppContext from './AppContext'
 
 
 
@@ -22,6 +22,13 @@ const RestaurantDetails = ({restaurantById}) => {
     //         );})
 
 
+     // Gives us access to global context which contains customerId
+     const context = useContext(AppContext)
+
+     const handleSavePress = () => {
+         addRestaurantToCustomerFavourites(context.customerId, restaurantById.id)
+     }
+
     return (
 
         
@@ -33,8 +40,10 @@ const RestaurantDetails = ({restaurantById}) => {
             
             <Image style={{paddingBottom: 50}} source={logo}/>
             
-            <TouchableOpacity style={styles.button}>
-                    <Text>Save Restaurant</Text>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={handleSavePress}>
+                        <Text>Save Restaurant</Text>
                 </TouchableOpacity>
     
                 <View>
