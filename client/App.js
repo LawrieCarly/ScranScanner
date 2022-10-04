@@ -13,6 +13,7 @@ import TabProfileScreen from './screens/TabProfileScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
+import BasicRestaurantScreen from './screens/BasicRestaurantScreen';
 import LoginContainer from './containers/LoginContainer';
 import AppContext from './components/AppContext';
 
@@ -90,6 +91,9 @@ export default function App() {
 
 
             <Tab.Screen name="Restaurant" component={RestaurantScreen} 
+              options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
+            />
+            <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
             />
         </Tab.Navigator>

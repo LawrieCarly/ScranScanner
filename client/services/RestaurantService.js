@@ -23,7 +23,3 @@ export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySi
     console.error(error);
   }
 }
-
-    
-// }
-// `http://192.168.100.139:8080/restaurants?partSize=${partySize}&date=${date}`
