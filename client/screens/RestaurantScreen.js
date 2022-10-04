@@ -9,6 +9,7 @@ import RestaurantReviews from '../components/RestaurantReviews';
 import RestaurantAvailability from '../components/RestaurantAvailability';
 import { useFocusEffect } from '@react-navigation/native';
 import AppContext from '../components/AppContext'
+import logo from './scranscanner-icon-dark.png'
 
 const RestaurantScreen = ({ navigation, route }) => {
     const IsFocused = useIsFocused();
@@ -17,11 +18,7 @@ const RestaurantScreen = ({ navigation, route }) => {
     
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
-    // const [availabilityNodes, setAvailabilityNodes] = useState(null);
     
-
-    //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
-
     useEffect( () => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
@@ -29,17 +26,6 @@ const RestaurantScreen = ({ navigation, route }) => {
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
-    
-    //* useEffect #2 - 
-
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //             getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //             .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-                            
-    //         }, [restaurantById]));
-            
-    //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
     React.useEffect(() => {
         const cleanState = navigation.addListener('blur', () => {
@@ -50,111 +36,20 @@ const RestaurantScreen = ({ navigation, route }) => {
         return cleanState;
     }, [navigation]);
     
-    
-    //* useEffect #2/3 (COMMENTED OUT) *====================================================================================
-    // uses search criteria (partysize etc) params passed from search screen get filtered availabilities.
-    
-    
-    // useFocusEffect(
-    //         React.useCallback(() => {
-    //                 getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //                 .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-                                
-    //             }, [restaurantById]));
-                
-
-                
-                // console.log('restaurantById9999====================================');
-                // console.log(restaurantById);
-                // console.log('filteredAvailablitiesOfRestaurant=================');
-                // console.log(filteredAvailablitiesOfRestaurant);
-                
-                // console.log('====================================');
-                
-                //* useEffect #3 - maps availabilities in touchable opacity and provides onPress action for booking actions
-                
-                // useEffect(() => {
-                    //     const mappedAvailabilityNodes = 
-                    //         filteredAvailablitiesOfRestaurant.map((availability, index) => { 
-                        //             return (
-                            //                             <TouchableOpacity
-                            //                             // could use Modals for confirmation on this instead if time: https://reactnative.dev/docs/0.66/modal
-                            //                             onPress={ () => {
-                                //                                 Alert.alert(
-                                    //                                   `'${restaurantById.displayName}' Confirmation:`,
-                                    //                                   `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
-    
-    //                                   [
-    //                                     {text: 'Book Now', onPress: () => {
-                                            
-    //                                     // POST - 'add booking to customer reservations'
-    //                                     const bookingObject = {
-    //                                         "customer": {
-    //                                             "id": customerId
-    //                                         },
-    //                                         "restaurant": {
-    //                                             "id": route.params.restaurantId
-    //                                         },
-    //                                         "availability": {
-    //                                             "id": availability.id
-    //                                         },
-    //                                         "numberOfGuests": route.params.partysize
-    //                                     }
-    //                                     postBooking(bookingObject)
-    
-    //                                     // PUT - 'set booking availability to false'
-    //                                     const availabilityObject = {
-        //                                         "id": availability.id,
-        //                                         "date": availability.date,
-        //                                         "time": availability.time,
-        //                                         "dinnerTable": availability.dinnerTable,
-        //                                         "available": false
-        //                                     }
-        //                                     updateBookingAvailabilityToFalse(availabilityObject);
-
-
-    //                                     // NAVIGATE - to reservations page
-    //                                     navigation.navigate('Notifications')}
-    //                                     },
-        
-    //                                     {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
-    //                                   ],
-    //                                   { cancelable: true }
-    //                                 );
-    //                             }
-    
-    //                         }
-    //                             >
-    //                                     <View 
-    //                                         style={styles.availabilityButton}
-    //                                     >
-    //                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
-    //                                     <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
-    //                                     </View>
-    //                             </TouchableOpacity>
-    
-    //             );
-    //             })
-    //             setAvailabilityNodes(mappedAvailabilityNodes)
-    
-    //             }, [filteredAvailablitiesOfRestaurant]);
-    
-
     return (
         
         <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.logoBar}>
+            <Image style={styles.logo} source={logo}/>
+        </View>
     
         
     {restaurantById 
     && filteredAvailablitiesOfRestaurant
-    // && availabilityNodes 
     ? 
     
-    
-    <View style={{ flex: 1, padding: 16 }}>
-        
-        <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
-            
+    <View style={{ flex: 1 }}>
+                    
             <View style={styles.mainView}>
                     
                     <ScrollView>
@@ -163,14 +58,8 @@ const RestaurantScreen = ({ navigation, route }) => {
 
                     <Text style={styles.textH1}>Your Booking Options:</Text>
                     
-                    {/* <RestaurantAvailability restaurantById={restaurantById} filteredAvailablitiesOfRestaurant={filteredAvailablitiesOfRestaurant}/> */}
                         
                     <ScrollView horizontal={true}>
-                            
-                            {/* COLLAPSED 'AVAILABILITY MAP' FOR EASE OF READING 
-                            - tried as a component but it was dependent on too many things being passed down (eg payload for POST) 
-                            - also tried availabilityNodes in a useEffect above
-                            */}
                             {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                                 return (
                                     <TouchableOpacity key={availability.id} index={availability.id}
@@ -225,27 +114,19 @@ const RestaurantScreen = ({ navigation, route }) => {
                     
                                     );
                             })}
-
-                            {/* {availabilityNodes}  */}
-
                     </ScrollView>
-                  
 
                     <TouchableOpacity style={styles.button2}>
                         <Text>See all times</Text>
                     </TouchableOpacity> 
- 
 
-                    <View>
+
+                    {/* <View>
                         <Text style={styles.textH1}>Reviews:</Text> 
                         <RestaurantReviews restaurantById={restaurantById}/>
-                    </View>
-
-
-
+                    </View> */}
                 </ScrollView>
                 </View>
-
         </View>
         
         
@@ -261,6 +142,17 @@ const RestaurantScreen = ({ navigation, route }) => {
 
     
     const styles = StyleSheet.create({
+    logoBar: {
+        backgroundColor: 'white', 
+        paddingHorizontal: 20, 
+        alignItems: 'center',
+    },
+    logo: {
+        height: 50,
+        width: 50,
+        resizeMode: 'contain',
+        margin: 10
+    },
     button: {
         alignItems: 'center',
         backgroundColor: 'gray',
@@ -294,12 +186,12 @@ const RestaurantScreen = ({ navigation, route }) => {
         padding: 10,
         margin: 10
     },
-    textH1: {
-        fontSize: 25,
+    textH1Dark: {
+        fontSize: 28,
         textAlign: 'left',
-        marginBottom: 16,
-        color: 'black',
-        paddingTop: 10
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     textLoading: {
         fontSize: 55,
