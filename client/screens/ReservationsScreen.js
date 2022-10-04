@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Pressable} from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
+import AppContext from '../components/AppContext';
 
 
 
@@ -34,11 +35,22 @@ const ReservationsScreen = ({navigation}) => {
 
         // console.log("Customer bookings", bookingNodes)
 
+    const context = useContext(AppContext)
+
+    const handleLogout = () => {
+        context.flipLoggedIn();
+
+    }
 
     return(
         <View>
             <Text>Text</Text>
             <Text>{customer.displayName}</Text>
+            <Pressable
+                onPress={handleLogout}
+                >
+                    <Text style={styles.buttonText}>Login</Text>
+            </Pressable>
             {bookingNodes}
         </View>
     )
