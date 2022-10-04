@@ -49,13 +49,12 @@ const ReservationsScreen = ({navigation}) => {
             {customer?
 
             <View>
-                <Text>Text</Text>
-                <Text>{customer.displayName}</Text>
+                <Text style={styles.textH1}>{customer.displayName}'s bookings</Text>
                 {/* {bookingNodes} */}
                 {customer.bookings.map((selectedBooking, index) => {
                     return(
                 <View>
-                    <Text>{selectedBooking.restaurant.displayName}</Text>
+                    <Text style={styles.textH2}>{selectedBooking.restaurant.displayName}</Text>
                     <TouchableOpacity style={styles.btnStyle} onPress={ () => {
                                 Alert.alert(
                                     "Delete this booking?", 
@@ -70,7 +69,6 @@ const ReservationsScreen = ({navigation}) => {
                         }>
                         <Text>Delete</Text>
                     </TouchableOpacity>
-                    {/* <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/> */}
                 </View>
             )
                 })}
