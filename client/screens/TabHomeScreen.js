@@ -3,16 +3,30 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Recycler
 import { SearchForm } from '../components/searchForm';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
+import { getRestaurantById } from '../services/RestaurantService';
 import logo from './scranscanner-icon-white.png'
 
 const TabHomeScreen = ({ navigation }) => {
         
     const [restaurants, setRestaurants] = useState([])
+    const [highlightedResto, setHightlightedResto] = useState({})
+
+    const chanterId = '4'
 
     useEffect(() => {
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
     }, []);
+
+    useEffect(() => {
+        getRestaurantById(chanterId)
+        .then((returnedResults) => {
+            setHightlightedResto(returnedResults);
+        })
+    }, []);
+
+    
+    console.log(highlightedResto)
 
     return (
         <SafeAreaView >
@@ -20,8 +34,11 @@ const TabHomeScreen = ({ navigation }) => {
                 <View style={styles.mainView}>
                         <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
 
-                        <Text style={styles.textH1}>Famished?</Text>
-                        <Text style={styles.textH2}>Let's find you a table...</Text>
+                        
+                        <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text>
+                        </Text>
+                        <Text style={styles.textH2}>Feeling peckish?</Text>
+
 
                         <TouchableOpacity
                             style={styles.button}
@@ -29,7 +46,7 @@ const TabHomeScreen = ({ navigation }) => {
                             () => navigation.navigate(
                                 'Search', { screen: 'SearchScreen' }
                             )}>
-                            <Text>Search PlaceHolder </Text>
+                            <Text style={styles.ButtonText}>Find a table</Text>
                         </TouchableOpacity>
 
                             {/* <View>
@@ -46,6 +63,11 @@ const TabHomeScreen = ({ navigation }) => {
                                 <FilteredRestaurants restaurants={restaurants}/>
                             </View>
 
+                        <View>
+                            <Text>{highlightedResto.displayName}</Text>
+                        </View>
+
+
                             {/* Weirdly can't get another component to APPEAR AND RENDER (the space is there....) */}
             </ScrollView>
         </SafeAreaView>
@@ -59,32 +81,45 @@ const TabHomeScreen = ({ navigation }) => {
         resizeMode: "contain",
         height: 100,
     },
-        button: {
+    button: {
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#F38599',
         borderRadius: 10,
         padding: 10,
         width: 300,
         marginTop: 16,
-        fontWeight: 20,
     },
-    textH1: {
+    ButtonText: {
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontSize: 15,
+        color: '#27233A',
+    },
+    baseText: {
         fontSize: 25,
         textAlign: 'center',
-        marginBottom: 16,
-        color: 'white'
+        color: 'white',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+
+
     },
     textH1Dark: {
         fontSize: 22,
         textAlign: 'left',
-        fontWeight: 'bold',
         marginBottom: 16,
-        color: '#27233A'
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+
     },
     textH2: {
         fontSize: 18,
         textAlign: 'center',
-        color: '#F38599'
+        marginTop: 10,
+        color: 'white',
+        fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light',
     },
     textH3: {
         fontSize: 16,

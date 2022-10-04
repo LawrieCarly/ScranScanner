@@ -14,6 +14,24 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-ScranScanner-ScranScannerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ScranScanner-ScranScannerTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		CDC3060F96BC492EB60734CB /* CoveredByYourGrace-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E66F9C156EDB4B98A3AC40F7 /* CoveredByYourGrace-Regular.ttf */; };
+		0B462A77DE284E848C4AECD2 /* Karla-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6208AFFC2B744865B629A96D /* Karla-Bold.ttf */; };
+		410BA6C7ADD649A68E2193FB /* Karla-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB906B47648542E1A12712D0 /* Karla-BoldItalic.ttf */; };
+		55DE29C611A94EA7ACA9B8C2 /* Karla-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC4B3E68158494DA241D6E5 /* Karla-ExtraBold.ttf */; };
+		310EB2780E214915A0F8F1D3 /* Karla-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3520197E44A23B7DFF401 /* Karla-ExtraBoldItalic.ttf */; };
+		B4D66181459F489794632F17 /* Karla-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0718A3D5B5E4AEA9435CD83 /* Karla-ExtraLight.ttf */; };
+		080FDC3E903F45B89699BBE9 /* Karla-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1244E9F4194347A5AA454783 /* Karla-ExtraLightItalic.ttf */; };
+		1163AB0C316C400890F8BF29 /* Karla-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60488A7A8CE44E04A403C0CE /* Karla-Italic-VariableFont_wght.ttf */; };
+		7790014A49634B87986CD37D /* Karla-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5139356F2A940F68D37E2A7 /* Karla-Italic.ttf */; };
+		72D079694CE24BEBAE5F97C9 /* Karla-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B572CE35727340BAB522F59C /* Karla-Light.ttf */; };
+		3C36C13BD3824C6A9007CECD /* Karla-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39206E7CA7AB4833940C7B65 /* Karla-LightItalic.ttf */; };
+		4E25DBC41C964B9A960B27BC /* Karla-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 653D456D1C664C4EB8318F84 /* Karla-Medium.ttf */; };
+		0AA63F7530F64961BE4C659A /* Karla-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07BE6BF87A554BA4A3ABBD93 /* Karla-MediumItalic.ttf */; };
+		12AB10243A0847E39727B4D3 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F92DF56FFFED4B67A6EA0A55 /* Karla-Regular.ttf */; };
+		7E8A548A5B9D45E8AD7D986F /* Karla-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2F9FA0E537544E2984784CC /* Karla-SemiBold.ttf */; };
+		7F20773B10C84D10ACF9B678 /* Karla-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAE5E1169F9949C1A543991C /* Karla-SemiBoldItalic.ttf */; };
+		C12B5B64D2D34EACBA8E91CC /* Karla-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 225C27F30FB24FDFB3F4B645 /* Karla-VariableFont_wght.ttf */; };
+		063B249CEAA548C3BFB48002 /* RubikDirt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB78365F33B64D2691A15503 /* RubikDirt-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +62,24 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ScranScanner/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ScranScanner-ScranScannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScranScanner-ScranScannerTests.release.xcconfig"; path = "Target Support Files/Pods-ScranScanner-ScranScannerTests/Pods-ScranScanner-ScranScannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E66F9C156EDB4B98A3AC40F7 /* CoveredByYourGrace-Regular.ttf */ = {isa = PBXFileReference; name = "CoveredByYourGrace-Regular.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/CoveredByYourGrace-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6208AFFC2B744865B629A96D /* Karla-Bold.ttf */ = {isa = PBXFileReference; name = "Karla-Bold.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB906B47648542E1A12712D0 /* Karla-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Karla-BoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6AC4B3E68158494DA241D6E5 /* Karla-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Karla-ExtraBold.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7DA3520197E44A23B7DFF401 /* Karla-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Karla-ExtraBoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B0718A3D5B5E4AEA9435CD83 /* Karla-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Karla-ExtraLight.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1244E9F4194347A5AA454783 /* Karla-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "Karla-ExtraLightItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		60488A7A8CE44E04A403C0CE /* Karla-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Karla-Italic-VariableFont_wght.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F5139356F2A940F68D37E2A7 /* Karla-Italic.ttf */ = {isa = PBXFileReference; name = "Karla-Italic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B572CE35727340BAB522F59C /* Karla-Light.ttf */ = {isa = PBXFileReference; name = "Karla-Light.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		39206E7CA7AB4833940C7B65 /* Karla-LightItalic.ttf */ = {isa = PBXFileReference; name = "Karla-LightItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		653D456D1C664C4EB8318F84 /* Karla-Medium.ttf */ = {isa = PBXFileReference; name = "Karla-Medium.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		07BE6BF87A554BA4A3ABBD93 /* Karla-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Karla-MediumItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F92DF56FFFED4B67A6EA0A55 /* Karla-Regular.ttf */ = {isa = PBXFileReference; name = "Karla-Regular.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C2F9FA0E537544E2984784CC /* Karla-SemiBold.ttf */ = {isa = PBXFileReference; name = "Karla-SemiBold.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BAE5E1169F9949C1A543991C /* Karla-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Karla-SemiBoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		225C27F30FB24FDFB3F4B645 /* Karla-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Karla-VariableFont_wght.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB78365F33B64D2691A15503 /* RubikDirt-Regular.ttf */ = {isa = PBXFileReference; name = "RubikDirt-Regular.ttf"; path = "../android/app/src/main/assets/fonts/Covered_By_Your_Grace,Karla,Rubik_Dirt/RubikDirt-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +158,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				B028946AC80441EA8041B5CF /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +184,32 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		B028946AC80441EA8041B5CF /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				E66F9C156EDB4B98A3AC40F7 /* CoveredByYourGrace-Regular.ttf */,
+				6208AFFC2B744865B629A96D /* Karla-Bold.ttf */,
+				BB906B47648542E1A12712D0 /* Karla-BoldItalic.ttf */,
+				6AC4B3E68158494DA241D6E5 /* Karla-ExtraBold.ttf */,
+				7DA3520197E44A23B7DFF401 /* Karla-ExtraBoldItalic.ttf */,
+				B0718A3D5B5E4AEA9435CD83 /* Karla-ExtraLight.ttf */,
+				1244E9F4194347A5AA454783 /* Karla-ExtraLightItalic.ttf */,
+				60488A7A8CE44E04A403C0CE /* Karla-Italic-VariableFont_wght.ttf */,
+				F5139356F2A940F68D37E2A7 /* Karla-Italic.ttf */,
+				B572CE35727340BAB522F59C /* Karla-Light.ttf */,
+				39206E7CA7AB4833940C7B65 /* Karla-LightItalic.ttf */,
+				653D456D1C664C4EB8318F84 /* Karla-Medium.ttf */,
+				07BE6BF87A554BA4A3ABBD93 /* Karla-MediumItalic.ttf */,
+				F92DF56FFFED4B67A6EA0A55 /* Karla-Regular.ttf */,
+				C2F9FA0E537544E2984784CC /* Karla-SemiBold.ttf */,
+				BAE5E1169F9949C1A543991C /* Karla-SemiBoldItalic.ttf */,
+				225C27F30FB24FDFB3F4B645 /* Karla-VariableFont_wght.ttf */,
+				BB78365F33B64D2691A15503 /* RubikDirt-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +307,24 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				CDC3060F96BC492EB60734CB /* CoveredByYourGrace-Regular.ttf in Resources */,
+				0B462A77DE284E848C4AECD2 /* Karla-Bold.ttf in Resources */,
+				410BA6C7ADD649A68E2193FB /* Karla-BoldItalic.ttf in Resources */,
+				55DE29C611A94EA7ACA9B8C2 /* Karla-ExtraBold.ttf in Resources */,
+				310EB2780E214915A0F8F1D3 /* Karla-ExtraBoldItalic.ttf in Resources */,
+				B4D66181459F489794632F17 /* Karla-ExtraLight.ttf in Resources */,
+				080FDC3E903F45B89699BBE9 /* Karla-ExtraLightItalic.ttf in Resources */,
+				1163AB0C316C400890F8BF29 /* Karla-Italic-VariableFont_wght.ttf in Resources */,
+				7790014A49634B87986CD37D /* Karla-Italic.ttf in Resources */,
+				72D079694CE24BEBAE5F97C9 /* Karla-Light.ttf in Resources */,
+				3C36C13BD3824C6A9007CECD /* Karla-LightItalic.ttf in Resources */,
+				4E25DBC41C964B9A960B27BC /* Karla-Medium.ttf in Resources */,
+				0AA63F7530F64961BE4C659A /* Karla-MediumItalic.ttf in Resources */,
+				12AB10243A0847E39727B4D3 /* Karla-Regular.ttf in Resources */,
+				7E8A548A5B9D45E8AD7D986F /* Karla-SemiBold.ttf in Resources */,
+				7F20773B10C84D10ACF9B678 /* Karla-SemiBoldItalic.ttf in Resources */,
+				C12B5B64D2D34EACBA8E91CC /* Karla-VariableFont_wght.ttf in Resources */,
+				063B249CEAA548C3BFB48002 /* RubikDirt-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
