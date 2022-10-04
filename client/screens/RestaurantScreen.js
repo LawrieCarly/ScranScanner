@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
@@ -8,11 +8,12 @@ import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
 import RestaurantAvailability from '../components/RestaurantAvailability';
 import { useFocusEffect } from '@react-navigation/native';
-const customerId = 1
-
+import AppContext from '../components/AppContext'
 
 const RestaurantScreen = ({ navigation, route }) => {
     const IsFocused = useIsFocused();
+    const context = useContext(AppContext)
+
     
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
@@ -185,7 +186,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                                             // POST - 'add booking to customer reservations'
                                             const bookingObject = {
                                                 "customer": {
-                                                    "id": customerId
+                                                    "id": context.customerId
                                                 },
                                                 "restaurant": {
                                                     "id": route.params.restaurantId
