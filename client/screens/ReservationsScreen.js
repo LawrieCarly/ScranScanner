@@ -13,8 +13,6 @@ const ReservationsScreen = ({navigation}) => {
 
     const [customer, setCustomer] = useState({ bookings: [] })
     const IsFocused = useIsFocused();
-    // const context = useContext(AppContext)
-
 
     useEffect(() => {
         getCustomerById(context.customerId)
@@ -42,8 +40,7 @@ const ReservationsScreen = ({navigation}) => {
             {customer?
 
             <View>
-                <Text>Text</Text>
-                <Text>{customer.displayName}</Text>
+                <Text style={styles.textH2Dark}>Hi {customer.displayName}</Text>
                 {/* {bookingNodes} */}
                 {customer.bookings.map((booking, index) => {
                     return(
@@ -110,12 +107,12 @@ const ReservationsScreen = ({navigation}) => {
         marginBottom: 16,
         color: 'black'
     },
-    textH2: {
-        fontSize: 18,
-        textAlign: 'center',
-        color: 'black',
-        paddingTop: 100
-
+    textH2Dark: {
+        fontSize: 22,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     textH3: {
         fontSize: 16,
