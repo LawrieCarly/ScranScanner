@@ -50,7 +50,7 @@ const RestaurantDetails = ({restaurantById}) => {
                         <TouchableOpacity 
                         style={styles.button}
                         onPress={handleSavePress}>
-                            <Text style={styles.buttonText}>Save Restaurant...</Text>
+                            <Text style={styles.buttonText}>Save Restaurant</Text>
                     </TouchableOpacity>
                         <View/>
                             <Text style={styles.textH3Dark}>Cuisine: </Text >
