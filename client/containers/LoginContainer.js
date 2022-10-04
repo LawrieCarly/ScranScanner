@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { Text, Button, StyleSheet, View, Pressable, TextInput, Alert } from "react-native"
+import { Text, Button, StyleSheet, View, Pressable, TextInput, Alert, Image } from "react-native"
 import { getCustomerByEmail } from "../services/CustomerService";
+import logoWhite from "./scranscanner-icon-white.png"
 
 
 
@@ -44,18 +45,21 @@ const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.heading}>scranscanner</Text>
+            <View style={styles.logoContainer}>
+                <Image style={styles.logoWhite} source={logoWhite}/>
+                <Text style={styles.heading}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
+            </View>
             <View style={styles.form}>
                 <TextInput style={styles.input}
                         onChangeText={handleEmailInput}
                         placeholder="email"
-                        placeholderTextColor={"black"}
+                        placeholderTextColor={"white"}
                     />
                 <TextInput style={styles.input}
                         onChangeText={handlePasswordInput}
                         secureTextEntry={true}
                         placeholder="password"
-                        placeholderTextColor={"black"}
+                        placeholderTextColor={'white'}
                     />
                 <Pressable
                     style={styles.button}
@@ -79,27 +83,46 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "space-evenly",
       alignItems: "center",
-      paddingHorizontal: 10,
-      backgroundColor: "white"
+      paddingHorizontal: 20,
+      backgroundColor: '#27233A'
+    },
+    logoContainer: {
+        alignItems: "center",
+    },
+    logoWhite: {
+        height: 100,
+        width: 100,
+        resizeMode: 'contain'
     },
     heading: {
-        fontSize: 50,
-        color: "black"
+        fontSize: 40,
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        fontSize: 40,
+        color: "white",
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
     },
     form: {
-        borderWidth: 3,
-        padding: 10,
+        borderWidth: 1,
+        padding: 40,
         width: "80%",
-        borderRadius: 10
+        borderRadius: 10,
+        borderColor: 'white',
     },
     input: {
         borderBottomWidth: 3,
         marginBottom: 10,
-        color: "black"
+        color: '#F38599',
+        fontSize: 16,
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+
     },
     button: {
       alignItems: "center",
-      backgroundColor: "#ff6633",
+      backgroundColor: '#F38599',
+      borderRadius: 10,
       padding: 10
     },
     buttonText: {

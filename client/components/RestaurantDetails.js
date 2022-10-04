@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
-
+import AppContext from './AppContext'
+import { addRestaurantToCustomerFavourites } from '../services/CustomerService';
 
 
 
@@ -8,26 +9,42 @@ const RestaurantDetails = ({restaurantById}) => {
 
     const logo = {
         uri: restaurantById.imageURL,
-        // uri: 'https://images.unsplash.com/photo-1649138783888-0ec9c3ec2f21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
         width: 350,
         height: 200
     };
 
-    console.log('restaurantById IMG URL====================================');
-    console.log(restaurantById.imageurl);
-    // console.log('restaurantById EXTRA====================================');
-    // console.log(restaurantById.description);
+    // console.log('restaurantById DETAILS====================================');
+    // console.log('restaurantById');
+
+    // const cuisineNodes =
+    // restaurantById.attributes.cuisine.map((res, index) => { 
+    //     return(
+    //         <Text style={styles.textH3} id={index} index={index} key={res.id}>{res}</Text>
+    //         );})
+
+
+     // Gives us access to global context which contains customerId
+     const context = useContext(AppContext)
+
+     const handleSavePress = () => {
+         addRestaurantToCustomerFavourites(context.customerId, restaurantById.id)
+     }
 
     return (
 
-    
-        <SafeAreaView>
-        <View>
         
-                <Image style={{paddingBottom: 50}} source={logo}/>
+        <SafeAreaView>
 
-                <TouchableOpacity style={styles.button}>
-                    <Text>Save Restaurant</Text>
+        { restaurantById ?
+         
+            <View>
+            
+            <Image style={{paddingBottom: 50}} source={logo}/>
+            
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={handleSavePress}>
+                        <Text>Save Restaurant</Text>
                 </TouchableOpacity>
     
                 <View>
@@ -36,8 +53,8 @@ const RestaurantDetails = ({restaurantById}) => {
                     <Text style={styles.textH2}>Cuisine: </Text >
                     {restaurantById.attributes.cuisine.map((res, index) => { 
                         return(
-                    <Text style={styles.textH3} id={index} index={index} key={res.id}>{res}</Text>
-                    );})}
+                            <Text style={styles.textH3} id={index} index={index} key={res.id}>{res}</Text>
+                            );})}
                 </View>
 
                 <View style={{paddingVertical: 10}}/>
@@ -45,14 +62,19 @@ const RestaurantDetails = ({restaurantById}) => {
                 <Text style={styles.textH3}>Price: {restaurantById.attributes.price}</Text>
 
                 <View style={{paddingVertical: 10}}/>
-
+                
                 <Text style={styles.textH3}>Rating: ⭐️⭐️⭐️⭐️</Text>
     
         </View>
+
+        :
+        <Text style={styles.textLoading}>Loading ... </Text> 
+        }
+
         </SafeAreaView>
 
-    
-    )};
+        
+        )};
 
 
     

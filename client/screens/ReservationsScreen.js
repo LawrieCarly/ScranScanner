@@ -11,15 +11,18 @@ import { getBookingsByCustomer } from '../services/BookingService';
 
 const ReservationsScreen = ({ navigation }) => {
 
-    const id = "1"
+    const context = useContext(AppContext)
+
 
     const [customer, setCustomer] = useState(null);
     // const [isDeleted, setIsDeleted] = useState(false);
     const [bookings, setBookings] = useState(null);
     const IsFocused = useIsFocused();
+    // const context = useContext(AppContext)
+
 
     useEffect(() => {
-        getCustomerById(id)
+        getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
     }, [bookings]);
 
@@ -99,32 +102,6 @@ const ReservationsScreen = ({ navigation }) => {
 
     )
 
-    // ? CODE TO START WITH =============================================
-
-    // return (
-
-    //     <SafeAreaView style={{ flex: 1 }}>
-    //     <View style={{ flex: 1, padding: 16 }}>
-    //         <View style={styles.mainView}>
-    //             <Text style={styles.textH1}>Here's what you've booked:{customer.displayName}</Text>
-    //             <View>
-    //             </View>
-
-
-    //         </View>
-
-    //         <View style={styles.mainView}>
-    //             <RestaurantPreviewSmall/>
-    //         </View>
-
-
-    //     </View>
-    //     </SafeAreaView>
-
-
-    // );
-
-    // ? CODE TO START WITH =============================================
 
 }
 const styles = StyleSheet.create({

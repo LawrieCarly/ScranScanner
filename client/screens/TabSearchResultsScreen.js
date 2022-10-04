@@ -4,6 +4,8 @@ import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
 import { getSearchResults } from '../services/SearchService';
 import moment from 'moment';
+import logo from './scranscanner-icon-dark.png'
+import image from './scranscanner-icon-dark.png'
 
 const logo2 = {
     uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
@@ -74,10 +76,10 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                                 time: formattedTime 
                             })}
                     >
-                    <View>
-                        <Text id={searchResult.id} key={index} style={{color: 'black'}}>{searchResult.displayName}</Text> 
-                        <Image source={logo2}/>
-                    </View>
+                    <ScrollView style={styles.restoPreview}>
+                        <Image style={styles.previewImage} source={logo2}/>
+                        <Text id={searchResult.id} key={index} style={styles.previewTitle}>{searchResult.displayName}</Text> 
+                    </ScrollView>
                     </TouchableOpacity>
                 
                 );
@@ -89,54 +91,88 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-    
-        <Text style={styles.textH1}>🔎 Search Page </Text>
-        <View>
-            <Text>Search for a table!</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={(input) => setPartySize(input)}
-                value={partySize}
-                placeholder="eg. 4"
-                keyboardType='numeric'
-                />
-            <Pressable style={styles.button} onPress={() => setOpen(true)}>
-                <Text style={styles.buttonText} >Select date/time</Text>
-            </Pressable>
-            <DatePicker
-                modal
-                open={open}
-                date={date}
-                onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
-                onCancel={() => { setOpen(false)}}
-            />
-            <Pressable style={styles.button} onPress={handleSubmit}>
-                <Text style={styles.buttonText}>Find Restaurants</Text>
-            </Pressable>
+
+    <View>
+        <View style={styles.searchView}>
+            <Image  style={styles.image} source={image}/>
+            <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
+                <View style={styles.searchForm}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(input) => setPartySize(input)}
+                        value={partySize}
+                        placeholder="party size eg. 4"
+                        keyboardType='numeric'
+                        />
+                    <Pressable style={styles.buttonDark} onPress={() => setOpen(true)}>
+                        <Text style={styles.buttonTextLight} >Select date/time</Text>
+                    </Pressable>
+                    <DatePicker
+                        modal
+                        open={open}
+                        date={date}
+                        onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
+                        onCancel={() => { setOpen(false)}}
+                    />
+                    <Pressable style={styles.button} onPress={handleSubmit}>
+                        <Text style={styles.buttonText}>Find Restaurants</Text>
+                    </Pressable>
+                </View>
+        </View>
+    <View>
+        
 
             <View >
                 <ScrollView>
-
-                    <View style={{flex: 1}}>
-                        <View>
-                            {searchNodes}
-                        </View>
-                    </View>
-
+                        {searchNodes}
                 </ScrollView>
             </View>
 
         
             </View>
 
-        </SafeAreaView>
+        </View>
 
 
     );
     }
     
     const styles = StyleSheet.create({
+    image: {
+        height:70,
+        resizeMode: 'contain'
+    },
+    searchView: {
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: 'black',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: 'black',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
+    },
+    searchForm: {
+        paddingTop: 20,
+    },
+    formLabels: {
+        textAlign: 'left',
+    },
+    restoPreview: {
+        flexDirection: 'row',
+        borderWidth: 1,
+        padding: 10,
+        margin: 20,
+    },
+    previewImage: {
+        resizeMode: 'cover',
+        height: 100
+    },    
     button: {
         alignItems: 'center',
         backgroundColor: 'black',
@@ -167,19 +203,37 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     },
     input: {
         height: 40,
-        margin: 12,
+        marginTop: 8,
         borderWidth: 1,
+        borderRadius: 10,
+        width:300,
         padding: 10,
     },
     button: {
-        height: 40,
-        margin: 12,
+        alignItems: 'center',
+        backgroundColor: '#F38599',
+        borderRadius: 10,
         padding: 10,
-        backgroundColor:"black"
+        width: 300,
+        marginTop: 16,
     },
     buttonText: {
-        color:'white'
-
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontSize: 15,
+        color: '#27233A',
+    },
+    buttonDark: {
+        alignItems: 'center',
+        backgroundColor: '#27233A',
+        borderRadius: 10,
+        padding: 10,
+        width: 300,
+        marginTop: 16,
+    },
+    buttonTextLight: {
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontSize: 15,
+        color: 'white',
     },
     });
 export default TabSearchResultsScreen;
