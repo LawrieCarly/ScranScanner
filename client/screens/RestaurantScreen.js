@@ -45,6 +45,16 @@ console.log('====================================');
     }, [navigation]);
     
 
+    React.useEffect(() => {
+        const cleanState = navigation.addListener('blur', () => {
+            setRestaurantById(null),
+            setFilteredAvailablitiesOfRestaurant(null)
+            });
+    
+        return cleanState;
+    }, [navigation]);
+    
+
     return (
 
         
