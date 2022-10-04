@@ -6,7 +6,6 @@ const DeleteBooking = ({navigation, booking, onDeleteClick}) => {
     const onDelete = () => {
 
         onDeleteClick(booking)
-
     }
 
     return(
@@ -16,14 +15,16 @@ const DeleteBooking = ({navigation, booking, onDeleteClick}) => {
 
             <TouchableOpacity style={styles.btnStyle} onPress={ () => {
                                 Alert.alert(
-                                    'Delete Booking?',
-                                    'Click delete if you want to cancel this booking'    
+                                    "Delete this booking?", 
+                                    "Click delete if you want to cancel this booking",    
                                     [
                                     {text: 'Delete Now', onPress: () => {onDelete}},
                                     {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
                                     ],
                                     { cancelable: true }
-                                )}}>
+                                );
+                            }
+                        }>
                 <Text>Delete</Text>
             </TouchableOpacity>
 
