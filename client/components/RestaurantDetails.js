@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
 import AppContext from './AppContext'
+import { addRestaurantToCustomerFavourites } from '../services/CustomerService';
 
 
 

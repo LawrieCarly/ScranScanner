@@ -11,7 +11,9 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
+
     const chanterId = '4'
+
 
     const highlightedRestoImage = {
         uri: highlightedResto.imageURL,
@@ -88,15 +90,32 @@ const TabHomeScreen = ({ navigation }) => {
     }
     
     const styles = StyleSheet.create({
+    mainView: {
+        padding: 40,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#27233A'
+    },
+    logo: {
+        resizeMode: "contain",
+        height: 100,
+    },
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: 'white',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     pinkUnderLine : {
         height:1,
         width: 100,
         marginBottom: 20,
         backgroundColor: '#F38599'
-    },
-    logo: {
-        resizeMode: "contain",
-        height: 100,
     },
     button: {
         alignItems: 'center',
@@ -110,16 +129,6 @@ const TabHomeScreen = ({ navigation }) => {
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
         fontSize: 15,
         color: '#27233A',
-    },
-    baseText: {
-        fontSize: 25,
-        textAlign: 'center',
-        color: 'white',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
-    innerText: {
-        color: '#F38599',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     textH2: {
         fontSize: 18,
@@ -148,13 +157,6 @@ const TabHomeScreen = ({ navigation }) => {
         marginBottom: 5,
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
-    },
-    mainView: {
-        padding: 40,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: '#27233A'
     },
     homeFeatures: {
         padding: 20,

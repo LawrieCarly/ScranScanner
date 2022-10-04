@@ -1,21 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Pressable} from 'react-native';
+
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
-
-
+import AppContext from '../components/AppContext'
 
 const ReservationsScreen = ({navigation}) => {
 
-    const id = "1"
+    const context = useContext(AppContext)
+
 
     const [customer, setCustomer] = useState({ bookings: [] })
     const IsFocused = useIsFocused();
+    // const context = useContext(AppContext)
+
 
     useEffect(() => {
-        getCustomerById(id)
+        getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
         }, [IsFocused]);
 
@@ -35,6 +38,11 @@ const ReservationsScreen = ({navigation}) => {
         // console.log("Customer bookings", bookingNodes)
 
 
+    const handleLogout = () => {
+        context.flipLoggedIn();
+
+    }
+
     return(
         <SafeAreaView>
             {customer?
@@ -42,6 +50,12 @@ const ReservationsScreen = ({navigation}) => {
             <View>
                 <Text>Text</Text>
                 <Text>{customer.displayName}</Text>
+                <Pressable
+                style={styles.button}
+                onPress={handleLogout}
+                >
+                    <Text>Logout</Text>
+                </Pressable>
                 {/* {bookingNodes} */}
                 {customer.bookings.map((booking, index) => {
                     return(
@@ -57,6 +71,14 @@ const ReservationsScreen = ({navigation}) => {
             }
 
         </SafeAreaView>
+
+
+        // <View>
+        //     <Text>Text</Text>
+        //     <Text>{customer.displayName}</Text>
+        //     {bookingNodes}
+        // </View>
+
     )
 
 // ? CODE TO START WITH =============================================

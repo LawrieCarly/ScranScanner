@@ -9,7 +9,7 @@ import { getCustomerById } from '../services/CustomerService';
 
 const FavouritesScreen = ({ navigation }) => {
 
-    const id = "1"
+    const id = "37"
 
     const [customer, setCustomer] = useState({ savedRestaurants: [] })
     const IsFocused = useIsFocused();
