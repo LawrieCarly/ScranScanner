@@ -17,8 +17,9 @@ export function postBooking(booking) {
     .then(res => res.json());
 }
 
-export function deleteBookingMethod(booking) {
-  return fetch(baseURL, {
+export function deleteBookingMethod(booking, id) {
+  console.log("SELECTEDAGAIN", booking, id);
+  return fetch(baseURL + id, {
     method: 'DELETE',
     body: JSON.stringify(booking),
     headers: {

@@ -1,49 +1,51 @@
-import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Alert} from 'react-native';
+// FUTURE ARCHIVING --> Lines 18 - 31 moved to ReservationScreen file
+
+// import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Alert} from 'react-native';
 
 
-const DeleteBooking = ({navigation, booking, onDeleteClick}) => {  
+// const DeleteBooking = ({navigation, booking, onDeleteClick}) => {  
     
-    const onDelete = () => {
+//     const onDelete = () => {
 
-        onDeleteClick(booking)
-    }
+//         onDeleteClick(booking)
+//     }
 
-    return(
+//     return(
         
-        <SafeAreaView>
-        <View>
+//         <SafeAreaView>
+//         <View>
 
-            <TouchableOpacity style={styles.btnStyle} onPress={ () => {
-                                Alert.alert(
-                                    "Delete this booking?", 
-                                    "Click delete if you want to cancel this booking",    
-                                    [
-                                    {text: 'Delete Now', onPress: () => {onDelete}},
-                                    {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
-                                    ],
-                                    { cancelable: true }
-                                );
-                            }
-                        }>
-                <Text>Delete</Text>
-            </TouchableOpacity>
+//             <TouchableOpacity style={styles.btnStyle} onPress={ () => {
+//                                 Alert.alert(
+//                                     "Delete this booking?", 
+//                                     "Click delete if you want to cancel this booking",    
+//                                     [
+//                                     {text: 'Delete Now', onPress: () => {onDelete}},
+//                                     {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
+//                                     ],
+//                                     { cancelable: true }
+//                                 );
+//                             }
+//                         }>
+//                 <Text>Delete</Text>
+//             </TouchableOpacity>
 
-        </View>
-        </SafeAreaView>
+//         </View>
+//         </SafeAreaView>
 
-    )
+//     )
 
-}
+// }
 
-const styles = StyleSheet.create ({
+// const styles = StyleSheet.create ({
 
-    btnStyle: {
-        backgroundColor: 'blue',
-        padding: 10,
-        borderRadius: 8
-    }
+//     btnStyle: {
+//         backgroundColor: 'blue',
+//         padding: 10,
+//         borderRadius: 8
+//     }
 
-});
+// });
 
-export default DeleteBooking;
+// export default DeleteBooking;
 

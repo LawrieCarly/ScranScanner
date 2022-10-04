@@ -24,8 +24,9 @@ const ReservationsScreen = ({navigation}) => {
         // console.log("booking name", customer.bookings)
 
         const onDeleteClick = function(booking) {
-                    // delete booking from customer
-                    deleteBookingMethod(booking)
+                    // delete booking from customer and unpack it
+                    const selectedId = booking.id
+                    deleteBookingMethod(booking, selectedId)
                     // refresh page
                 }
 
@@ -51,11 +52,25 @@ const ReservationsScreen = ({navigation}) => {
                 <Text>Text</Text>
                 <Text>{customer.displayName}</Text>
                 {/* {bookingNodes} */}
-                {customer.bookings.map((booking, index) => {
+                {customer.bookings.map((selectedBooking, index) => {
                     return(
                 <View>
-                    <Text>{booking.restaurant.displayName}</Text>
-                    <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/>
+                    <Text>{selectedBooking.restaurant.displayName}</Text>
+                    <TouchableOpacity style={styles.btnStyle} onPress={ () => {
+                                Alert.alert(
+                                    "Delete this booking?", 
+                                    "Click delete if you want to cancel this booking",    
+                                    [
+                                    {text: 'Delete Now', onPress: () => {onDeleteClick(selectedBooking)}},
+                                    {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'}
+                                    ],
+                                    { cancelable: true }
+                                );
+                            }
+                        }>
+                        <Text>Delete</Text>
+                    </TouchableOpacity>
+                    {/* <DeleteBooking booking={booking} onDeleteClick={onDeleteClick()}/> */}
                 </View>
             )
                 })}
@@ -129,6 +144,11 @@ const ReservationsScreen = ({navigation}) => {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
+    },
+    btnStyle: {
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 8
     }
     
 });
