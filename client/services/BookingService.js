@@ -1,4 +1,5 @@
 const baseURL = 'http://192.168.100.190:8080/bookings/';
+const baseURLBookings = 'http://192.168.100.190:8080/bookings/customer/';
 
 
 
@@ -18,7 +19,6 @@ export function postBooking(booking) {
 }
 
 export function deleteBookingMethod(booking, id) {
-  console.log("SELECTEDAGAIN", booking, id);
   return fetch(baseURL + id, {
     method: 'DELETE',
     body: JSON.stringify(booking),
@@ -27,5 +27,9 @@ export function deleteBookingMethod(booking, id) {
     }
   })
     .then(res => res.json())
-};
+}
 
+export async function getBookingsByCustomer(id){
+  const data = await fetch(baseURLBookings + id);
+      return data.json()
+}
