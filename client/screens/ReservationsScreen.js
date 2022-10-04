@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Image, ScrollView, Alert, LogBox } from 'react-native';
-import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
-import FilteredRestaurants from '../containers/FilteredRestaurants';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
-import DeleteBooking from '../components/DeleteBooking';
 import { deleteBookingMethod } from '../services/BookingService';
 import { getBookingsByCustomer } from '../services/BookingService';
 import AppContext from '../components/AppContext';
+import moment from 'moment';
 
 
 const ReservationsScreen = ({ navigation }) => {
@@ -19,8 +17,6 @@ const ReservationsScreen = ({ navigation }) => {
     // const [isDeleted, setIsDeleted] = useState(false);
     const [bookings, setBookings] = useState(null);
     const IsFocused = useIsFocused();
-    // const context = useContext(AppContext)
-
 
     useEffect(() => {
         getCustomerById(context.customerId)
@@ -68,7 +64,7 @@ const ReservationsScreen = ({ navigation }) => {
             {bookings && customer ?
 
                 <View>
-                    <Text style={styles.textH1}>{customer.displayName}'s bookings</Text>
+                    <Text style={styles.textH2Dark}>{customer.displayName}'s bookings</Text>
                     {/* {bookingNodes} */}
                     {bookings.map((selectedBooking, index) => {
                         return (
@@ -102,6 +98,7 @@ const ReservationsScreen = ({ navigation }) => {
 
     )
 
+    // const formattedDate = moment(date).format('YYYY-MM-DD')
 
 }
 const styles = StyleSheet.create({
@@ -118,12 +115,12 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         color: 'black'
     },
-    textH2: {
-        fontSize: 18,
-        textAlign: 'center',
-        color: 'black',
-        paddingTop: 30
-
+    textH2Dark: {
+        fontSize: 22,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     textH3: {
         fontSize: 16,

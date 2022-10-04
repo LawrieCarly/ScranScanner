@@ -9,6 +9,9 @@ import RestaurantReviews from '../components/RestaurantReviews';
 import RestaurantAvailability from '../components/RestaurantAvailability';
 import { useFocusEffect } from '@react-navigation/native';
 import AppContext from '../components/AppContext'
+import logo from './scranscanner-icon-dark.png'
+import moment from 'moment';
+
 
 const RestaurantScreen = ({ navigation, route }) => {
     const IsFocused = useIsFocused();
@@ -17,7 +20,6 @@ const RestaurantScreen = ({ navigation, route }) => {
     
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
-    // const [availabilityNodes, setAvailabilityNodes] = useState(null);
     
 console.log('===TEST=================================');
 console.log(restaurantById);
@@ -58,28 +60,27 @@ console.log('====================================');
     return (
 
         
-    <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.logoBar}>
+            <Image style={styles.logo} source={logo}/>
+        </View>
+    
         
     {restaurantById 
     && filteredAvailablitiesOfRestaurant
     ? 
     
-    
-    <View style={{ flex: 1, padding: 16 }}>
-        
-        <Text style={styles.textH1}>{restaurantById["displayName"]}</Text>
-            
+    <View style={{ flex: 1 }}>
+                    
             <View style={styles.mainView}>
                     
-                    <ScrollView>
-                    
+                    <ScrollView>                  
                     <RestaurantDetails restaurantById={restaurantById}/>
 
-                    <Text style={styles.textH1}>Your Booking Options:</Text>
-                    
-                    {/* <RestaurantAvailability restaurantById={restaurantById} filteredAvailablitiesOfRestaurant={filteredAvailablitiesOfRestaurant}/> */}
-                        
-                    <ScrollView horizontal={true}>
+                    <View style={styles.RestoPage}>
+                        <Text style={styles.textH3Dark}>Your Booking Options:</Text>
+                        <View style={styles.pinkUnderLine}/>
+                        <ScrollView horizontal={true}>
                             
                             {filteredAvailablitiesOfRestaurant.map((availability, index) => { 
                                 return (
@@ -128,34 +129,27 @@ console.log('====================================');
                                         { cancelable: true }
                                         );}}>
                                             <View style={styles.availabilityButton}>
-                                                <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.date}</Text>
+                                                <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{moment(availability.date).format("Do MMM")}</Text>
                                                 <Text style={styles.availabilityText} key={availability.id} index={availability.id} >{availability.time}</Text>
                                             </View>
                                     </TouchableOpacity>
                     
                                     );
                             })}
-
-                            {/* {availabilityNodes}  */}
-
                     </ScrollView>
-                  
 
-                    <TouchableOpacity style={styles.button2}>
+                    </View>                    
+
+                    {/* <TouchableOpacity style={styles.button2}>
                         <Text>See all times</Text>
-                    </TouchableOpacity> 
- 
+                    </TouchableOpacity>  */}
 
-                    <View>
-                        <Text style={styles.textH1}>Reviews:</Text> 
+
+                    <View style={styles.RestoPage}>
                         <RestaurantReviews restaurantById={restaurantById}/>
                     </View>
-
-
-
                 </ScrollView>
                 </View>
-
         </View>
         
         
@@ -168,9 +162,53 @@ console.log('====================================');
     );
     }
 
+    // const formattedDate = moment(date).format('YYYY-MM-DD')
 
     
     const styles = StyleSheet.create({
+    pinkUnderLine : {
+        height:1,
+        width: 100,
+        marginBottom: 20,
+        backgroundColor: '#F38599'
+    },
+    pinkUnderLineSmall : {
+        height:1,
+        width: 100,
+        marginBottom: 5,
+        backgroundColor: '#F38599'
+    },
+    RestoPage: {
+        alignItems: 'flex-start',
+        marginTop: 15,
+        paddingHorizontal: 30,
+        paddingRight: 40, 
+    },
+    paraDark: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+    },
+    paraDarkBold: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+    },
+    logoBar: {
+        backgroundColor: 'white', 
+        paddingHorizontal: 20, 
+        alignItems: 'center',
+    },
+    logo: {
+        height: 50,
+        width: 50,
+        resizeMode: 'contain',
+        margin: 10
+    },
     button: {
         alignItems: 'center',
         backgroundColor: 'gray',
@@ -189,13 +227,17 @@ console.log('====================================');
     },
     availabilityButton: {
         alignItems: 'center',
-        backgroundColor: 'red',
-        padding: 10,
-        margin: 10
+        backgroundColor: '#27233A',
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 7,
+        marginHorizontal: 5
     },
     availabilityText: {
         fontSize: 16,
         textAlign: 'center',
+        color: 'white',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
     },
     review: {
         fontSize: 16,
@@ -204,12 +246,12 @@ console.log('====================================');
         padding: 10,
         margin: 10
     },
-    textH1: {
-        fontSize: 25,
+    textH1Dark: {
+        fontSize: 28,
         textAlign: 'left',
-        marginBottom: 16,
-        color: 'black',
-        paddingTop: 10
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     textLoading: {
         fontSize: 55,
@@ -218,27 +260,12 @@ console.log('====================================');
         color: 'black',
         paddingTop: 50
     },
-    textH2: {
+    textH3Dark: {
         fontSize: 18,
         textAlign: 'left',
-        color: 'black',
-        paddingTop: 20,
-        paddingBottom: 10
-
-    },
-    textH3: {
-        fontSize: 16,
-        textAlign: 'left',
-        color: 'black',
-        paddingRight: 30
-
-    },
-    textH4: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: 'black',
-        paddingRight: 10
-
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     mainView: {
         flex: 1,

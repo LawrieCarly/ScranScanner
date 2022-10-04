@@ -47,14 +47,14 @@ const FavouritesScreen = ({ navigation }) => {
                 <Text>{customer.displayName}</Text>
                 {/* {bookingNodes} */}
                 {/* {savedRestoNodes}  */}
-               {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+            {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
             return(
 
                     <View>
                         <Text>{savedRestaurant.displayName}</Text>
                     </View>
                     )
-                  })}
+                })}
                 
             </View>
             :

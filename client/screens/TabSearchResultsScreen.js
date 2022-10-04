@@ -148,6 +148,13 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
+    textH2Dark: {
+        fontSize: 22,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     baseText: {
         fontSize: 25,
         textAlign: 'center',
