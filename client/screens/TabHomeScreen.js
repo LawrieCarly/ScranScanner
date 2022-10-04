@@ -11,7 +11,9 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
+
     const chanterId = '4'
+
 
     const highlightedRestoImage = {
         uri: highlightedResto.imageURL,
