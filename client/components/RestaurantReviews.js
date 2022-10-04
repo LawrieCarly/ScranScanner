@@ -23,18 +23,17 @@ const RestaurantReviews = ({restaurantById}) => {
     
         <SafeAreaView>
         <View>
-        
-        <Text style={styles.textH3}>
-            REVIEW COMPONENT PLACEHOLDER
+        <Text style={styles.textH3Dark}>Reviews:</Text>
+        <View style={{padding: 5}}/>
          {restaurantById.reviews.map((review, index) => { 
             return (
                 <View style={styles.textH4} key={review.id} index={review.id} >
-                    <Text> Name: {review.customerName}</Text>
-                    <Text> Rating: {review.rating}</Text>
-                    <Text> Comment: {review.comment} </Text>
+                    <Text style={styles.paraDarkBold}>Name:<Text style={styles.paraDark}> {review.customerName}</Text></Text>
+                    <Text style={styles.paraDarkBold}>Rating:<Text style={styles.paraDark}> {review.rating}</Text></Text>
+                    <Text style={styles.paraDarkBold}>Comment:<Text style={styles.paraDark}> {review.comment}</Text></Text>
+                    <View style={styles.pinkUnderLine}/>
                 </View>
             )})}
-        </Text>
 
     
         </View>
@@ -46,6 +45,40 @@ const RestaurantReviews = ({restaurantById}) => {
 
     
     const styles = StyleSheet.create({
+        textH2Dark: {
+            fontSize: 22,
+            textAlign: 'left',
+            marginBottom: 5,
+            color: '#27233A',
+            fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        },
+        textH3Dark: {
+            fontSize: 18,
+            textAlign: 'left',
+            marginBottom: 3,
+            color: '#27233A',
+            fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        },
+        paraDark: {
+            fontSize: 16,
+            textAlign: 'left',
+            marginBottom: 5,
+            color: '#27233A',
+            fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+        },
+        paraDarkBold: {
+            fontSize: 16,
+            textAlign: 'left',
+            marginBottom: 5,
+            color: '#27233A',
+            fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
+        },
+        pinkUnderLine : {
+            height:1,
+            width: 100,
+            marginBottom: 20,
+            backgroundColor: '#F38599'
+        },
         button: {
             alignItems: 'center',
             backgroundColor: 'gray',

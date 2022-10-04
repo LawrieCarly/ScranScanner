@@ -46,6 +46,7 @@ const RestaurantDetails = ({restaurantById}) => {
         
                     <View>
                         <Text style={styles.textH1Dark}>{restaurantById.displayName}</Text>
+                        <View style={styles.pinkUnderLine}/>
                         <Text style={styles.paraDark}>{restaurantById.description}</Text>
                         <TouchableOpacity 
                         style={styles.button}
@@ -56,7 +57,7 @@ const RestaurantDetails = ({restaurantById}) => {
                             <Text style={styles.textH3Dark}>Cuisine: </Text >
                             {restaurantById.attributes.cuisine.map((res, index) => { 
                                 return(
-                                    <Text style={styles.paraDark} id={index} index={index} key={res.id}>{res}</Text>
+                                    <Text style={styles.paraSmallDark} id={index} index={index} key={res.id}>{res}</Text>
                                     );})}
                         </View>
 {/* 
@@ -80,6 +81,12 @@ const RestaurantDetails = ({restaurantById}) => {
 
     
     const styles = StyleSheet.create({
+        pinkUnderLine : {
+            height:1,
+            width: 100,
+            marginBottom: 20,
+            backgroundColor: '#F38599'
+        },
         textH1Dark: {
             fontSize: 28,
             textAlign: 'left',
@@ -95,6 +102,13 @@ const RestaurantDetails = ({restaurantById}) => {
             marginBottom: 5,
             color: '#27233A',
             fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        },
+        paraSmallDark: {
+            fontSize: 12,
+            textAlign: 'left',
+            marginBottom: 5,
+            color: '#27233A',
+            fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
         },
         paraDark: {
             fontSize: 16,

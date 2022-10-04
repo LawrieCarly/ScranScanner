@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Image, ScrollView, Alert, LogBox } from 'react-native';
-import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
-import FilteredRestaurants from '../containers/FilteredRestaurants';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
-import DeleteBooking from '../components/DeleteBooking';
 import { deleteBookingMethod } from '../services/BookingService';
 import { getBookingsByCustomer } from '../services/BookingService';
 import AppContext from '../components/AppContext';
+import moment from 'moment';
 
 
 const ReservationsScreen = ({ navigation }) => {
@@ -100,6 +98,7 @@ const ReservationsScreen = ({ navigation }) => {
 
     )
 
+    // const formattedDate = moment(date).format('YYYY-MM-DD')
 
 }
 const styles = StyleSheet.create({
