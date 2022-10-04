@@ -15,7 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -243,7 +243,7 @@ public class DataLoader implements ApplicationRunner {
         chezJules.addAttribute("cuisine", "French");
         chezJules.addAttribute("cuisine", "Rustic");
         chezJules.addAttribute("price", "££");
-        restaurantRepository.save(sixByNico);
+        restaurantRepository.save(chezJules);
 
         DinnerTable chezJulesTable1 = new DinnerTable(1,2,PriorityType.LOW,chezJules);
         dinnerTableRepository.save(chezJulesTable1);
