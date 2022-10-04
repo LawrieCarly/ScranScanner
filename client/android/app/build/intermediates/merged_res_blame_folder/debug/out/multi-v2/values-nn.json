@@ -4,7 +4,7 @@
             "outputFile": "com.scranscanner.app-mergeDebugResources-28:/values-nn/values-nn.xml",
             "map": [
                 {
-                    "source": "/Users/jackknowles/codeclan_work/Captstone3/ScranScanner/client/node_modules/react-native-date-picker/android/build/intermediates/packaged_res/debug/values-nn/values-nn.xml",
+                    "source": "/Users/ethanbaird/codeclan_work/projects/ScranScanner/client/node_modules/react-native-date-picker/android/build/intermediates/packaged_res/debug/values-nn/values-nn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

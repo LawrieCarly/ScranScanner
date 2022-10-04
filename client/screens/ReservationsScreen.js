@@ -10,7 +10,7 @@ import AppContext from '../components/AppContext';
 
 const ReservationsScreen = ({navigation}) => {
 
-    const id = "1"
+    const id = "37"
 
     const [customer, setCustomer] = useState({ bookings: [] })
     const IsFocused = useIsFocused();
@@ -47,9 +47,10 @@ const ReservationsScreen = ({navigation}) => {
             <Text>Text</Text>
             <Text>{customer.displayName}</Text>
             <Pressable
+                style={styles.button}
                 onPress={handleLogout}
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text>Logout</Text>
             </Pressable>
             {bookingNodes}
         </View>
