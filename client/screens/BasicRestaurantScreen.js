@@ -17,7 +17,6 @@ const BasicRestaurantScreen = ({ navigation, route }) => {
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
     // const [availabilityNodes, setAvailabilityNodes] = useState(null);
-    
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
@@ -28,15 +27,6 @@ const BasicRestaurantScreen = ({ navigation, route }) => {
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
     }, 
     [IsFocused]);
-    
-    //* useEffect #2 - 
-
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //             getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
-    //             .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-                            
-    //         }, [restaurantById]));
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
@@ -140,8 +130,8 @@ const BasicRestaurantScreen = ({ navigation, route }) => {
     
 
     return (
-        
-        <SafeAreaView style={{ flex: 1 }}>
+    
+    <SafeAreaView style={{ flex: 1 }}>
     
         
     {restaurantById 
@@ -247,10 +237,11 @@ const BasicRestaurantScreen = ({ navigation, route }) => {
         </View>
         
         
-        :
-        <Text style={styles.textLoading}>Loading ... </Text> 
-        }
-        </SafeAreaView>
+    :
+    <Text style={styles.textLoading}>Loading ... </Text> 
+    }
+    
+    </SafeAreaView>
 
 
     );
