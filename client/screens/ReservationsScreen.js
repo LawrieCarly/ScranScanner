@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Image, ScrollView, Alert, LogBox } from 'react-native';
 import RestaurantPreviewSmall from '../components/RestaurantPreviewSmall';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
@@ -7,6 +7,7 @@ import { getCustomerById } from '../services/CustomerService';
 import DeleteBooking from '../components/DeleteBooking';
 import { deleteBookingMethod } from '../services/BookingService';
 import { getBookingsByCustomer } from '../services/BookingService';
+import AppContext from '../components/AppContext';
 
 
 const ReservationsScreen = ({ navigation }) => {
@@ -27,11 +28,10 @@ const ReservationsScreen = ({ navigation }) => {
     }, [bookings]);
 
     useEffect(() => {
-        getBookingsByCustomer(id)
+        getBookingsByCustomer(context.customerId)
             .then(returnedBookings => setBookings(returnedBookings))
     }, [IsFocused]);
 
-    console.log("BOOKINGS", bookings)
     // console.log("booking name", customer.bookings)
 
     const onDeleteClick = function (booking) {

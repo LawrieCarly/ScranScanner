@@ -1,4 +1,4 @@
-const baseURL = 'http://192.168.100.190:8080/customers/';
+const baseURL = 'http://192.168.0.20:8080/customers/';
 
 export async function getCustomerById(id) {
     const data = await fetch(baseURL + id);

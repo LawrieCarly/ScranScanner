@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
 import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
+import AppContext from '../components/AppContext';
 
 
 
 const FavouritesScreen = ({ navigation }) => {
 
-    const id = "37"
+    const context = useContext(AppContext)
 
     const [customer, setCustomer] = useState({ savedRestaurants: [] })
     const IsFocused = useIsFocused();
 
     useEffect(() => {
-        getCustomerById(id)
+        getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
         }, [IsFocused]);
 
