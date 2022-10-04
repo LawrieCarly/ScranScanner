@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-const baseURL = 'http://192.168.0.4:8080/availabilities/';
-=======
+
 const baseURL = 'http://192.168.0.20:8080/availabilities/';
->>>>>>> main
+
 
 
 

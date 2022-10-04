@@ -42,9 +42,6 @@ const ReservationsScreen = ({ navigation }) => {
         updatedBookingList(booking)
     }
 
-<<<<<<< HEAD
-    return(
-=======
     const updatedBookingList = (booking) => {
         const copyBookings = [...bookings]
         copyBookings.splice(booking, 1)
@@ -67,7 +64,6 @@ const ReservationsScreen = ({ navigation }) => {
 
 
     return (
->>>>>>> main
         <SafeAreaView>
             {bookings && customer ?
 

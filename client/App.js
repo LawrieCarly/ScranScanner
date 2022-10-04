@@ -17,6 +17,8 @@ import BasicRestaurantScreen from './screens/BasicRestaurantScreen';
 import LoginContainer from './containers/LoginContainer';
 import AppContext from './components/AppContext';
 
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
 // Login states
 
 
@@ -81,10 +83,10 @@ export default function App() {
            : 
       <>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={TabHomeScreen} />
-            <Tab.Screen name="Search" component={TabSearchResultsScreen} />
-            <Tab.Screen name="Notifications" component={MyTabsScreen} />
+          <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor:"#F38599" }}>
+            <Tab.Screen name="Home" component={TabHomeScreen} options={{ tabBarIcon:() => (<Icon name="home" size={18} color="#27233A" />)  }}/>
+            <Tab.Screen name="Search" component={TabSearchResultsScreen} options={{ tabBarIcon:() => (<Icon name="search" size={18} color="#27233A" />)  }} />
+            <Tab.Screen name="Profile" component={MyTabsScreen} options={{ tabBarIcon:() => (<Icon name="account-circle" size={18} color="#27233A" />)  }} />
             <Tab.Screen name="Profile" component={TabProfileScreen} />
 
 
