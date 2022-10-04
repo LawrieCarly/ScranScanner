@@ -11,7 +11,19 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
-    const chanterId = '4'
+    const chanterId = '9'
+
+    const highlightedRestoImage = {
+        uri: highlightedResto.imageURL,
+        width: 350,
+        height: 200
+    };
+
+    const RestoImage = {
+        uri: restaurants.imageURL,
+        resizeMode: 'cover',
+        height: 100
+    };
 
     useEffect(() => {
         getRestaurants()
@@ -25,8 +37,6 @@ const TabHomeScreen = ({ navigation }) => {
         })
     }, []);
 
-    
-    console.log(highlightedResto)
 
     return (
         <SafeAreaView >
@@ -48,27 +58,28 @@ const TabHomeScreen = ({ navigation }) => {
                             )}>
                             <Text style={styles.ButtonText}>Find a table</Text>
                         </TouchableOpacity>
-
-                            {/* <View>
-                                <SearchForm restaurants={restaurants}/>
-                                <Text style={{color:'black', paddingTop: 100, fontSize:30}}>
-                                #opendining
-                                </Text>
-                            </View> */}
                         </View>
-
-
-                            <View style={styles.FilteredRestaurants}>
-                                <Text style={styles.textH1Dark}>Our top picks</Text>
+                        <View style={styles.homeFeatures}>
+                            <Text style={styles.textH2Dark}>Pick of the month</Text>
+                            <View style={styles.pinkUnderLine}/>
+                            <TouchableOpacity>
+                                <Text style={styles.textH3Dark}>{highlightedResto.displayName}</Text>
+                                <Text style={styles.paraDark}>{highlightedResto.description}</Text>
+                                <Image source={highlightedRestoImage}/>
+                                {/* {restaurants.attributes.map((attribute, index) => {
+                                    return (
+                                        <View>
+                                            <Text>{attribute.cuisine}</Text>
+                                        </View>
+                                    )
+                                })} */}
+                            </TouchableOpacity>
+                            <View style={styles.featuredRestos}>
+                                <Text style={styles.textH2Dark}>Available now!</Text>
+                                <View style={styles.pinkUnderLine}/>
                                 <FilteredRestaurants restaurants={restaurants}/>
                             </View>
-
-                        <View>
-                            <Text>{highlightedResto.displayName}</Text>
                         </View>
-
-
-                            {/* Weirdly can't get another component to APPEAR AND RENDER (the space is there....) */}
             </ScrollView>
         </SafeAreaView>
 
@@ -77,6 +88,12 @@ const TabHomeScreen = ({ navigation }) => {
     }
     
     const styles = StyleSheet.create({
+    pinkUnderLine : {
+        height:1,
+        width: 100,
+        marginBottom: 20,
+        backgroundColor: '#F38599'
+    },
     logo: {
         resizeMode: "contain",
         height: 100,
@@ -103,16 +120,6 @@ const TabHomeScreen = ({ navigation }) => {
     innerText: {
         color: '#F38599',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-
-
-    },
-    textH1Dark: {
-        fontSize: 22,
-        textAlign: 'left',
-        marginBottom: 16,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-
     },
     textH2: {
         fontSize: 18,
@@ -121,10 +128,26 @@ const TabHomeScreen = ({ navigation }) => {
         color: 'white',
         fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light',
     },
-    textH3: {
+    textH2Dark: {
+        fontSize: 22,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    paraDark: {
         fontSize: 16,
-        textAlign: 'center',
-        color: 'grey'
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
     },
     mainView: {
         padding: 40,
@@ -133,11 +156,18 @@ const TabHomeScreen = ({ navigation }) => {
         justifyContent: 'flex-start',
         backgroundColor: '#27233A'
     },
-    FilteredRestaurants: {
-        padding: 40,
-        flex: 1,
-        alignItems: 'center',
+    homeFeatures: {
+        padding: 20,
         justifyContent: 'flex-start',
+    },
+    featuredRestos: {
+        paddingTop: 30,
     }
+
+        // textH3: {
+    //     fontSize: 16,
+    //     textAlign: 'center',
+    //     color: 'grey'
+    // },
     });
 export default TabHomeScreen;
