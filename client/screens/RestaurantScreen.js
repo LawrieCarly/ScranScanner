@@ -121,7 +121,7 @@ console.log('====================================');
 
 
                                             // NAVIGATE - to reservations page
-                                            navigation.navigate('Notifications')}
+                                            navigation.navigate('Profile')}
                                             },
             
                                             {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
