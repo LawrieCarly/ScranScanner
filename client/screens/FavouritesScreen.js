@@ -42,7 +42,7 @@ const FavouritesScreen = ({ navigation }) => {
             {customer?
 
             <View>
-                <Text>{customer.displayName}</Text>
+                <Text style={styles.textH2Dark}>{customer.displayName}'s saved restaurants</Text>
                 {/* {bookingNodes} */}
                 {/* {savedRestoNodes}  */}
             <ScrollView>
@@ -54,16 +54,18 @@ const FavouritesScreen = ({ navigation }) => {
             }; 
             return(
 
-                    <View>
-                        <Text>{savedRestaurant.displayName}</Text>
+                    <View style={styles.map}>
                         <Image source={RestoImage}/>
+                        <Text style={styles.textH3Dark} >{savedRestaurant.displayName}</Text>
+                        <Text style={styles.paraDark}>{savedRestaurant.description}</Text>
+                        <View style={styles.pinkUnderLine}/>
                     </View>
                     )
                 })}
             </ScrollView>
             </View>
             :
-            <Text>Loading</Text>
+            <Text style={styles.baseText}>Loading<Text style={styles.innerText}>...</Text></Text>
             }
         {/* 
         </SafeAreaView>
@@ -104,6 +106,55 @@ const FavouritesScreen = ({ navigation }) => {
     }
     
     const styles = StyleSheet.create({
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    textH2Dark: {
+        fontSize: 22,
+        textAlign: 'left',
+        margin: 20,
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    map: {
+        margin: 20,
+    },
+    pinkUnderLine : {
+        height:1,
+        width: 100,
+        marginTop: 10,
+        backgroundColor: '#F38599'
+    },
+    mainView: {
+        margin: 20,
+        alignItems: 'center',
+        backgroundColor: 'black',
+    },
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginTop: 10,
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    paraDark: {
+        fontSize: 16,
+        width: 250,
+        flexWrap: 'wrap',
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+    },
     button: {
         alignItems: 'center',
         backgroundColor: 'blue',

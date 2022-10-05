@@ -103,7 +103,7 @@ const ReservationsScreen = ({ navigation }) => {
                 </View>
 
                 :
-                <Text>Loading</Text>
+                <Text style={styles.baseText}>Loading<Text style={styles.innerText}>...</Text></Text>
             }
 
         </SafeAreaView>
@@ -116,6 +116,16 @@ const ReservationsScreen = ({ navigation }) => {
 
 }
 const styles = StyleSheet.create({
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     map: {
         marginTop: 20,
     },
