@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
 import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
@@ -42,10 +42,10 @@ const FavouritesScreen = ({ navigation }) => {
             {customer?
 
             <View>
-                <Text>Text</Text>
                 <Text>{customer.displayName}</Text>
                 {/* {bookingNodes} */}
                 {/* {savedRestoNodes}  */}
+            <ScrollView>
             {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
             const RestoImage = {
                 uri: savedRestaurant.imageURL,
@@ -60,7 +60,7 @@ const FavouritesScreen = ({ navigation }) => {
                     </View>
                     )
                 })}
-                
+            </ScrollView>
             </View>
             :
             <Text>Loading</Text>
