@@ -70,6 +70,7 @@ const ReservationsScreen = ({ navigation }) => {
 
                 <View>
                     <Text style={styles.textH2Dark}>{customer.displayName}'s bookings</Text>
+                <ScrollView>
                 {bookings.map((selectedBooking, index) => {
                     const RestoImage = {
                         uri: selectedBooking.restaurant.imageURL,
@@ -98,6 +99,7 @@ const ReservationsScreen = ({ navigation }) => {
                         </View>
                     )
                 })}
+                </ScrollView>
                 </View>
 
                 :
