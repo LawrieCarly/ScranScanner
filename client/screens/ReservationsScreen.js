@@ -32,7 +32,7 @@ const ReservationsScreen = ({ navigation }) => {
     useEffect(() => {
         getBookingsByCustomer(context.customerId)
             .then(returnedBookings => setBookings(returnedBookings))
-    }, [IsFocused]);
+    }, [IsFocused, bookings]);
 
     // console.log("booking name", customer.bookings)
 

@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
+import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView, Alert} from 'react-native';
 import AppContext from './AppContext'
 import { addRestaurantToCustomerFavourites } from '../services/CustomerService';
 
@@ -30,6 +30,10 @@ const RestaurantDetails = ({restaurantById}) => {
 
      const handleSavePress = () => {
          addRestaurantToCustomerFavourites(context.customerId, restaurantById.id)
+         Alert.alert(
+             "added to your favourites"
+         )
+         
      }
 
     return (
