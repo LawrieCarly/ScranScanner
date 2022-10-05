@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView} from 'react-native';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image} from 'react-native';
 import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { useIsFocused } from '@react-navigation/native';
@@ -35,8 +35,7 @@ const FavouritesScreen = ({ navigation }) => {
         // })
 
         // console.log("Customer bookings", bookingNodes)
-
-
+  
     return(
 
         <SafeAreaView>
@@ -48,10 +47,16 @@ const FavouritesScreen = ({ navigation }) => {
                 {/* {bookingNodes} */}
                 {/* {savedRestoNodes}  */}
             {savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
+            const RestoImage = {
+                uri: savedRestaurant.imageURL,
+                width: 350,
+                height: 200
+            }; 
             return(
 
                     <View>
                         <Text>{savedRestaurant.displayName}</Text>
+                        <Image source={RestoImage}/>
                     </View>
                     )
                 })}

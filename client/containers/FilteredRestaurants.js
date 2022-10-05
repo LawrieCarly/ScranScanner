@@ -37,36 +37,40 @@ const FilteredRestaurants = ({restaurants, route}) => {
 //     )
 // })
 
-const RestoImage = {
-  uri: restaurants.imageURL,
-  width: 350,
-  height: 200
-};
+
+
+const restaurantNodes = restaurants.map((restaurant, index) => { 
+  const RestoImage = {
+    uri: restaurant.imageURL,
+    width: 350,
+    height: 200
+  };
+  return ( 
+    <TouchableOpacity key={index} index={index}
+    onPress={
+      () => navigation.navigate(
+        // params are stringified above (not objects)
+        'Restaurant', { 
+            restaurantId: restaurant.id, 
+            partysize: 2, 
+            date: current_date, 
+            time: current_time 
+        })}
+          >
+
+
+    <View horizontal={true}>
+      <Text  >{restaurant.displayName}</Text>
+      <Image source={RestoImage}/>
+    </View>
+    </TouchableOpacity>
+    );})
 
 
   return (
   <>
-        <ScrollView horizontal={true}>{restaurants.map((restaurant, index) => { 
-          return ( 
-            <TouchableOpacity key={index} index={index}
-            onPress={
-              () => navigation.navigate(
-                // params are stringified above (not objects)
-                'Restaurant', { 
-                    restaurantId: restaurant.id, 
-                    partysize: 2, 
-                    date: current_date, 
-                    time: current_time 
-                })}
-                  >
-
-
-            <View horizontal={true}>
-              <Text  >{restaurant.displayName}</Text>
-              <Image source={logo2}/>
-            </View>
-            </TouchableOpacity>
-            );})}
+        <ScrollView horizontal={true}>
+          {restaurantNodes}
         </ScrollView>
 </>
 

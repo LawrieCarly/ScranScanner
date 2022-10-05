@@ -64,38 +64,42 @@ const ReservationsScreen = ({ navigation }) => {
 
     // console.log("Customer bookings", bookingNodes)
 
-
     return (
         <SafeAreaView style={styles.mainView}>
             {bookings && customer ?
 
                 <View>
                     <Text style={styles.textH2Dark}>{customer.displayName}'s bookings</Text>
-                    {/* {bookingNodes} */}
-                    {bookings.map((selectedBooking, index) => {
-                        return (
-                            <View style={styles.map}>
-                                <Image source={logo2}/>
-                                <Text style={styles.textH3Dark}>{selectedBooking.restaurant.displayName}</Text>
-                                <Text style={styles.baseText}>{moment(selectedBooking.availability.date).format('Do MMM')}<Text style={styles.innerText}> {selectedBooking.availability.time}</Text></Text>
-                                <TouchableOpacity style={styles.button} onPress={() => {
-                                    Alert.alert(
-                                        "Delete this booking?",
-                                        "Click delete if you want to cancel this booking",
-                                        [
-                                            { text: 'Delete Now', onPress: () => { onDeleteClick(selectedBooking) } },
-                                            { text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel' }
-                                        ],
-                                        { cancelable: true }
-                                    );
-                                }
-                                }>
-                                    <Text style={styles.ButtonText}>Cancel Booking</Text>
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    })}
+                {bookings.map((selectedBooking, index) => {
+                    const RestoImage = {
+                        uri: selectedBooking.restaurant.imageURL,
+                        width: 350,
+                        height: 200
+                    };    
+                    return (
+                        <View style={styles.map}>
+                            <Image source={RestoImage}/>
+                            <Text style={styles.textH3Dark}>{selectedBooking.restaurant.displayName}</Text>
+                            <Text style={styles.baseText}>{moment(selectedBooking.availability.date).format('Do MMM')}<Text style={styles.innerText}> {selectedBooking.availability.time}</Text></Text>
+                            <TouchableOpacity style={styles.button} onPress={() => {
+                                Alert.alert(
+                                    "Delete this booking?",
+                                    "Click delete if you want to cancel this booking",
+                                    [
+                                        { text: 'Delete Now', onPress: () => { onDeleteClick(selectedBooking) } },
+                                        { text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel' }
+                                    ],
+                                    { cancelable: true }
+                                );
+                            }
+                            }>
+                                <Text style={styles.ButtonText}>Cancel Booking</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                })}
                 </View>
+
                 :
                 <Text>Loading</Text>
             }

@@ -61,6 +61,11 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
             });
 
             const searchNodes = result.map((searchResult, index) => { 
+                const RestoImage = {
+                    uri: searchResult.imageURL,
+                    width: 350,
+                    height: 200
+                };
                 return (
 
                     // Params passed to RestaurantScreen route.
@@ -78,7 +83,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                             })}
                     >
                     <ScrollView style={styles.restoPreview}>
-                        <Image style={styles.previewImage} source={logo2}/>
+                        <Image style={styles.previewImage} source={RestoImage}/>
                         <Text id={searchResult.id} key={index} style={styles.previewTitle}>{searchResult.displayName}</Text> 
                     </ScrollView>
                     </TouchableOpacity>
@@ -88,8 +93,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 setSearchNodes(searchNodes)
                 // console.log(searchNodes);
     }, [searchResults])
-
-
 
     return (
 
