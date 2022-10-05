@@ -70,7 +70,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
                     // Params passed to RestaurantScreen route.
                     // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
-
+                    <View>
                     <TouchableOpacity
                     onPress={
                         () => navigation.navigate(
@@ -82,11 +82,12 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                                 time: formattedTime 
                             })}
                     >
-                    <ScrollView style={styles.restoPreview}>
+                    <View style={styles.restoPreview}>
                         <Image style={styles.previewImage} source={RestoImage}/>
                         <Text id={searchResult.id} key={index} style={styles.previewTitle}>{searchResult.displayName}</Text> 
-                    </ScrollView>
+                    </View>
                     </TouchableOpacity>
+                    </View>
                 
                 );
                 })
@@ -123,17 +124,10 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                     </Pressable>
                 </View>
         </View>
-    <View>
         
-
-            <View >
                 <ScrollView>
                         {searchNodes}
                 </ScrollView>
-            </View>
-
-        
-            </View>
 
         </View>
 
