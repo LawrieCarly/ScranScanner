@@ -42,8 +42,8 @@ const FilteredRestaurants = ({restaurants, route}) => {
 const restaurantNodes = restaurants.map((restaurant, index) => { 
   const RestoImage = {
     uri: restaurant.imageURL,
-    width: 350,
-    height: 200
+    width: 250,
+    height: 150
   };
   return ( 
     <TouchableOpacity key={index} index={index}
@@ -59,9 +59,11 @@ const restaurantNodes = restaurants.map((restaurant, index) => {
           >
 
 
-    <View horizontal={true}>
-      <Text  >{restaurant.displayName}</Text>
+    <View style={styles.homeFilters} horizontal={true}>
       <Image source={RestoImage}/>
+      <Text style={styles.textH3Dark}>{restaurant.displayName}</Text>
+      <Text style={styles.paraDark}>{restaurant.description}</Text> 
+      <View style={styles.pinkUnderLine}/>
     </View>
     </TouchableOpacity>
     );})
@@ -76,6 +78,39 @@ const restaurantNodes = restaurants.map((restaurant, index) => {
 
 )};
 
+const styles = StyleSheet.create({
+  homeFilters: {
+    marginRight: 20,
+  },
+  pinkUnderLine : {
+      height:1,
+      width: 100,
+      marginTop: 10,
+      backgroundColor: '#F38599'
+  },
+  mainView: {
+      margin: 20,
+      alignItems: 'center',
+      backgroundColor: 'black',
+  },
+  textH3Dark: {
+      fontSize: 18,
+      textAlign: 'left',
+      marginTop: 10,
+      marginBottom: 3,
+      color: '#27233A',
+      fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+  },
+  paraDark: {
+      fontSize: 16,
+      width: 250,
+      flexWrap: 'wrap',
+      textAlign: 'left',
+      marginBottom: 5,
+      color: '#27233A',
+      fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+  },
+});
 
 export default FilteredRestaurants;
 
