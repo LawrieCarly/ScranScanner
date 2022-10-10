@@ -23,11 +23,13 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 
 ## Video
 
-⬇️ Click on the preview image to launch the video walkthrough of the project site! ⬇️
 
-<br>
 
-Uploading ScranScanner video 1 compressed.mp4…
+
+https://user-images.githubusercontent.com/106395506/194923147-4f4a7d97-f091-4229-a005-435c19fe5864.mp4
+
+
+
 
 <br>
 
