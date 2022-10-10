@@ -1,11 +1,11 @@
 # ScranScanner: Restaurant Booking Mobile App
-Contributors: [Sam](https://github.com/SamuelSeFe),[Lawrie](https://github.com/LawrieCarly),
-)[Ethan](https://github.com/ethanBaird) & [Jack](https://github.com/knowles28)
+<b> Contributors: [Sam](https://github.com/SamuelSeFe), [Lawrie](https://github.com/LawrieCarly), 
+[Ethan](https://github.com/ethanBaird) & [Jack](https://github.com/knowles28) </b>
 
 
 
 
-A full stack React Native mobile application (Android/iOS) that allows users to interact with content through their unique profile. They can browse restaurant availability, create/review/delete bookings, as well as adding restaurants to their favourites.
+A full stack React Native mobile application (Android/iOS) that allows users to make restaurant bookings through their unique profile. They can browse restaurant availability, create/review/delete bookings, as well as adding restaurants to their favourites.
 
 🚧 <b> NB: This is app has reached its MVP, but is still under construction</b> 🚧
 
@@ -23,11 +23,13 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 
 ## Video
 
-⬇️ **Click on the preview image to launch the video walkthrough of the project site! [YouTube](https://youtu.be/E3-XcYs6pUo)** ⬇️ 
+⬇️ Click on the preview image to launch the video walkthrough of the project site!⬇️
 
-[![ScranScanner](https://www.youtube.com/watch?v=E3-XcYs6pUo)]
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/E3-XcYs6pUo/0.jpg)](http://www.youtube.com/watch?v=E3-XcYs6pUo)
 
 <br>
+Or click this YouTube [link](https://youtu.be/E3-XcYs6pUo) 
+
 
 
 ## Technologies
