@@ -25,8 +25,12 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 
 ⬇️ Click on the preview image to launch the video walkthrough of the project site! ⬇️
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/E3-XcYs6pUo/0.jpg)](http://www.youtube.com/watch?v=E3-XcYs6pUo)
 <br>
+
+Uploading ScranScanner video 1 compressed.mp4…
+
+<br>
+
 
 ## Technologies
 
