@@ -10,7 +10,7 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 🚧 <b> NB: This is app has reached its MVP, but is still under construction</b> 🚧
 
 
-### Contents 
+## Contents 
 
 * [Video](#video)
 * [Technologies](#technologies)
@@ -23,7 +23,7 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 
 ## Video
 
-⬇️ Click on the preview image to launch the video walkthrough of the project site!⬇️
+⬇️ Click on the preview image to launch the video walkthrough of the project site! ⬇️
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/E3-XcYs6pUo/0.jpg)](http://www.youtube.com/watch?v=E3-XcYs6pUo)
 <br>
