@@ -1,9 +1,9 @@
 # ScranScanner: Restaurant Booking Mobile App
-Contributors: Lawrie, Sam, Ethan & Jack
-https://github.com/LawrieCarly
-https://github.com/SamuelSeFe
-https://github.com/knowles28
-https://github.com/ethanBaird
+Contributors: [Sam](https://github.com/SamuelSeFe),[Lawrie](https://github.com/LawrieCarly),
+)[Ethan](https://github.com/ethanBaird) & [Jack](https://github.com/knowles28)
+
+
+
 
 A full stack React Native mobile application (Android/iOS) that allows users to interact with content through their unique profile. They can browse restaurant availability, create/review/delete bookings, as well as adding restaurants to their favourites.
 
@@ -22,6 +22,7 @@ A full stack React Native mobile application (Android/iOS) that allows users to 
 
 
 ## Video
+
 ⬇️ **Click on the preview image to launch the video walkthrough of the project site! [YouTube](https://youtu.be/E3-XcYs6pUo)** ⬇️ 
 
 [![ScranScanner](https://www.youtube.com/watch?v=E3-XcYs6pUo)]
