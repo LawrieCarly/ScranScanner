@@ -5,7 +5,7 @@
 
 
 
-A full stack React Native mobile application (Android/iOS) that allows users to make restaurant bookings through their unique profile. They can browse restaurant availability, create/review/delete bookings, as well as adding restaurants to their favourites.
+A full stack React Native mobile application (Android/iOS) that allows users to make restaurant bookings through their unique profile. They can browse restaurant availability, create/review/delete bookings, as well as adding restaurants to their favourites. The backend is built in Java with Spring.
 
 🚧 <b> NB: This is app has reached its MVP, but is still under construction</b> 🚧
 
