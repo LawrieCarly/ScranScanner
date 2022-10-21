@@ -1,5 +1,5 @@
-const baseURL = 'http://192.168.100.139:8080/bookings/';
-const baseURLBookings = 'http://192.168.100.139:8080/bookings/customer/';
+const baseURL = 'http://192.168.0.50:8080/bookings/';
+const baseURLBookings = 'http://192.168.0.50:8080/bookings/customer/';
 
 
 
