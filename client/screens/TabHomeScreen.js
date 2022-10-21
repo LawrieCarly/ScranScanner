@@ -5,6 +5,7 @@ import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
 import { getRestaurantById } from '../services/RestaurantService';
 import logo from './scranscanner-icon-white.png'
+import moment from 'moment';
 
 const TabHomeScreen = ({ navigation }) => {
         
@@ -15,7 +16,7 @@ const TabHomeScreen = ({ navigation }) => {
     console.log('HLR====================================');
     console.log(highlightedResto);
     console.log('====================================');
-    const chanterId = '4'
+    const chanterId = '48'
 
 
     const highlightedRestoImage = {
@@ -48,6 +49,9 @@ const TabHomeScreen = ({ navigation }) => {
     }, []);
 
 
+    let current_date = moment().format('YYYY-MM-DD')
+    let current_time = moment().format('HH:mm')
+
     return (
         <SafeAreaView >
 
@@ -73,7 +77,16 @@ const TabHomeScreen = ({ navigation }) => {
                         <View style={styles.homeFeatures}>
                             <Text style={styles.textH2Dark}>Pick of the month</Text>
                             <View style={styles.pinkUnderLine}/>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                            onPress={
+                            () => navigation.navigate(
+                                // params are stringified above (not objects)
+                                'Restaurant', { 
+                                    restaurantId: chanterId, 
+                                    partysize: 2, 
+                                    date: current_date, 
+                                    time: current_time 
+                                })}>
                                 <Text style={styles.textH3Dark}>{highlightedResto.displayName}</Text>
                                 <Text style={styles.paraDark}>{highlightedResto.description}</Text>
                                 <Image source={highlightedRestoImage}/>

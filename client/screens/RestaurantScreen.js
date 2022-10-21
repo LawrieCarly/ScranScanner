@@ -121,7 +121,7 @@ console.log('====================================');
 
 
                                             // NAVIGATE - to reservations page
-                                            navigation.navigate('Notifications')}
+                                            navigation.navigate('Profile')}
                                             },
             
                                             {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
@@ -154,7 +154,7 @@ console.log('====================================');
         
         
         :
-        <Text style={styles.textLoading}>Loading ... </Text> 
+        <Text style={styles.baseText}>Loading<Text style={styles.innerText}>...</Text></Text>
         }
         </SafeAreaView>
 
@@ -166,6 +166,16 @@ console.log('====================================');
 
     
     const styles = StyleSheet.create({
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     pinkUnderLine : {
         height:1,
         width: 100,

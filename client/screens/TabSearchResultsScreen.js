@@ -61,11 +61,16 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
             });
 
             const searchNodes = result.map((searchResult, index) => { 
+                const RestoImage = {
+                    uri: searchResult.imageURL,
+                    width: 320,
+                    height: 180,
+                };
                 return (
 
                     // Params passed to RestaurantScreen route.
                     // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
-
+                    <View>
                     <TouchableOpacity
                     onPress={
                         () => navigation.navigate(
@@ -77,19 +82,20 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                                 time: formattedTime 
                             })}
                     >
-                    <ScrollView style={styles.restoPreview}>
-                        <Image style={styles.previewImage} source={logo2}/>
-                        <Text id={searchResult.id} key={index} style={styles.previewTitle}>{searchResult.displayName}</Text> 
-                    </ScrollView>
+                    <View style={styles.restoPreview}>
+                        <Image style={styles.previewImage} source={RestoImage}/>
+                        <Text id={searchResult.id} key={index} style={styles.textH3Dark}>{searchResult.displayName}</Text>
+                        <Text style={styles.paraDark}>{searchResult.description}</Text> 
+                        <View style={styles.pinkUnderLine}/>
+                    </View>
                     </TouchableOpacity>
+                    </View>
                 
                 );
                 })
                 setSearchNodes(searchNodes)
                 // console.log(searchNodes);
     }, [searchResults])
-
-
 
     return (
 
@@ -120,17 +126,12 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                     </Pressable>
                 </View>
         </View>
-    <View>
         
-
-            <View >
                 <ScrollView>
+                    <View>
                         {searchNodes}
+                    </View>
                 </ScrollView>
-            </View>
-
-        
-            </View>
 
         </View>
 
@@ -139,6 +140,32 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     }
     
     const styles = StyleSheet.create({
+    pinkUnderLine : {
+        height:1,
+        width: 100,
+        marginTop: 10,
+        backgroundColor: '#F38599'
+    },
+    mainView: {
+        margin: 20,
+        alignItems: 'center',
+        backgroundColor: 'black',
+    },
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginTop: 10,
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    paraDark: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+    },
     image: {
         height:70,
         resizeMode: 'contain'
@@ -172,15 +199,9 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         textAlign: 'left',
     },
     restoPreview: {
-        flexDirection: 'row',
-        borderWidth: 1,
         padding: 10,
         margin: 20,
-    },
-    previewImage: {
-        resizeMode: 'cover',
-        height: 100
-    },    
+    },  
     button: {
         alignItems: 'center',
         backgroundColor: 'black',

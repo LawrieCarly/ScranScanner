@@ -10,6 +10,12 @@ import moment from 'moment';
 
 const ReservationsScreen = ({ navigation }) => {
 
+    const logo2 = {
+        uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+        width: 300,
+        height: 150
+    };
+
     const context = useContext(AppContext)
 
 
@@ -26,7 +32,7 @@ const ReservationsScreen = ({ navigation }) => {
     useEffect(() => {
         getBookingsByCustomer(context.customerId)
             .then(returnedBookings => setBookings(returnedBookings))
-    }, [IsFocused]);
+    }, [IsFocused, bookings]);
 
     // console.log("booking name", customer.bookings)
 
@@ -58,38 +64,46 @@ const ReservationsScreen = ({ navigation }) => {
 
     // console.log("Customer bookings", bookingNodes)
 
-
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.mainView}>
             {bookings && customer ?
 
                 <View>
                     <Text style={styles.textH2Dark}>{customer.displayName}'s bookings</Text>
-                    {/* {bookingNodes} */}
-                    {bookings.map((selectedBooking, index) => {
-                        return (
-                            <View>
-                                <Text style={styles.textH2}>{selectedBooking.restaurant.displayName}</Text>
-                                <TouchableOpacity style={styles.btnStyle} onPress={() => {
-                                    Alert.alert(
-                                        "Delete this booking?",
-                                        "Click delete if you want to cancel this booking",
-                                        [
-                                            { text: 'Delete Now', onPress: () => { onDeleteClick(selectedBooking) } },
-                                            { text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel' }
-                                        ],
-                                        { cancelable: true }
-                                    );
-                                }
-                                }>
-                                    <Text>Delete</Text>
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    })}
+            <ScrollView>
+                {bookings.map((selectedBooking, index) => {
+                    const RestoImage = {
+                        uri: selectedBooking.restaurant.imageURL,
+                        width: 350,
+                        height: 200
+                    };    
+                    return (
+                        <View style={styles.map}>
+                            <Image source={RestoImage}/>
+                            <Text style={styles.textH3Dark}>{selectedBooking.restaurant.displayName}</Text>
+                            <Text style={styles.baseText}>{moment(selectedBooking.availability.date).format('Do MMM')}<Text style={styles.innerText}> {selectedBooking.availability.time}</Text></Text>
+                            <TouchableOpacity style={styles.button} onPress={() => {
+                                Alert.alert(
+                                    "Delete this booking?",
+                                    "Click delete if you want to cancel this booking",
+                                    [
+                                        { text: 'Delete Now', onPress: () => { onDeleteClick(selectedBooking) } },
+                                        { text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel' }
+                                    ],
+                                    { cancelable: true }
+                                );
+                            }
+                            }>
+                                <Text style={styles.ButtonText}>Cancel Booking</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                })}
+                </ScrollView>
                 </View>
+
                 :
-                <Text>Loading</Text>
+                <Text style={styles.baseText}>Loading<Text style={styles.innerText}>...</Text></Text>
             }
 
         </SafeAreaView>
@@ -102,6 +116,41 @@ const ReservationsScreen = ({ navigation }) => {
 
 }
 const styles = StyleSheet.create({
+    baseText: {
+        fontSize: 25,
+        textAlign: 'center',
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#F38599',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    map: {
+        marginTop: 20,
+    },
+    mainView: {
+        padding: 40,
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    baseText: {
+        fontSize: 16,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    innerText: {
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
+    },
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
     button: {
         alignItems: 'center',
         backgroundColor: 'blue',
@@ -119,6 +168,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'left',
         marginBottom: 5,
+        marginTop: 20,
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
@@ -133,11 +183,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
-    btnStyle: {
-        backgroundColor: 'blue',
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#F38599',
+        borderRadius: 10,
         padding: 10,
-        borderRadius: 8
-    }
+        width: 300,
+        marginTop: 16,
+    },
+    ButtonText: {
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontSize: 15,
+        color: '#27233A',
+    },
 
 });
 
