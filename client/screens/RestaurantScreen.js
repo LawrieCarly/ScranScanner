@@ -3,11 +3,8 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, A
 import { useIsFocused } from '@react-navigation/native';
 import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
 import { postBooking } from '../services/BookingService';
-import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
-import RestaurantAvailability from '../components/RestaurantAvailability';
-import { useFocusEffect } from '@react-navigation/native';
 import AppContext from '../components/AppContext'
 import logo from './scranscanner-icon-dark.png'
 import moment from 'moment';
@@ -20,10 +17,6 @@ const RestaurantScreen = ({ navigation, route }) => {
     
     const [restaurantById, setRestaurantById ] = useState(null);
     const [filteredAvailablitiesOfRestaurant, setFilteredAvailablitiesOfRestaurant ] = useState(null);
-    
-console.log('===TEST=================================');
-console.log(restaurantById);
-console.log('====================================');
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
@@ -37,16 +30,6 @@ console.log('====================================');
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
-    React.useEffect(() => {
-        const cleanState = navigation.addListener('blur', () => {
-            setRestaurantById(null),
-            setFilteredAvailablitiesOfRestaurant(null)
-            });
-    
-        return cleanState;
-    }, [navigation]);
-    
-
     React.useEffect(() => {
         const cleanState = navigation.addListener('blur', () => {
             setRestaurantById(null),
@@ -109,17 +92,6 @@ console.log('====================================');
                                             }
                                             postBooking(bookingObject)
 
-                                            // PUT - 'set booking availability to false'
-                                            const availabilityObject = {
-                                                "id": availability.id,
-                                                "date": availability.date,
-                                                "time": availability.time,
-                                                "dinnerTable": availability.dinnerTable,
-                                                "available": false
-                                            }
-                                            updateBookingAvailabilityToFalse(availabilityObject);
-
-
                                             // NAVIGATE - to reservations page
                                             navigation.navigate('Profile')}
                                             },
@@ -138,11 +110,7 @@ console.log('====================================');
                             })}
                     </ScrollView>
 
-                    </View>                    
-
-                    {/* <TouchableOpacity style={styles.button2}>
-                        <Text>See all times</Text>
-                    </TouchableOpacity>  */}
+                    </View>                   
 
 
                     <View style={styles.RestoPage}>
@@ -201,13 +169,6 @@ console.log('====================================');
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
     },
-    paraDarkBold: {
-        fontSize: 16,
-        textAlign: 'left',
-        marginBottom: 5,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
-    },
     logoBar: {
         backgroundColor: 'white', 
         paddingHorizontal: 20, 
@@ -218,22 +179,6 @@ console.log('====================================');
         width: 50,
         resizeMode: 'contain',
         margin: 10
-    },
-    button: {
-        alignItems: 'center',
-        backgroundColor: 'gray',
-        padding: 10,
-        width: 350,
-        marginTop: 16,
-    },
-    button2: {
-        alignItems: 'center',
-        backgroundColor: 'purple',
-        padding: 10,
-        width: 120,
-        marginTop: 16,
-        fontSize: 10,
-
     },
     availabilityButton: {
         alignItems: 'center',
@@ -248,27 +193,6 @@ console.log('====================================');
         textAlign: 'center',
         color: 'white',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
-    },
-    review: {
-        fontSize: 16,
-        alignItems: 'flex-start',
-        color: 'black',
-        padding: 10,
-        margin: 10
-    },
-    textH1Dark: {
-        fontSize: 28,
-        textAlign: 'left',
-        marginBottom: 5,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
-    textLoading: {
-        fontSize: 55,
-        textAlign: 'center',
-        marginBottom: 16,
-        color: 'black',
-        paddingTop: 50
     },
     textH3Dark: {
         fontSize: 18,

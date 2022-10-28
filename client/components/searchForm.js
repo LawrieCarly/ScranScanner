@@ -17,22 +17,11 @@ const handleSubmit = (event) => {
         partySize: partySize,
         date: moment(date).format('YYYY-MM-DD'),
     }
-    // console.log(restaurantList)
     setLocation("");
     setPartySize("");
     setDate(new Date());
 }
 
-// console.log(restaurants)
-
-// const restaurantList = () => { restaurants.map((restaurant) => {
-//         return (
-//         <View>
-//             <Text>{restaurant.title}</Text>
-//         </View>
-//         );
-//     });
-// };
 
 return (
     <View>

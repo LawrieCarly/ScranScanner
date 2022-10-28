@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, RecyclerViewBackedScrollViewComponent, Image} from 'react-native';
-import { SearchForm } from '../components/searchForm';
+import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} from 'react-native';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/SearchService'
 import { getRestaurantById } from '../services/RestaurantService';
@@ -12,23 +11,13 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
-
-    console.log('HLR====================================');
-    console.log(highlightedResto);
-    console.log('====================================');
-    const chanterId = '48'
-
+    const chanterId = '14'
 
     const highlightedRestoImage = {
         uri: highlightedResto.imageURL,
         width: 350,
         height: 200
     };
-
-
-    console.log('HLRURL====================================');
-    console.log(highlightedResto.imageURL);
-    console.log('====================================');
 
     const RestoImage = {
         uri: restaurants.imageURL,
@@ -90,13 +79,6 @@ const TabHomeScreen = ({ navigation }) => {
                                 <Text style={styles.textH3Dark}>{highlightedResto.displayName}</Text>
                                 <Text style={styles.paraDark}>{highlightedResto.description}</Text>
                                 <Image source={highlightedRestoImage}/>
-                                {/* {restaurants.attributes.map((attribute, index) => {
-                                    return (
-                                        <View>
-                                            <Text>{attribute.cuisine}</Text>
-                                        </View>
-                                    )
-                                })} */}
                             </TouchableOpacity>
                             <View style={styles.featuredRestos}>
                                 <Text style={styles.textH2Dark}>Available now!</Text>
@@ -110,6 +92,8 @@ const TabHomeScreen = ({ navigation }) => {
 
     );
     }
+
+    //! DONE
     
     const styles = StyleSheet.create({
     mainView: {
@@ -187,11 +171,5 @@ const TabHomeScreen = ({ navigation }) => {
     featuredRestos: {
         paddingTop: 30,
     }
-
-        // textH3: {
-    //     fontSize: 16,
-    //     textAlign: 'center',
-    //     color: 'grey'
-    // },
     });
 export default TabHomeScreen;

@@ -9,11 +9,9 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import TabHomeScreen from './screens/TabHomeScreen';
 import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
-import TabProfileScreen from './screens/TabProfileScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
-import BasicRestaurantScreen from './screens/BasicRestaurantScreen';
 import LoginContainer from './containers/LoginContainer';
 import AppContext from './components/AppContext';
 
@@ -37,7 +35,6 @@ const ProfileStack = createNativeStackNavigator();
 
 
 const TopTab = createMaterialTopTabNavigator();
-
 function MyTabsScreen() {
   return (
     <TopTab.Navigator>
@@ -87,15 +84,11 @@ export default function App() {
             <Tab.Screen name="Home" component={TabHomeScreen} options={{ tabBarIcon:() => (<Icon name="home" size={18} color="#27233A" />)  }}/>
             <Tab.Screen name="Search" component={TabSearchResultsScreen} options={{ tabBarIcon:() => (<Icon name="search" size={18} color="#27233A" />)  }} />
             <Tab.Screen name="Profile" component={MyTabsScreen} options={{ tabBarIcon:() => (<Icon name="account-circle" size={18} color="#27233A" />)  }} />
-            {/* <Tab.Screen name="Profile" component={TabProfileScreen} /> */}
-
-
+            
+            {/* Below component is hidden in from bottom tab navigator */}
             <Tab.Screen name="Restaurant" component={RestaurantScreen} 
               options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
             />
-            {/* <Tab.Screen name="BasicRestaurant" component={BasicRestaurantScreen} 
-              options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
-            /> */}
         </Tab.Navigator>
       </NavigationContainer>
       </>

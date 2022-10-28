@@ -7,12 +7,6 @@ import moment from 'moment';
 import logo from './scranscanner-icon-dark.png'
 import image from './scranscanner-icon-dark.png'
 
-const logo2 = {
-    uri: 'https://images.unsplash.com/photo-1521001561976-a717fb67bce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    width: 160,
-    height: 120
-};
-
 const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const IsFocused = useIsFocused();
 
@@ -35,21 +29,12 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         })
     }
     
-        // Converted state into strings here instead of in the service, to allow them to be passed as params to RestaurantScreen
         const formattedDate = moment(date).format('YYYY-MM-DD')
         const formattedTime = moment(date).format('HH:mm')
 
-
-
-        // console.log('====================================');
-        // console.log(formattedDate);
-        // console.log(formattedTime);
-        // console.log('====================================');
-
-
     useEffect(() => {
 
-            // filteres through all objects, removing the duplicates with same restaurant.id
+            // filters through all objects, removing the duplicates with same restaurant.id
             
             const uniqueIds = [];
 
@@ -69,7 +54,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 return (
 
                     // Params passed to RestaurantScreen route.
-                    // Moved touchable opacity into searchNodes to make navigate work. Still ned to figure out scroll.
                     <View>
                     <TouchableOpacity
                     onPress={
@@ -94,7 +78,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
                 );
                 })
                 setSearchNodes(searchNodes)
-                // console.log(searchNodes);
     }, [searchResults])
 
     return (
@@ -138,6 +121,8 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
     );
     }
+
+    //! DONE
     
     const styles = StyleSheet.create({
     pinkUnderLine : {
@@ -146,10 +131,8 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         marginTop: 10,
         backgroundColor: '#F38599'
     },
-    mainView: {
-        margin: 20,
-        alignItems: 'center',
-        backgroundColor: 'black',
+    restoPreview : {
+        paddingLeft: 30,
     },
     textH3Dark: {
         fontSize: 18,
@@ -175,13 +158,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
-    textH2Dark: {
-        fontSize: 22,
-        textAlign: 'left',
-        marginBottom: 5,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
     baseText: {
         fontSize: 25,
         textAlign: 'center',
@@ -194,42 +170,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     },
     searchForm: {
         paddingTop: 20,
-    },
-    formLabels: {
-        textAlign: 'left',
-    },
-    restoPreview: {
-        padding: 10,
-        margin: 20,
-    },  
-    button: {
-        alignItems: 'center',
-        backgroundColor: 'black',
-        padding: 10,
-        width: 300,
-        marginTop: 16,
-    },
-    textH1: {
-        fontSize: 25,
-        textAlign: 'center',
-        marginBottom: 16,
-        color: 'black'
-    },
-    textH2: {
-        fontSize: 18,
-        textAlign:'left',
-        color: 'grey'
-    },
-    textH3: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: 'grey'
-    },
-    mainView: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
+    }, 
     input: {
         height: 40,
         marginTop: 8,
@@ -246,11 +187,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         width: 300,
         marginTop: 16,
     },
-    buttonText: {
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-        fontSize: 15,
-        color: '#27233A',
-    },
     buttonDark: {
         alignItems: 'center',
         backgroundColor: '#27233A',
@@ -265,81 +201,5 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         color: 'white',
     },
     });
+
 export default TabSearchResultsScreen;
-
-
-
-// import React, {useState} from 'react'
-// import { SafeAreaView, StyleSheet, TextInput, View, Text, Pressable } from "react-native";
-// import DatePicker from 'react-native-date-picker'
-// import moment from 'moment';
-
-// export const SearchForm = ({restaurants}) => {
-
-// const [location, setLocation] = React.useState("");
-// const [partySize, setPartySize] = React.useState("");
-// const [date, setDate] = useState(new Date())
-// const [open, setOpen] = useState(false)
-
-// const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const searchCriteria =  {
-//         location: location,
-//         partySize: partySize,
-//         date: moment(date).format('YYYY-MM-DD'),
-//     }
-//     // console.log(restaurantList)
-//     setLocation("");
-//     setPartySize("");
-//     setDate(new Date());
-// }
-
-// console.log(restaurants)
-
-// // const restaurantList = () => { restaurants.map((restaurant) => {
-// //         return (
-// //         <View>
-// //             <Text>{restaurant.title}</Text>
-// //         </View>
-// //         );
-// //     });
-// // };
-
-// return (
-//     <View>
-//         <Text>Search for a table!</Text>
-//         <TextInput
-//             style={styles.input}
-//             onChangeText={(input) => setLocation(input)}
-//             placeholder="Edinburgh"
-//             value={location}
-//             />
-//         <TextInput
-//             style={styles.input}
-//             onChangeText={(input) => setPartySize(input)}
-//             value={partySize}
-//             placeholder="eg. 4"
-//             keyboardType='numeric'
-//             />
-//         <Pressable style={styles.button} onPress={() => setOpen(true)}>
-//             <Text style={styles.buttonText} >Select date/time</Text>
-//         </Pressable>
-//         <DatePicker
-//             modal
-//             open={open}
-//             date={date}
-//             onConfirm={(date) => {setOpen(false), setDate(date)}}
-//             onCancel={() => { setOpen(false)}}
-//         />
-//         <View>
-//             {restaurants.map((restaurant, index) => { return (
-//             <View><Text id={restaurant.id} key={index} style={styles.buttonText}>{restaurant.displayName}</Text></View>
-//             );})}
-//         </View>
-//         <Pressable style={styles.button} onPress={handleSubmit}>
-//             <Text style={styles.buttonText}>Find Restaurants</Text>
-//         </Pressable>
-
-        
-//     </View>
-// )}
