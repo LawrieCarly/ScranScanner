@@ -51,18 +51,6 @@ const ReservationsScreen = ({ navigation }) => {
     }
 
 
-    // const bookingNodes = customer.bookings.map((booking, index) => {
-    //     return(
-    //         <View>
-    //             <Text>{booking.restaurant.displayName}</Text>
-    //             <deleteBooking booking={booking} onDeleteClick={onDeleteClick()}/>
-    //         </View>
-    //     )
-    // })
-
-
-
-    // console.log("Customer bookings", bookingNodes)
 
     return (
         <SafeAreaView style={styles.mainView}>

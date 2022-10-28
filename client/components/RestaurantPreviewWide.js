@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
+import React from 'react';
+import { Image, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const logo2 = {

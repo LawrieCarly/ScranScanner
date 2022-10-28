@@ -6,18 +6,6 @@ import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaVi
 
 const RestaurantReviews = ({restaurantById}) => {
 
-    const logo2 = {
-        uri: `${restaurantById.imageurl}`,
-        // uri: 'https://images.unsplash.com/photo-1649138783888-0ec9c3ec2f21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-        width: 350,
-        height: 200
-    };
-
-    console.log('restaurantById  ====================================');
-    console.log(restaurantById);
-    console.log('restaurantById REVIEWS====================================');
-    console.log(restaurantById.reviews);
-
     return (
 
     
