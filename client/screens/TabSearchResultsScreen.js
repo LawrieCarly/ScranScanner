@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
-import { getSearchResults } from '../services/SearchService';
+import { getSearchResults } from '../services/RestaurantService';
 import moment from 'moment';
 import logo from './scranscanner-icon-dark.png'
 import image from './scranscanner-icon-dark.png'
