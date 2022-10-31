@@ -6,7 +6,6 @@ import { postBooking } from '../services/BookingService';
 import { updateBookingAvailabilityToFalse } from '../services/AvailabilityService';
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
-import RestaurantAvailability from '../components/RestaurantAvailability';
 import { useFocusEffect } from '@react-navigation/native';
 import AppContext from '../components/AppContext'
 import logo from './scranscanner-icon-dark.png'
