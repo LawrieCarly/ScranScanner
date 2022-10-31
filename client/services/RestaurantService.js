@@ -1,5 +1,7 @@
-const baseURL = 'http://192.168.7.212:8080/restaurants/';
-const baseURLAvailabilities = 'http://192.168.7.212:8080/availabilities/restaurant/';
+import REACT_APP_DEV_IP from './constant';
+
+const baseURL = `http://${REACT_APP_DEV_IP}:8080/restaurants/`;
+const baseURLAvailabilities = `http://${REACT_APP_DEV_IP}:8080/availabilities/restaurant/`;
 
 
 

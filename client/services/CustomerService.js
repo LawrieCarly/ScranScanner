@@ -1,4 +1,6 @@
-const baseURL = 'http://192.168.7.212:8080/customers/';
+import REACT_APP_DEV_IP from './constant';
+
+const baseURL = `http://${REACT_APP_DEV_IP}:8080/customers/`;
 
 export async function getCustomerById(id) {
     try {
@@ -11,6 +13,7 @@ export async function getCustomerById(id) {
 
 
 export const getCustomerByEmail = (email) => {
+    console.log(baseURL);
     try {
     console.log(email);
     return fetch(baseURL + 'byEmail/' + email)

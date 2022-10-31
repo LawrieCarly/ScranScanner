@@ -1,0 +1,1 @@
+export default REACT_APP_DEV_IP="192.168.0.50"

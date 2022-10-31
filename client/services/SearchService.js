@@ -1,6 +1,7 @@
-
+import REACT_APP_DEV_IP from './constant';
 import moment from 'moment';
-const baseURL = 'http://192.168.7.212:8080/restaurants/';
+
+const baseURL = `http://${REACT_APP_DEV_IP}:8080/restaurants/`;
 
 export const getRestaurants = () => {
   try {
