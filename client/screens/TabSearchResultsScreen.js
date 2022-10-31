@@ -4,8 +4,8 @@ import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
 import { getSearchResults } from '../services/RestaurantService';
 import moment from 'moment';
-import logo from './scranscanner-icon-dark.png'
-import image from './scranscanner-icon-dark.png'
+import logo from '../assets/scranscanner-icon-dark.png'
+
 
 const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const IsFocused = useIsFocused();
@@ -84,7 +84,7 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
 
     <View>
         <View style={styles.searchView}>
-            <Image  style={styles.image} source={image}/>
+            <Image  style={styles.image} source={logo}/>
             <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
                 <View style={styles.searchForm}>
                     <TextInput

@@ -3,7 +3,7 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} f
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
 import { getRestaurantById } from '../services/RestaurantService';
-import logo from './scranscanner-icon-white.png'
+import logo from '../assets/scranscanner-icon-white.png'
 import moment from 'moment';
 
 const TabHomeScreen = ({ navigation }) => {

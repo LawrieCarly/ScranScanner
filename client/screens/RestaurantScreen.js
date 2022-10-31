@@ -7,7 +7,7 @@ import { postBooking } from '../services/BookingService';
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
 import AppContext from '../components/AppContext'
-import logo from './scranscanner-icon-dark.png'
+import logo from '../assets/scranscanner-icon-dark.png'
 import moment from 'moment';
 
 

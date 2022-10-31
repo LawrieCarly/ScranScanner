@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Text, Button, StyleSheet, View, Pressable, TextInput, Alert, Image } from "react-native"
 import { getCustomerByEmail } from "../services/CustomerService";
-import logoWhite from "./scranscanner-icon-white.png"
+import logo from "../assets/scranscanner-icon-white.png"
 
 
 
@@ -40,7 +40,7 @@ const LoginContainer = ({ flipLoggedIn, changeCustomerId }) => {
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
-                <Image style={styles.logoWhite} source={logoWhite} />
+                <Image style={styles.logoWhite} source={logo} />
                 <Text style={styles.heading}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
             </View>
             <View style={styles.form}>
