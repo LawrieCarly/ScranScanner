@@ -23,9 +23,9 @@ export const getCustomerByEmail = async (email) => {
 
 }
 
-export const addRestaurantToCustomerFavourites = (customerId, restaurantId) => {
+export const addRestaurantToCustomerFavourites = async (customerId, restaurantId) => {
     try {
-        const data = fetch(baseURL + customerId + '/restaurant/' + restaurantId, {method: "PATCH"});
+        const data = await fetch(baseURL + customerId + '/restaurant/' + restaurantId, {method: "PATCH"});
         return data.json();
     } 
     catch (error) {

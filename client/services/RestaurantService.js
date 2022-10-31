@@ -3,11 +3,12 @@ import moment from 'moment';
 
 const baseURL = `http://${REACT_APP_DEV_IP}:8080/restaurants/`;
 
-export const getRestaurants = () => {
+export const getRestaurants = async () => {
   try {
-  return fetch(baseURL)
-    .then(res => res.json());
-  } catch (error) {
+    res = await fetch(baseURL)
+    return res.json();
+  } 
+  catch (error) {
     console.error(error);
     }
 }
@@ -22,14 +23,15 @@ export const getRestaurantById = async (id) => {
   }
 }
 
-export const getSearchResults = (partySize, date, time) => {
+export const getSearchResults = async (partySize, date, time) => {
   try {
-  const formattedDate = moment(date).format('YYYY-MM-DD')
-  const formattedTime = moment(time).format('HH:mm')
+    const formattedDate = moment(date).format('YYYY-MM-DD')
+    const formattedTime = moment(time).format('HH:mm')
 
-  return fetch(baseURL + 'filtered/?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
-  .then(data => data.json());
-  } catch (error) {
+    const res = await fetch(baseURL + 'filtered/?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
+    return res.json();
+  } 
+  catch (error) {
     console.error(error);
     }   
 }
