@@ -1,7 +1,5 @@
-import moment from 'moment';
-
-const baseURL = 'http://192.168.0.50:8080/restaurants/';
-const baseURLAvailabilities = 'http://192.168.0.50:8080/availabilities/restaurant/';
+const baseURL = 'http://192.168.7.212:8080/restaurants/';
+const baseURLAvailabilities = 'http://192.168.7.212:8080/availabilities/restaurant/';
 
 
 
@@ -15,7 +13,6 @@ export async function getRestaurantById(id) {
 }
 
 export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
-  // Don't need to format date/time here because it was already formatted before being passed from SearchResults to RestoScreen
   try {
   const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
   return data.json() 

@@ -1,7 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
-import RestaurantPreviewWide from '../components/RestaurantPreviewWide';
-import FilteredRestaurants from '../containers/FilteredRestaurants';
+import { StyleSheet,View,Text,SafeAreaView, Image, ScrollView} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { getCustomerById } from '../services/CustomerService';
 import AppContext from '../components/AppContext';
@@ -19,22 +17,6 @@ const FavouritesScreen = ({ navigation }) => {
         getCustomerById(context.customerId)
             .then(returnedCustomer => setCustomer(returnedCustomer))
         }, [IsFocused]);
-
-        // console.log("customerView", customer)
-        // console.log("booking name", customer.savedRestaurants)
-
-
-        // const savedRestoNodes = customer.savedRestaurants.map((savedRestaurant, index) => {
-        //     return(
-
-        //             <View>
-        //                 <Text>{savedRestaurant.displayName}</Text>
-        //             </View>
-        //     )
-
-        // })
-
-        // console.log("Customer bookings", bookingNodes)
   
     return(
 
@@ -67,41 +49,10 @@ const FavouritesScreen = ({ navigation }) => {
             :
             <Text style={styles.baseText}>Loading<Text style={styles.innerText}>...</Text></Text>
             }
-        {/* 
-        </SafeAreaView>
-        <SafeAreaView>
-        <View>
-            <View>
-                <Text>{customer.displayName}</Text>
-                <Text>Places to try and those you already love:</Text>
-            </View>
-        </View> */}
 
     </SafeAreaView> 
     )
 
-
-    // ? CODE TO START WITH ==========================
-
-
-    // return (
-    //     <SafeAreaView style={{ flex: 1 }}>
-    //     <View style={{ flex: 1, padding: 16 }}>
-    //         <View style={styles.mainView}>
-    //             <Text style={styles.textH1}>Places to try and those you already love:</Text>
-    //         </View>
-    //         <View style={{ flex: 3, padding: 16 }}>
-    //             <RestaurantPreviewWide/>
-    //             <RestaurantPreviewWide/>
-    //         </View>
-
-    //     </View>
-    //     </SafeAreaView>
-
-
-    // );
-
-    // ? CODE TO START WITH ==========================
 
     }
     

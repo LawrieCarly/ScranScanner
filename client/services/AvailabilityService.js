@@ -1,4 +1,4 @@
-const baseURL = 'http://192.168.0.50:8080/availabilities/'
+const baseURL = 'http://192.168.7.212:8080/availabilities/'
 
 
 
@@ -17,16 +17,3 @@ export function updateBookingAvailabilityToFalse(availabilityObject) {
     console.error(error);
     }
 };
-
-// 
-      // export function updateBookingAvailabilityToFalse(availabilityObject) {
-      //   return fetch(baseURL + JSON.stringify(availabilityObject.id) + {
-      //     method: 'PUT',
-      //     body: JSON.stringify(availabilityObject),
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     }
-      //   })
-      //     .then(res => res.json());
-      // };
-      

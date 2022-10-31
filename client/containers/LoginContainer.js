@@ -5,7 +5,7 @@ import logoWhite from "./scranscanner-icon-white.png"
 
 
 
-const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
+const LoginContainer = ({ flipLoggedIn, changeCustomerId }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,44 +23,38 @@ const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
         const customer = await getCustomerByEmail(email)
 
         // IF customer.password == password
-        if (customer.password == password){
+        if (customer.password == password) {
             // login in customer
             //flip login state
             flipLoggedIn()
             changeCustomerId(customer.id)
             //send customer id to global
-            
-
         }
         else {
             // ELSE alert email or password incorrect
             Alert.alert("Username or Password Incorrect")
         }
 
-            
-
-        
-
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
-                <Image style={styles.logoWhite} source={logoWhite}/>
+                <Image style={styles.logoWhite} source={logoWhite} />
                 <Text style={styles.heading}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
             </View>
             <View style={styles.form}>
                 <TextInput style={styles.input}
-                        onChangeText={handleEmailInput}
-                        placeholder="email"
-                        placeholderTextColor={"white"}
-                    />
+                    onChangeText={handleEmailInput}
+                    placeholder="email"
+                    placeholderTextColor={"white"}
+                />
                 <TextInput style={styles.input}
-                        onChangeText={handlePasswordInput}
-                        secureTextEntry={true}
-                        placeholder="password"
-                        placeholderTextColor={'white'}
-                    />
+                    onChangeText={handlePasswordInput}
+                    secureTextEntry={true}
+                    placeholder="password"
+                    placeholderTextColor={'white'}
+                />
                 <Pressable
                     style={styles.button}
                     onPress={handleLogin}
@@ -68,11 +62,11 @@ const LoginContainer = ({flipLoggedIn, changeCustomerId}) => {
                     <Text style={styles.buttonText}>Login</Text>
                 </Pressable>
             </View>
-            
-           
-            
+
+
+
         </View>
-        
+
     )
 }
 
@@ -80,11 +74,11 @@ export default LoginContainer
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      paddingHorizontal: 20,
-      backgroundColor: '#27233A'
+        flex: 1,
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        backgroundColor: '#27233A'
     },
     logoContainer: {
         alignItems: "center",
@@ -97,12 +91,12 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 40,
         color: '#F38599',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+        fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
     },
     innerText: {
         fontSize: 40,
         color: "white",
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
+        fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
     },
     form: {
         borderWidth: 1,
@@ -116,16 +110,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: '#F38599',
         fontSize: 16,
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+        fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
 
     },
     button: {
-      alignItems: "center",
-      backgroundColor: '#F38599',
-      borderRadius: 10,
-      padding: 10
+        alignItems: "center",
+        backgroundColor: '#F38599',
+        borderRadius: 10,
+        padding: 10
     },
     buttonText: {
         color: "white"
     }
-  });
+});
