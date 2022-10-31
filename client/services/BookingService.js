@@ -1,46 +1,46 @@
 import REACT_APP_DEV_IP from './constant';
 
 const baseURL = `http://${REACT_APP_DEV_IP}:8080/bookings/`;
-const baseURLBookings = `http://${REACT_APP_DEV_IP}:8080/bookings/customer/`;
-
-
 
 // Add booking to db
-export function postBooking(booking) {
+export const postBooking = async (booking) => {
   try {
-  return fetch(baseURL, {
-    method: 'POST',
-    body: JSON.stringify(booking),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(res => res.json());
-  } catch (error) {
-    console.error(error);
-    }
-}
-
-export function deleteBookingMethod(booking, id) {
-  try {
-  return fetch(baseURL + id, {
-    method: 'DELETE',
-    body: JSON.stringify(booking),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(res => res.json());
-  } catch (error) {
-    console.error(error);
-    }
-}
-
-export async function getBookingsByCustomer(id){
-  try {
-  const data = await fetch(baseURLBookings + id);
-      return data.json();
-    } catch (error) {
-      console.error(error);
+    const res = await fetch(baseURL, {
+      method: 'POST',
+      body: JSON.stringify(booking),
+      headers: {
+        'Content-Type': 'application/json'
       }
+    })
+    return res.json();
+  } 
+  catch (error) {
+    console.error(error);
+  }
+}
+
+export const deleteBookingMethod = async (booking, id) => {
+  try {
+    const res = await fetch(baseURL + id, {
+      method: 'DELETE',
+      body: JSON.stringify(booking),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return res.json();
+  } 
+  catch (error) {
+    console.error(error);
+  }
+}
+
+export const getBookingsByCustomer = async (id) => {
+  try {
+    const res = await fetch(baseURL + 'customer/' + id);
+    return res.json();
+  } 
+  catch (error) {
+    console.error(error);
+  }
 }
