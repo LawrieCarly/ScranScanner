@@ -21,13 +21,13 @@ const RestaurantScreen = ({ navigation, route }) => {
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
-    useEffect( () => {
+    useEffect(() => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
+
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-    }, 
-    [IsFocused]);
+    }, [IsFocused]);
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     
