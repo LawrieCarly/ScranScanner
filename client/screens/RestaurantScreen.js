@@ -1,7 +1,8 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
+import { getRestaurantById } from '../services/RestaurantService';
+import { getFilteredAvailablitiesOfRestaurant } from '../services/AvailabilityService';
 import { postBooking } from '../services/BookingService';
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';

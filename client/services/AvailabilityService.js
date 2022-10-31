@@ -3,18 +3,20 @@ const baseURL = `http://${REACT_APP_DEV_IP}:8080/availabilities/`
 
 
 
-// Update selected booking availability to false 
-export function updateBookingAvailabilityToFalse(availabilityObject) {
+export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
   try {
-  return fetch(baseURL + availabilityObject.id.toString() + {
-    method: 'PUT',
-    body: JSON.stringify(availabilityObject),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(res => res.json());
+  const data = await fetch(baseURL + 'restaurant' + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
+  return data.json() 
   } catch (error) {
     console.error(error);
-    }
-};
+  }
+
+}
+export async function getAllAvailablitiesOfRestaurant(restaurantId, date) {
+  try {
+  const data = await fetch(baseURL + 'restaurant' + restaurantId + '/filtered?date=' + date);
+  return data.json() 
+  } catch (error) {
+    console.error(error);
+  }
+}

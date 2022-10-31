@@ -2,7 +2,7 @@ import REACT_APP_DEV_IP from './constant';
 
 const baseURL = `http://${REACT_APP_DEV_IP}:8080/customers/`;
 
-export async function getCustomerById(id) {
+export const getCustomerById = async (id) => {
     try {
         const data = await fetch(baseURL + id);
         return data.json();
@@ -12,9 +12,9 @@ export async function getCustomerById(id) {
     }
 }
 
-export const getCustomerByEmail = (email) => {
+export const getCustomerByEmail = async (email) => {
     try {
-        const data = fetch(baseURL + 'byEmail/' + email);
+        const data = await fetch(baseURL + 'byEmail/' + email);
         return data.json();
     } 
     catch (error) {
