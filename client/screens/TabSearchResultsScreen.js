@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-date-picker'
 import { getSearchResults } from '../services/RestaurantService';
 import moment from 'moment';
 import logo from '../assets/scranscanner-icon-dark.png'
 
 
-const TabSearchResultsScreen = ({ navigation, restaurants }) => {
-    const IsFocused = useIsFocused();
-
+const TabSearchResultsScreen = ({ navigation }) => {
 
     const [partySize, setPartySize] = React.useState("");
     const [date, setDate] = useState(new Date());
@@ -17,8 +14,6 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     const [open, setOpen] = useState(false);
     const [searchResults, setSearchResults] = React.useState([]);
     const [searchNodes, setSearchNodes] = React.useState([]);
-
-    
     
     function handleSubmit(event) {
         event.preventDefault();
@@ -29,8 +24,8 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
         })
     }
     
-        const formattedDate = moment(date).format('YYYY-MM-DD')
-        const formattedTime = moment(date).format('HH:mm')
+    const formattedDate = moment(date).format('YYYY-MM-DD')
+    const formattedTime = moment(date).format('HH:mm')
 
     useEffect(() => {
 
@@ -85,44 +80,79 @@ const TabSearchResultsScreen = ({ navigation, restaurants }) => {
     <View>
         <View style={styles.searchView}>
             <Image  style={styles.image} source={logo}/>
-            <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text></Text>
-                <View style={styles.searchForm}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(input) => setPartySize(input)}
-                        value={partySize}
-                        placeholder="party size eg. 4"
-                        keyboardType='numeric'
-                        />
-                    <Pressable style={styles.buttonDark} onPress={() => setOpen(true)}>
-                        <Text style={styles.buttonTextLight} >Select date/time</Text>
-                    </Pressable>
-                    <DatePicker
-                        modal
-                        open={open}
-                        date={date}
-                        onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
-                        onCancel={() => { setOpen(false)}}
-                    />
-                    <Pressable style={styles.button} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>Find Restaurants</Text>
-                    </Pressable>
-                </View>
+
+            {/* 
+            TODO 
+            - Text is used in TabHomeScreen.js, make component
+            - Move appropriate StyleSheet objects 
+            */}
+            <Text style={styles.baseText}>
+                Scran<Text style={styles.innerText}>Scanner</Text>
+            </Text>
+
+            {/* 
+            TODO 
+            - Move to component, SearchForm.js 
+            - Move handleSubmit() along with jsx
+            - Move appropriate StyleSheet objects
+            - Determine which piece of code is creating unique results 
+                - handleSubmit() or useEffect()
+                - 90% sure its the useEffect() atm, should probably be the other way around
+            
+            */}
+            <View style={styles.searchForm}>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={ (input) => setPartySize(input) }
+                    value={partySize}
+                    placeholder="party size eg. 4"
+                    keyboardType='numeric'
+                />
+
+                <Pressable 
+                    style={styles.buttonDark} 
+                    onPress={() => setOpen(true)}>
+                        <Text style={styles.buttonTextLight} >
+                            Select date/time
+                        </Text>
+                </Pressable>
+
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
+                    onCancel={() => { setOpen(false)}}
+                />
+                
+                <Pressable 
+                    style={styles.button} 
+                    onPress={handleSubmit}>
+                        <Text style={styles.buttonText}>
+                            Find Restaurants
+                        </Text>
+                </Pressable>
+            </View>
         </View>
         
-                <ScrollView>
-                    <View>
-                        {searchNodes}
-                    </View>
-                </ScrollView>
+        <ScrollView>
+            {/* 
+            TODO
+            - Move to component SearchResults.js
+            - Move alongside .map() from useEffect()
+            - Move appropriate StyleSheet objects
+             */}
+            <View>
+                {searchNodes}
+            </View>
+        </ScrollView>
 
-        </View>
+    </View>
 
 
     );
     }
 
-    //! DONE
     
     const styles = StyleSheet.create({
     pinkUnderLine : {
