@@ -19,12 +19,6 @@ const TabHomeScreen = ({ navigation }) => {
         height: 200
     };
 
-    const RestoImage = {
-        uri: restaurants.imageURL,
-        resizeMode: 'cover',
-        height: 100
-    };
-
     useEffect(() => {
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
