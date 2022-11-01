@@ -23,10 +23,10 @@ export const getRestaurantById = async (id) => {
   }
 }
 
-export const getSearchResults = async (partySize, date, time) => {
+export const getSearchResults = async (partySize, datetime) => {
   try {
-    const formattedDate = moment(date).format('YYYY-MM-DD')
-    const formattedTime = moment(time).format('HH:mm')
+    const formattedDate = moment(datetime).format('YYYY-MM-DD')
+    const formattedTime = moment(datetime).format('HH:mm')
 
     const res = await fetch(baseURL + 'filtered/?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
     return res.json();

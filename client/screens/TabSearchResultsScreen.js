@@ -1,79 +1,38 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableOpacity, StyleSheet, View, Text, SafeAreaView, TextInput, Pressable, ScrollView, Image } from 'react-native';
-import DatePicker from 'react-native-date-picker'
+import {useState} from 'react';
+import {StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+
 import { getSearchResults } from '../services/RestaurantService';
-import moment from 'moment';
 import logo from '../assets/scranscanner-icon-dark.png'
+import SearchForm from '../components/SearchForm';
+import SearchResults from '../components/SearchResults';
 
 
 const TabSearchResultsScreen = ({ navigation }) => {
 
-    const [partySize, setPartySize] = React.useState("");
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
-    const [open, setOpen] = useState(false);
-    const [searchResults, setSearchResults] = React.useState([]);
-    const [searchNodes, setSearchNodes] = React.useState([]);
     
-    function handleSubmit(event) {
-        event.preventDefault();
-        getSearchResults(partySize, date, time)
-        .then((returnedResults) => {
-            const uniqueResults = [... new Set(returnedResults)]
-            setSearchResults(uniqueResults);
+    const [searchResults, setSearchResults] = useState(null);
+    const [formParams, setFormParams] = useState({});
+
+    const handleSearch = async (partySize, datetime) => {
+
+        const searchResults = await getSearchResults(partySize, datetime);
+
+        const uniqueIds = [];
+
+        const uniqueResults = await searchResults.filter( (restaurant) => {
+            if(!uniqueIds.includes(restaurant.id)){
+                uniqueIds.push(restaurant.id);
+                return restaurant;
+            }
+        });
+
+        setFormParams({
+            partySize: partySize,
+            datetime: datetime,
         })
+        
+        setSearchResults(uniqueResults);
     }
-    
-    const formattedDate = moment(date).format('YYYY-MM-DD')
-    const formattedTime = moment(date).format('HH:mm')
-
-    useEffect(() => {
-
-            // filters through all objects, removing the duplicates with same restaurant.id
-            
-            const uniqueIds = [];
-
-            let result = searchResults.filter( (restaurant) => {
-                if(!uniqueIds.includes(restaurant.id)){
-                    uniqueIds.push(restaurant.id);
-                    return restaurant;
-                }
-            });
-
-            const searchNodes = result.map((searchResult, index) => { 
-                const RestoImage = {
-                    uri: searchResult.imageURL,
-                    width: 320,
-                    height: 180,
-                };
-                return (
-
-                    // Params passed to RestaurantScreen route.
-                    <View>
-                    <TouchableOpacity
-                    onPress={
-                        () => navigation.navigate(
-                            // params are stringified above (not objects)
-                            'Restaurant', { 
-                                restaurantId: searchResult.id, 
-                                partysize: partySize, 
-                                date: formattedDate, 
-                                time: formattedTime 
-                            })}
-                    >
-                    <View style={styles.restoPreview}>
-                        <Image style={styles.previewImage} source={RestoImage}/>
-                        <Text id={searchResult.id} key={index} style={styles.textH3Dark}>{searchResult.displayName}</Text>
-                        <Text style={styles.paraDark}>{searchResult.description}</Text> 
-                        <View style={styles.pinkUnderLine}/>
-                    </View>
-                    </TouchableOpacity>
-                    </View>
-                
-                );
-                })
-                setSearchNodes(searchNodes)
-    }, [searchResults])
 
     return (
 
@@ -90,61 +49,28 @@ const TabSearchResultsScreen = ({ navigation }) => {
                 Scran<Text style={styles.innerText}>Scanner</Text>
             </Text>
 
-            {/* 
-            TODO 
-            - Move to component, SearchForm.js 
-            - Move handleSubmit() along with jsx
-            - Move appropriate StyleSheet objects
-            - Determine which piece of code is creating unique results 
-                - handleSubmit() or useEffect()
-                - 90% sure its the useEffect() atm, should probably be the other way around
-            
-            */}
-            <View style={styles.searchForm}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={ (input) => setPartySize(input) }
-                    value={partySize}
-                    placeholder="party size eg. 4"
-                    keyboardType='numeric'
-                />
+            <SearchForm
+                handleSearch={handleSearch}
+            />
 
-                <Pressable 
-                    style={styles.buttonDark} 
-                    onPress={() => setOpen(true)}>
-                        <Text style={styles.buttonTextLight} >
-                            Select date/time
-                        </Text>
-                </Pressable>
-
-                <DatePicker
-                    modal
-                    open={open}
-                    date={date}
-                    onConfirm={(date) => {setOpen(false), setDate(date), setTime(date)}}
-                    onCancel={() => { setOpen(false)}}
-                />
-                
-                <Pressable 
-                    style={styles.button} 
-                    onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>
-                            Find Restaurants
-                        </Text>
-                </Pressable>
-            </View>
         </View>
         
         <ScrollView>
-            {/* 
-            TODO
-            - Move to component SearchResults.js
-            - Move alongside .map() from useEffect()
-            - Move appropriate StyleSheet objects
-             */}
-            <View>
-                {searchNodes}
-            </View>
+
+            {searchResults?
+
+            <SearchResults
+                navigation={navigation}
+                searchResults={searchResults}
+                formParams={formParams}
+            />
+
+            :
+
+            null
+
+            }
+            
         </ScrollView>
 
     </View>
@@ -198,9 +124,7 @@ const TabSearchResultsScreen = ({ navigation }) => {
         color: 'black',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-SemiBold',
     },
-    searchForm: {
-        paddingTop: 20,
-    }, 
+     
     input: {
         height: 40,
         marginTop: 8,

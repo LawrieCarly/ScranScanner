@@ -25,8 +25,10 @@ const RestaurantScreen = ({ navigation, route }) => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
 
-        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partySize, route.params.datetime)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
+
+        console.log("avails", filteredAvailablitiesOfRestaurant)
     }, [IsFocused]);
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works

@@ -11,19 +11,22 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
+    const chanterId = '58'
+
     useEffect(() => {
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
     }, []);
 
     useEffect(() => {
+        
+
         getRestaurantById(chanterId)
         .then((returnedResults) => {
             setHightlightedResto(returnedResults);
         })
     }, []);
 
-    const chanterId = '53'
 
     const highlightedRestoImage = {
         uri: highlightedResto.imageURL,
@@ -31,8 +34,7 @@ const TabHomeScreen = ({ navigation }) => {
         height: 200
     };
 
-    let current_date = moment().format('YYYY-MM-DD')
-    let current_time = moment().format('HH:mm')
+    let preset_datetime = new Date('2022-10-01T12:00:00');
 
     return (
         <SafeAreaView >
@@ -72,9 +74,8 @@ const TabHomeScreen = ({ navigation }) => {
                                 // params are stringified above (not objects)
                                 'Restaurant', { 
                                     restaurantId: chanterId, 
-                                    partysize: 2, 
-                                    date: current_date, 
-                                    time: current_time 
+                                    partySize: 2, 
+                                    datetime: preset_datetime, 
                                 }
                             )}>
                             <Text style={styles.textH3Dark}>
