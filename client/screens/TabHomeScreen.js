@@ -11,14 +11,6 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
-    const chanterId = '53'
-
-    const highlightedRestoImage = {
-        uri: highlightedResto.imageURL,
-        width: 350,
-        height: 200
-    };
-
     useEffect(() => {
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
@@ -31,6 +23,13 @@ const TabHomeScreen = ({ navigation }) => {
         })
     }, []);
 
+    const chanterId = '53'
+
+    const highlightedRestoImage = {
+        uri: highlightedResto.imageURL,
+        width: 350,
+        height: 200
+    };
 
     let current_date = moment().format('YYYY-MM-DD')
     let current_time = moment().format('HH:mm')
@@ -93,7 +92,7 @@ const TabHomeScreen = ({ navigation }) => {
                         </Text>
 
                         <View style={styles.pinkUnderLine}/>
-                        
+
                         <FilteredRestaurants restaurants={restaurants}/>
                     </View>
                 </View>
