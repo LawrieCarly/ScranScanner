@@ -7,7 +7,7 @@ import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 
 
-const TabSearchResultsScreen = ({ navigation }) => {
+const TabSearchScreen = ({ navigation }) => {
 
     
     const [searchResults, setSearchResults] = useState(null);
@@ -156,4 +156,4 @@ const TabSearchResultsScreen = ({ navigation }) => {
     },
     });
 
-export default TabSearchResultsScreen;
+export default TabSearchScreen;

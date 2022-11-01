@@ -8,7 +8,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 
 import TabHomeScreen from './screens/TabHomeScreen';
-import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
+import TabSearchScreen from './screens/TabSearchScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
@@ -96,7 +96,7 @@ export default function App() {
             />
             <Tab.Screen 
               name="Search" 
-              component={TabSearchResultsScreen} 
+              component={TabSearchScreen} 
               options={
                 { tabBarIcon:() => (
                   <Icon 
