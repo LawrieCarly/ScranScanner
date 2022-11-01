@@ -40,46 +40,63 @@ const TabHomeScreen = ({ navigation }) => {
 
             <ScrollView>
                 <View style={styles.mainView}>
-                        <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
 
-                        
-                        <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text>
-                        </Text>
-                        <Text style={styles.textH2}>Feeling peckish?</Text>
+                    <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
 
+                    <Text style={styles.baseText}>
+                        Scran<Text style={styles.innerText}>Scanner</Text>
+                    </Text>
 
+                    <Text style={styles.textH2}>
+                        Feeling peckish?
+                    </Text>
+
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={ () => navigation.navigate(
+                            'Search', { 
+                                screen: 'SearchScreen' 
+                            }
+                        )}>
+                        <Text style={styles.ButtonText}>Find a table</Text>
+                    </TouchableOpacity>
+
+                </View>
+
+                <View style={styles.homeFeatures}>
+
+                    <Text style={styles.textH2Dark}>Pick of the month</Text>
+
+                    <View style={styles.pinkUnderLine}/>
                         <TouchableOpacity
-                            style={styles.button}
-                            onPress={
-                            () => navigation.navigate(
-                                'Search', { screen: 'SearchScreen' }
-                            )}>
-                            <Text style={styles.ButtonText}>Find a table</Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={styles.homeFeatures}>
-                            <Text style={styles.textH2Dark}>Pick of the month</Text>
-                            <View style={styles.pinkUnderLine}/>
-                            <TouchableOpacity
-                            onPress={
-                            () => navigation.navigate(
+                            onPress={ () => navigation.navigate(
                                 // params are stringified above (not objects)
                                 'Restaurant', { 
                                     restaurantId: chanterId, 
                                     partysize: 2, 
                                     date: current_date, 
                                     time: current_time 
-                                })}>
-                                <Text style={styles.textH3Dark}>{highlightedResto.displayName}</Text>
-                                <Text style={styles.paraDark}>{highlightedResto.description}</Text>
-                                <Image source={highlightedRestoImage}/>
-                            </TouchableOpacity>
-                            <View style={styles.featuredRestos}>
-                                <Text style={styles.textH2Dark}>Available now!</Text>
-                                <View style={styles.pinkUnderLine}/>
-                                <FilteredRestaurants restaurants={restaurants}/>
-                            </View>
-                        </View>
+                                }
+                            )}>
+                            <Text style={styles.textH3Dark}>
+                                {highlightedResto.displayName}
+                            </Text>
+                            <Text style={styles.paraDark}>
+                                {highlightedResto.description}
+                            </Text>
+                            <Image source={highlightedRestoImage}/>
+                        </TouchableOpacity>
+                    <View style={styles.featuredRestos}>
+
+                        <Text style={styles.textH2Dark}>
+                            Available now!
+                        </Text>
+
+                        <View style={styles.pinkUnderLine}/>
+                        
+                        <FilteredRestaurants restaurants={restaurants}/>
+                    </View>
+                </View>
             </ScrollView>
         </SafeAreaView>
 
