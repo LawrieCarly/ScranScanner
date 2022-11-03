@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { View, StyleSheet, TextInput, Pressable, Text } from 'react-native';
 import DatePicker from 'react-native-date-picker'
 
-
+// Called in TabSearchScreen
 const SearchForm = ({handleSearch}) => {
 
     const [partySize, setPartySize] = useState("");
@@ -12,11 +12,16 @@ const SearchForm = ({handleSearch}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
+        // Defined in TabSearchScreen
+        // - Sets formParams state
+        // - Gets searchResults
         handleSearch(partySize, datetime);
         }
 
     return(
         <View style={styles.searchForm}>
+
+                {/* Input for partySize */}
                 <TextInput
                     style={styles.input}
                     onChangeText={ (input) => setPartySize(input) }
@@ -25,6 +30,8 @@ const SearchForm = ({handleSearch}) => {
                     keyboardType='numeric'
                 />
 
+
+                {/* Button to open DatePicker */}
                 <Pressable 
                     style={styles.buttonDark} 
                     onPress={() => setOpen(true)}>
@@ -33,6 +40,7 @@ const SearchForm = ({handleSearch}) => {
                         </Text>
                 </Pressable>
 
+                {/* Input for datetime */}
                 <DatePicker
                     modal
                     open={open}
@@ -41,6 +49,7 @@ const SearchForm = ({handleSearch}) => {
                     onCancel={() => { setOpen(false)}}
                 />
                 
+                {/* Submit */}
                 <Pressable 
                     style={styles.button} 
                     onPress={handleSubmit}>
