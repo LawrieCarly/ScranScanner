@@ -1,33 +1,34 @@
-const baseURL = 'http://192.168.7.212:8080/customers/';
+import REACT_APP_DEV_IP from './constant';
 
-export async function getCustomerById(id) {
+const baseURL = `http://${REACT_APP_DEV_IP}:8080/customers/`;
+
+export const getCustomerById = async (id) => {
     try {
-    const data = await fetch(baseURL + id);
-    return data.json();
-    } catch (error) {
+        const data = await fetch(baseURL + id);
+        return data.json();
+    } 
+    catch (error) {
         console.error(error);
-        }
+    }
 }
 
-
-export const getCustomerByEmail = (email) => {
+export const getCustomerByEmail = async (email) => {
     try {
-    console.log(email);
-    return fetch(baseURL + 'byEmail/' + email)
-        .then(res => res.json());
-    } catch (error) {
+        const data = await fetch(baseURL + 'byEmail/' + email);
+        return data.json();
+    } 
+    catch (error) {
         console.error(error);
-        }
+    }
 
 }
 
-export const addRestaurantToCustomerFavourites = (customerId, restaurantId) => {
+export const addRestaurantToCustomerFavourites = async (customerId, restaurantId) => {
     try {
-    return fetch(baseURL + customerId + '/restaurant/' + restaurantId,{
-        method: "PATCH"
-    })
-        .then(res => res.json());
-    } catch (error) {
+        const data = await fetch(baseURL + customerId + '/restaurant/' + restaurantId, {method: "PATCH"});
+        return data.json();
+    } 
+    catch (error) {
         console.error(error);
-        }
+    }
 }

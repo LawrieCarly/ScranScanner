@@ -8,7 +8,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 
 import TabHomeScreen from './screens/TabHomeScreen';
-import TabSearchResultsScreen from './screens/TabSearchResultsScreen';
+import TabSearchScreen from './screens/TabSearchScreen';
 import ReservationsScreen from './screens/ReservationsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
@@ -81,13 +81,57 @@ export default function App() {
       <>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor:"#F38599" }}>
-            <Tab.Screen name="Home" component={TabHomeScreen} options={{ tabBarIcon:() => (<Icon name="home" size={18} color="#27233A" />)  }}/>
-            <Tab.Screen name="Search" component={TabSearchResultsScreen} options={{ tabBarIcon:() => (<Icon name="search" size={18} color="#27233A" />)  }} />
-            <Tab.Screen name="Profile" component={MyTabsScreen} options={{ tabBarIcon:() => (<Icon name="account-circle" size={18} color="#27233A" />)  }} />
+            <Tab.Screen 
+              name="Home" 
+              component={TabHomeScreen} 
+              options={
+                { tabBarIcon:() => (
+                  <Icon 
+                    name="home" 
+                    size={18} 
+                    color="#27233A" 
+                  />)
+                }
+              }
+            />
+            <Tab.Screen 
+              name="Search" 
+              component={TabSearchScreen} 
+              options={
+                { tabBarIcon:() => (
+                  <Icon 
+                    name="search" 
+                    size={18} 
+                    color="#27233A" 
+
+                  />)
+                }
+              } 
+            />
+            <Tab.Screen 
+              name="Profile" 
+              component={MyTabsScreen} 
+              options={
+                { tabBarIcon:() => (
+                  <Icon 
+                    name="account-circle" 
+                    size={18} 
+                    color="#27233A"
+                  />)  
+                }
+              } 
+            />
             
             {/* Below component is hidden in from bottom tab navigator */}
-            <Tab.Screen name="Restaurant" component={RestaurantScreen} 
-              options={{tabBarButton: ()=> null,tabBarVisible: false,}}   
+            <Tab.Screen 
+              name="Restaurant" 
+              component={RestaurantScreen} 
+              options={
+                { 
+                tabBarButton: () => null,
+                tabBarVisible: false,
+                }
+              }   
             />
         </Tab.Navigator>
       </NavigationContainer>

@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
-import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
-
-
-
+import React from 'react';
+import { Text, View, StyleSheet, SafeAreaView} from 'react-native';
 
 const RestaurantReviews = ({restaurantById}) => {
 
     return (
-
-    
         <SafeAreaView>
         <View>
         <Text style={styles.textH3Dark}>Reviews:</Text>
@@ -25,9 +20,7 @@ const RestaurantReviews = ({restaurantById}) => {
 
     
         </View>
-        </SafeAreaView>
-
-    
+        </SafeAreaView> 
     )};
 
 

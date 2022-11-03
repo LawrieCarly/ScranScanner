@@ -1,31 +1,37 @@
-const baseURL = 'http://192.168.7.212:8080/restaurants/';
-const baseURLAvailabilities = 'http://192.168.7.212:8080/availabilities/restaurant/';
+import REACT_APP_DEV_IP from './constant';
+import moment from 'moment';
 
+const baseURL = `http://${REACT_APP_DEV_IP}:8080/restaurants/`;
 
-
-export async function getRestaurantById(id) {
+export const getRestaurants = async () => {
   try {
-  const data = await fetch(baseURL + id);
-  return data.json()
-  } catch (error) {
+    res = await fetch(baseURL)
+    return res.json();
+  } 
+  catch (error) {
     console.error(error);
     }
 }
 
-export async function getFilteredAvailablitiesOfRestaurant(restaurantId, partySize, date, time) {
+export const getRestaurantById = async (id) => {
   try {
-  const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?partySize=' + partySize +'&date=' + date + '&time=' + time);
-  return data.json() 
-  } catch (error) {
+    const res = await fetch(baseURL + id);
+    return res.json()
+  } 
+  catch (error) {
     console.error(error);
   }
-
 }
-export async function getAllAvailablitiesOfRestaurant(restaurantId, date) {
+
+export const getSearchResults = async (partySize, datetime) => {
   try {
-  const data = await fetch(baseURLAvailabilities + restaurantId + '/filtered?date=' + date);
-  return data.json() 
-  } catch (error) {
+    const formattedDate = moment(datetime).format('YYYY-MM-DD')
+    const formattedTime = moment(datetime).format('HH:mm')
+
+    const res = await fetch(baseURL + 'filtered/?partySize=' + partySize +'&date=' + formattedDate + '&time=' + formattedTime)
+    return res.json();
+  } 
+  catch (error) {
     console.error(error);
-  }
+    }   
 }

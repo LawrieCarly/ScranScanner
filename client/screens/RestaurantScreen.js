@@ -1,12 +1,13 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, Image, ScrollView, Alert} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { getRestaurantById, getFilteredAvailablitiesOfRestaurant } from '../services/RestaurantService';
+import { getRestaurantById } from '../services/RestaurantService';
+import { getFilteredAvailablitiesOfRestaurant } from '../services/AvailabilityService';
 import { postBooking } from '../services/BookingService';
 import RestaurantDetails from '../components/RestaurantDetails';
 import RestaurantReviews from '../components/RestaurantReviews';
 import AppContext from '../components/AppContext'
-import logo from './scranscanner-icon-dark.png'
+import logo from '../assets/scranscanner-icon-dark.png'
 import moment from 'moment';
 
 
@@ -20,13 +21,16 @@ const RestaurantScreen = ({ navigation, route }) => {
 
     //* useEffect #1 - uses route params id passed from search screen to get RestaurantById
 
-    useEffect( () => {
+    useEffect(() => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
-        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partysize, route.params.date, route.params.time)
+
+        // Gets Availability objects based on params input in SearchForm, passed by SearchResultItem
+        getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partySize, route.params.datetime)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
-    }, 
-    [IsFocused]);
+
+        console.log("avails", filteredAvailablitiesOfRestaurant)
+    }, [IsFocused]);
             
     //* Cleanup UseEffect, seems to remove the double dates we were getting, but not sure it works
     

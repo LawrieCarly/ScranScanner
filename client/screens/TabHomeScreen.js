@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} from 'react-native';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
-import { getRestaurants } from '../services/SearchService'
+import { getRestaurants } from '../services/RestaurantService'
 import { getRestaurantById } from '../services/RestaurantService';
-import logo from './scranscanner-icon-white.png'
+import logo from '../assets/scranscanner-icon-white.png'
 import moment from 'moment';
 
 const TabHomeScreen = ({ navigation }) => {
@@ -11,19 +11,7 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState([])
     const [highlightedResto, setHightlightedResto] = useState({})
 
-    const chanterId = '14'
-
-    const highlightedRestoImage = {
-        uri: highlightedResto.imageURL,
-        width: 350,
-        height: 200
-    };
-
-    const RestoImage = {
-        uri: restaurants.imageURL,
-        resizeMode: 'cover',
-        height: 100
-    };
+    const chanterId = '58'
 
     useEffect(() => {
         getRestaurants()
@@ -31,6 +19,8 @@ const TabHomeScreen = ({ navigation }) => {
     }, []);
 
     useEffect(() => {
+        
+
         getRestaurantById(chanterId)
         .then((returnedResults) => {
             setHightlightedResto(returnedResults);
@@ -38,54 +28,75 @@ const TabHomeScreen = ({ navigation }) => {
     }, []);
 
 
-    let current_date = moment().format('YYYY-MM-DD')
-    let current_time = moment().format('HH:mm')
+    const highlightedRestoImage = {
+        uri: highlightedResto.imageURL,
+        width: 350,
+        height: 200
+    };
+
+    let preset_datetime = new Date('2022-10-01T12:00:00');
 
     return (
         <SafeAreaView >
 
             <ScrollView>
                 <View style={styles.mainView}>
-                        <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
 
-                        
-                        <Text style={styles.baseText}>Scran<Text style={styles.innerText}>Scanner</Text>
-                        </Text>
-                        <Text style={styles.textH2}>Feeling peckish?</Text>
+                    <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
 
+                    <Text style={styles.baseText}>
+                        Scran<Text style={styles.innerText}>Scanner</Text>
+                    </Text>
 
+                    <Text style={styles.textH2}>
+                        Feeling peckish?
+                    </Text>
+
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={ () => navigation.navigate(
+                            'Search', { 
+                                screen: 'SearchScreen' 
+                            }
+                        )}>
+                        <Text style={styles.ButtonText}>Find a table</Text>
+                    </TouchableOpacity>
+
+                </View>
+
+                <View style={styles.homeFeatures}>
+
+                    <Text style={styles.textH2Dark}>Pick of the month</Text>
+
+                    <View style={styles.pinkUnderLine}/>
                         <TouchableOpacity
-                            style={styles.button}
-                            onPress={
-                            () => navigation.navigate(
-                                'Search', { screen: 'SearchScreen' }
-                            )}>
-                            <Text style={styles.ButtonText}>Find a table</Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={styles.homeFeatures}>
-                            <Text style={styles.textH2Dark}>Pick of the month</Text>
-                            <View style={styles.pinkUnderLine}/>
-                            <TouchableOpacity
-                            onPress={
-                            () => navigation.navigate(
+                            onPress={ () => navigation.navigate(
                                 // params are stringified above (not objects)
                                 'Restaurant', { 
                                     restaurantId: chanterId, 
-                                    partysize: 2, 
-                                    date: current_date, 
-                                    time: current_time 
-                                })}>
-                                <Text style={styles.textH3Dark}>{highlightedResto.displayName}</Text>
-                                <Text style={styles.paraDark}>{highlightedResto.description}</Text>
-                                <Image source={highlightedRestoImage}/>
-                            </TouchableOpacity>
-                            <View style={styles.featuredRestos}>
-                                <Text style={styles.textH2Dark}>Available now!</Text>
-                                <View style={styles.pinkUnderLine}/>
-                                <FilteredRestaurants restaurants={restaurants}/>
-                            </View>
-                        </View>
+                                    partySize: 2, 
+                                    datetime: preset_datetime, 
+                                }
+                            )}>
+                            <Text style={styles.textH3Dark}>
+                                {highlightedResto.displayName}
+                            </Text>
+                            <Text style={styles.paraDark}>
+                                {highlightedResto.description}
+                            </Text>
+                            <Image source={highlightedRestoImage}/>
+                        </TouchableOpacity>
+                    <View style={styles.featuredRestos}>
+
+                        <Text style={styles.textH2Dark}>
+                            Available now!
+                        </Text>
+
+                        <View style={styles.pinkUnderLine}/>
+
+                        <FilteredRestaurants restaurants={restaurants}/>
+                    </View>
+                </View>
             </ScrollView>
         </SafeAreaView>
 
