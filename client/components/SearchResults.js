@@ -3,11 +3,12 @@ import SearchResultItem from "./SearchResultItem";
 
 const SearchResults = ({navigation, searchResults, formParams}) => {
     
+    // Maps over all search results and renders a SearchResultItem
     const searchNodes = searchResults.map((restaurant, index) => { 
         
             return (
-    
-                // Params passed to RestaurantScreen route.
+                
+                // Passes navigation and formParams as props - required for navigating to RestaurantScreen
                 <SearchResultItem
                     restaurant={restaurant}
                     key={index}
@@ -20,18 +21,14 @@ const SearchResults = ({navigation, searchResults, formParams}) => {
             })
     
     return (
-        <View
-            // style={styles.container}
-            >
+        // Renders results as list
+
+        // TODO - Investigate react native list components for accessability
+        <View>
             {searchNodes}
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-    }
-})
 
 export default SearchResults
