@@ -25,6 +25,7 @@ const RestaurantScreen = ({ navigation, route }) => {
         getRestaurantById(route.params.restaurantId)
         .then(returnedResto => setRestaurantById(returnedResto))
 
+        // Gets Availability objects based on params input in SearchForm, passed by SearchResultItem
         getFilteredAvailablitiesOfRestaurant(route.params.restaurantId, route.params.partySize, route.params.datetime)
         .then(returnedAvailabilities => setFilteredAvailablitiesOfRestaurant(returnedAvailabilities))
 
