@@ -111,10 +111,5 @@ public class DinnerTable {
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
     }
-
-
-    public void addAvailability(Availability availability) {
-        this.availabilities.add(availability);
-    }
 }
 
