@@ -14,6 +14,7 @@ const TabHomeScreen = ({ navigation }) => {
     const chanterId = '58'
 
     useEffect(() => {
+        // gets all restaurants to display as 'Available Now!'
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
     }, []);
@@ -21,15 +22,12 @@ const TabHomeScreen = ({ navigation }) => {
     useEffect(() => {
         
 
-        getRestaurantById(chanterId)
-        .then((returnedResults) => {
-            setHightlightedResto(returnedResults);
-        })
+        
     }, []);
 
 
     const highlightedRestoImage = {
-        uri: highlightedResto.imageURL,
+        uri: restaurants[0].imageURL,
         width: 350,
         height: 200
     };
