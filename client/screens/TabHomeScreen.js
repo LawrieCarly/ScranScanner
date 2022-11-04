@@ -14,13 +14,6 @@ const TabHomeScreen = ({ navigation }) => {
             .then(restaurants => setRestaurants(restaurants));
     }, []);
 
-    useEffect(() => {
-        
-
-        
-    }, []);
-
-
     const highlightedRestoImage = {
         uri: restaurants[0].imageURL,
         width: 350,
