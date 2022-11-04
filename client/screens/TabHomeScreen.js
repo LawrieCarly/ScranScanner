@@ -2,16 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} from 'react-native';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
-import { getRestaurantById } from '../services/RestaurantService';
 import logo from '../assets/scranscanner-icon-white.png'
-import moment from 'moment';
 
 const TabHomeScreen = ({ navigation }) => {
         
     const [restaurants, setRestaurants] = useState([])
-    const [highlightedResto, setHightlightedResto] = useState({})
-
-    const chanterId = '58'
 
     useEffect(() => {
         // gets all restaurants to display as 'Available Now!'
@@ -71,7 +66,7 @@ const TabHomeScreen = ({ navigation }) => {
                             onPress={ () => navigation.navigate(
                                 // params are stringified above (not objects)
                                 'Restaurant', { 
-                                    restaurantId: chanterId, 
+                                    restaurantId: restaurants[0].id, 
                                     partySize: 2, 
                                     datetime: preset_datetime, 
                                 }
