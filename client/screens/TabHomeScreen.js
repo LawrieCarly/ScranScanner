@@ -3,6 +3,7 @@ import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} f
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
 import HomeHeader from '../components/HomeHeader';
+import HomeFeaturedRestaurant from '../components/HomeFeaturedRestaurant';
 
 const TabHomeScreen = ({ navigation }) => {
         
@@ -14,14 +15,7 @@ const TabHomeScreen = ({ navigation }) => {
             .then(restaurants => setRestaurants(restaurants));
     }, []);
 
-    // image source for featured restaurant
-    const highlightedRestoImage = {
-        uri: restaurants[0].imageURL,
-        width: 350,
-        height: 200
-    };
-
-    let preset_datetime = new Date('2022-10-01T12:00:00');
+    
 
     return (
         <SafeAreaView >
@@ -35,23 +29,12 @@ const TabHomeScreen = ({ navigation }) => {
                     <Text style={styles.textH2Dark}>Pick of the month</Text>
 
                     <View style={styles.pinkUnderLine}/>
-                        <TouchableOpacity
-                            onPress={ () => navigation.navigate(
-                                // params are stringified above (not objects)
-                                'Restaurant', { 
-                                    restaurantId: restaurants[0].id, 
-                                    partySize: 2, 
-                                    datetime: preset_datetime, 
-                                }
-                            )}>
-                            <Text style={styles.textH3Dark}>
-                                {highlightedResto.displayName}
-                            </Text>
-                            <Text style={styles.paraDark}>
-                                {highlightedResto.description}
-                            </Text>
-                            <Image source={highlightedRestoImage}/>
-                        </TouchableOpacity>
+
+                    <HomeFeaturedRestaurant
+                        restaurant={restaurants[0]}
+                        navigation={navigation}
+                        />
+
                     <View style={styles.featuredRestos}>
 
                         <Text style={styles.textH2Dark}>
