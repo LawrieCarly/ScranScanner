@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} from 'react-native';
+import {StyleSheet,View,Text,SafeAreaView, ScrollView} from 'react-native';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
 import HomeHeader from '../components/HomeHeader';
@@ -10,7 +10,7 @@ const TabHomeScreen = ({ navigation }) => {
     const [restaurants, setRestaurants] = useState(null)
 
     useEffect(() => {
-        // gets all restaurants to display as 'Available Now!'
+        // gets all restaurants to display as 'Available Now'
         getRestaurants()
             .then(restaurants => setRestaurants(restaurants));
     }, []);
@@ -31,6 +31,7 @@ const TabHomeScreen = ({ navigation }) => {
 
                 <View style={styles.pinkUnderLine}/>
 
+                {/* Displays 'Pick of the month' - currently simply the first restaraunt in restaurants */}
                 <HomeFeaturedRestaurant
                     restaurant={restaurants[0]}
                     navigation={navigation}
@@ -71,52 +72,11 @@ const TabHomeScreen = ({ navigation }) => {
     //! DONE
     
     const styles = StyleSheet.create({
-    mainView: {
-        padding: 40,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: '#27233A'
-    },
-    logo: {
-        resizeMode: "contain",
-        height: 100,
-    },
-    baseText: {
-        fontSize: 25,
-        textAlign: 'center',
-        color: 'white',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
-    innerText: {
-        color: '#F38599',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
     pinkUnderLine : {
         height:1,
         width: 100,
         marginBottom: 20,
         backgroundColor: '#F38599'
-    },
-    button: {
-        alignItems: 'center',
-        backgroundColor: '#F38599',
-        borderRadius: 10,
-        padding: 10,
-        width: 300,
-        marginTop: 16,
-    },
-    ButtonText: {
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-        fontSize: 15,
-        color: '#27233A',
-    },
-    textH2: {
-        fontSize: 18,
-        textAlign: 'center',
-        marginTop: 10,
-        color: 'white',
-        fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light',
     },
     textH2Dark: {
         fontSize: 22,
@@ -124,20 +84,6 @@ const TabHomeScreen = ({ navigation }) => {
         marginBottom: 5,
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
-    textH3Dark: {
-        fontSize: 18,
-        textAlign: 'left',
-        marginBottom: 3,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
-    },
-    paraDark: {
-        fontSize: 16,
-        textAlign: 'left',
-        marginBottom: 5,
-        color: '#27233A',
-        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
     },
     homeFeatures: {
         padding: 20,
