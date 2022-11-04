@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet,View,Text,SafeAreaView, ScrollView} from 'react-native';
-import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
 import HomeHeader from '../components/HomeHeader';
 import HomeFeaturedRestaurant from '../components/HomeFeaturedRestaurant';
+import HomeRestaurantList from '../components/HomeRestaurantList';
 
 const TabHomeScreen = ({ navigation }) => {
         
@@ -22,13 +22,16 @@ const TabHomeScreen = ({ navigation }) => {
             {restaurants? 
         
             <ScrollView>
+
+            {/* Header */}
                 
             <HomeHeader/>
+
+            {/* Main content */}
 
             <View style={styles.homeFeatures}>
 
                 <Text style={styles.textH2Dark}>Pick of the month</Text>
-
                 <View style={styles.pinkUnderLine}/>
 
                 {/* Displays 'Pick of the month' - currently simply the first restaraunt in restaurants */}
@@ -38,19 +41,18 @@ const TabHomeScreen = ({ navigation }) => {
                     preset_datetime={preset_datetime}
                     />
 
-                <View style={styles.featuredRestos}>
+                {/* Displays horizontal scroll of all available restaurants */}
 
-                    <Text style={styles.textH2Dark}>
-                        Available now!
-                    </Text>
+                <Text style={styles.textH2Dark}>
+                    Available now!
+                </Text>
+                <View style={styles.pinkUnderLine}/>
 
-                    <View style={styles.pinkUnderLine}/>
-
-                    <FilteredRestaurants 
-                        restaurants={restaurants}
-                        preset_datetime={preset_datetime}
-                        />
-                </View>
+                <HomeRestaurantList 
+                    restaurants={restaurants}
+                    preset_datetime={preset_datetime}
+                    />
+                
             </View>
         </ScrollView>
 
@@ -59,10 +61,7 @@ const TabHomeScreen = ({ navigation }) => {
         null
     
         }
-
-        
-
-            
+ 
         </SafeAreaView>
 
 
@@ -89,8 +88,8 @@ const TabHomeScreen = ({ navigation }) => {
         padding: 20,
         justifyContent: 'flex-start',
     },
-    featuredRestos: {
-        paddingTop: 30,
-    }
+    // featuredRestos: {
+    //     paddingTop: 30,
+    // }
     });
 export default TabHomeScreen;

@@ -13,6 +13,7 @@ const HomeFeaturedRestaurant = ({restaurant, navigation, preset_datetime}) => {
 
     return (
         <TouchableOpacity
+            style={styles.container}
             onPress={ () => navigation.navigate(
                 // params are stringified above (not objects)
                 'Restaurant', { 
@@ -47,6 +48,9 @@ const styles = StyleSheet.create({
         color: '#27233A',
         fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
     },
+    container: {
+        marginBottom: 20
+    }
 })
 
 export default HomeFeaturedRestaurant;
