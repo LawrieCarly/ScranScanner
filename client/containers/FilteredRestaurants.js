@@ -1,32 +1,26 @@
 import React from 'react';
 import { Image, ScrollView, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import moment from 'moment';
 
 
-let current_date = moment().format('YYYY-MM-DD')
-let current_time = moment().format('HH:mm')
-
-
-const FilteredRestaurants = ({restaurants, route}) => {
+const FilteredRestaurants = ({restaurants, preset_datetime}) => {
 
   const navigation = useNavigation();
 
-const restaurantNodes = restaurants.map((restaurant, index) => { 
-  const RestoImage = {
-    uri: restaurant.imageURL,
-    width: 250,
-    height: 150
-  };
+  const restaurantNodes = restaurants.map((restaurant, index) => { 
+    const RestoImage = {
+      uri: restaurant.imageURL,
+      width: 250,
+      height: 150
+    };
   return ( 
     <TouchableOpacity key={index} index={index}
     onPress={
       () => navigation.navigate(
         'Restaurant', { 
             restaurantId: restaurant.id, 
-            partysize: 2, 
-            date: current_date, 
-            time: current_time 
+            partySize: 2, 
+            datetime: preset_datetime,
         })}
           >
 

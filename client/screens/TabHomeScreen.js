@@ -7,7 +7,7 @@ import HomeFeaturedRestaurant from '../components/HomeFeaturedRestaurant';
 
 const TabHomeScreen = ({ navigation }) => {
         
-    const [restaurants, setRestaurants] = useState([])
+    const [restaurants, setRestaurants] = useState(null)
 
     useEffect(() => {
         // gets all restaurants to display as 'Available Now!'
@@ -15,38 +15,53 @@ const TabHomeScreen = ({ navigation }) => {
             .then(restaurants => setRestaurants(restaurants));
     }, []);
 
-    
+    let preset_datetime = new Date('2022-10-01T12:00:00');
 
     return (
         <SafeAreaView >
-
+            {restaurants? 
+        
             <ScrollView>
                 
-                <HomeHeader/>
+            <HomeHeader/>
 
-                <View style={styles.homeFeatures}>
+            <View style={styles.homeFeatures}>
 
-                    <Text style={styles.textH2Dark}>Pick of the month</Text>
+                <Text style={styles.textH2Dark}>Pick of the month</Text>
+
+                <View style={styles.pinkUnderLine}/>
+
+                <HomeFeaturedRestaurant
+                    restaurant={restaurants[0]}
+                    navigation={navigation}
+                    preset_datetime={preset_datetime}
+                    />
+
+                <View style={styles.featuredRestos}>
+
+                    <Text style={styles.textH2Dark}>
+                        Available now!
+                    </Text>
 
                     <View style={styles.pinkUnderLine}/>
 
-                    <HomeFeaturedRestaurant
-                        restaurant={restaurants[0]}
-                        navigation={navigation}
+                    <FilteredRestaurants 
+                        restaurants={restaurants}
+                        preset_datetime={preset_datetime}
                         />
-
-                    <View style={styles.featuredRestos}>
-
-                        <Text style={styles.textH2Dark}>
-                            Available now!
-                        </Text>
-
-                        <View style={styles.pinkUnderLine}/>
-
-                        <FilteredRestaurants restaurants={restaurants}/>
-                    </View>
                 </View>
-            </ScrollView>
+            </View>
+        </ScrollView>
+
+        :
+    
+        null
+    
+        }
+
+        
+
+            
         </SafeAreaView>
 
 

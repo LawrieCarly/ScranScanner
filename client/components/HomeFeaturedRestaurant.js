@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text, Image, StyleSheet } from "react-native"
 
-const HomeFeaturedRestaurant = ({restaurant, navigation}) => {
+const HomeFeaturedRestaurant = ({restaurant, navigation, preset_datetime}) => {
 
     // image source for featured restaurant
     const restaurantImage = {
@@ -9,7 +9,7 @@ const HomeFeaturedRestaurant = ({restaurant, navigation}) => {
         height: 200
     };
 
-    let preset_datetime = new Date('2022-10-01T12:00:00');
+    
 
     return (
         <TouchableOpacity

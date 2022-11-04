@@ -76,6 +76,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Light',
     },
+    logo: {
+        resizeMode: "contain",
+        height: 100,
+    },
 })
 
 export default HomeHeader;
