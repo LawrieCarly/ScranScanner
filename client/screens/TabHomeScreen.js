@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {TouchableOpacity,StyleSheet,View,Text,SafeAreaView, ScrollView, Image} from 'react-native';
 import FilteredRestaurants from '../containers/FilteredRestaurants';
 import { getRestaurants } from '../services/RestaurantService'
-import logo from '../assets/scranscanner-icon-white.png'
+import HomeHeader from '../components/HomeHeader';
 
 const TabHomeScreen = ({ navigation }) => {
         
@@ -28,6 +28,7 @@ const TabHomeScreen = ({ navigation }) => {
 
             <ScrollView>
                 
+                <HomeHeader/>
 
                 <View style={styles.homeFeatures}>
 

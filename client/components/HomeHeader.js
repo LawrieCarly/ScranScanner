@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import logo from '../assets/scranscanner-icon-white.png'
 
 const HomeHeader = () => {
     return (
