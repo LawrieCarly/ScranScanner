@@ -1,7 +1,11 @@
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import logo from '../assets/scranscanner-icon-white.png'
 
 const HomeHeader = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.mainView}>
 

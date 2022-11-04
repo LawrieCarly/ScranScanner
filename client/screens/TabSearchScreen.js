@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import {useState, useEffect} from 'react';
+import {StyleSheet, View, Text, ScrollView, Image, SafeAreaView } from 'react-native';
 
 import { getSearchResults } from '../services/RestaurantService';
 import logo from '../assets/scranscanner-icon-dark.png'
@@ -12,6 +12,15 @@ const TabSearchScreen = ({ navigation }) => {
     
     const [searchResults, setSearchResults] = useState(null);
     const [formParams, setFormParams] = useState({});
+
+    useEffect(() => {
+        // cleans search result when navigating away from screen
+        const cleanState = navigation.addListener('blur', () => {
+            setSearchResults(null)
+            });
+    
+        return cleanState;
+    }, [navigation]);
 
     const handleSearch = async (partySize, datetime) => {
 
@@ -36,7 +45,7 @@ const TabSearchScreen = ({ navigation }) => {
 
     return (
 
-    <View>
+    <SafeAreaView>
         <View style={styles.searchView}>
             <Image  style={styles.image} source={logo}/>
 
@@ -73,7 +82,7 @@ const TabSearchScreen = ({ navigation }) => {
             
         </ScrollView>
 
-    </View>
+    </SafeAreaView>
 
 
     );
