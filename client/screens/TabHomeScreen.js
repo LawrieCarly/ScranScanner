@@ -14,6 +14,7 @@ const TabHomeScreen = ({ navigation }) => {
             .then(restaurants => setRestaurants(restaurants));
     }, []);
 
+    // image source for featured restaurant
     const highlightedRestoImage = {
         uri: restaurants[0].imageURL,
         width: 350,
@@ -26,29 +27,7 @@ const TabHomeScreen = ({ navigation }) => {
         <SafeAreaView >
 
             <ScrollView>
-                <View style={styles.mainView}>
-
-                    <Image style={styles.logo} source={logo} alt={"ScranScanner logo"}/>
-
-                    <Text style={styles.baseText}>
-                        Scran<Text style={styles.innerText}>Scanner</Text>
-                    </Text>
-
-                    <Text style={styles.textH2}>
-                        Feeling peckish?
-                    </Text>
-
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={ () => navigation.navigate(
-                            'Search', { 
-                                screen: 'SearchScreen' 
-                            }
-                        )}>
-                        <Text style={styles.ButtonText}>Find a table</Text>
-                    </TouchableOpacity>
-
-                </View>
+                
 
                 <View style={styles.homeFeatures}>
 
