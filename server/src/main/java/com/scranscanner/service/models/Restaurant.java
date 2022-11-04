@@ -176,16 +176,4 @@ public class Restaurant extends User {
     }
 
 
-    //    public List<Availability> getSearchedAvailabilities() {
-//        return searchedAvailabilities;
-//    }
-
-//    public void setSearchedAvailabilities(List<Availability> searchedAvailabilities) {
-//        this.searchedAvailabilities = searchedAvailabilities;
-//    }
-//
-//    public void addSearchedAvailabilities(List<Availability> availabilities) {
-//        this.searchedAvailabilities.addAll(availabilities);
-//    }
-
 }

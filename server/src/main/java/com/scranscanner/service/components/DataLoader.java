@@ -169,24 +169,21 @@ public class DataLoader implements ApplicationRunner {
         List<Availability> palmyraAvailTable1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1200, palmyraTable1);
         for(Availability availability: palmyraAvailTable1){
             availabilityRepository.save(availability);
-            palmyraTable1.addAvailability(availability);
-            dinnerTableRepository.save(palmyraTable1);}
+        }
 
         DinnerTable palmyraTable2 = new DinnerTable(2,4,PriorityType.MEDIUM,palmyra);
         dinnerTableRepository.save(palmyraTable2);
         List<Availability> palmyraAvailTable2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1215, palmyraTable2);
         for(Availability availability: palmyraAvailTable2){
             availabilityRepository.save(availability);
-            palmyraTable2.addAvailability(availability);
-            dinnerTableRepository.save(palmyraTable2);}
+        }
 
         DinnerTable palmyraTable3 = new DinnerTable(3,6,PriorityType.HIGH,palmyra);
         dinnerTableRepository.save(palmyraTable3);
         List<Availability> palmyraAvailTable3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1230, palmyraTable3);
         for(Availability availability: palmyraAvailTable3){
             availabilityRepository.save(availability);
-            palmyraTable3.addAvailability(availability);
-            dinnerTableRepository.save(palmyraTable3);}
+        }
 
         // details for rest 2 - Six By Nico
 
@@ -210,24 +207,21 @@ public class DataLoader implements ApplicationRunner {
         List<Availability> sixByNicoAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1200, sixByNicoTable1);
         for(Availability availability: sixByNicoAvail1){
             availabilityRepository.save(availability);
-            sixByNicoTable1.addAvailability(availability);
-            dinnerTableRepository.save(sixByNicoTable1);}
+        }
 
         DinnerTable sixByNicoTable2 = new DinnerTable(2,6,PriorityType.MEDIUM,sixByNico);
         dinnerTableRepository.save(sixByNicoTable2);
         List<Availability> sixByNicoAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1245, sixByNicoTable2);
         for(Availability availability: sixByNicoAvail2){
             availabilityRepository.save(availability);
-            sixByNicoTable2.addAvailability(availability);
-            dinnerTableRepository.save(sixByNicoTable2);}
+        }
 
         DinnerTable sixByNicoTable3 = new DinnerTable(3,4,PriorityType.HIGH,sixByNico);
         dinnerTableRepository.save(sixByNicoTable3);
         List<Availability> sixByNicoAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, sixByNicoTable3);
         for(Availability availability: sixByNicoAvail3){
             availabilityRepository.save(availability);
-            sixByNicoTable3.addAvailability(availability);
-            dinnerTableRepository.save(sixByNicoTable3);}
+        }
 
         // adds resto 3 - Chez Jules
 
@@ -250,24 +244,21 @@ public class DataLoader implements ApplicationRunner {
         List<Availability> chezJulesAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1300, chezJulesTable1);
         for(Availability availability: chezJulesAvail1){
             availabilityRepository.save(availability);
-            chezJulesTable1.addAvailability(availability);
-            dinnerTableRepository.save(chezJulesTable1);}
+        }
 
         DinnerTable chezJulesTable2 = new DinnerTable(2,4,PriorityType.HIGH,chezJules);
         dinnerTableRepository.save(chezJulesTable2);
         List<Availability> chezJulesAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1245, chezJulesTable2);
         for(Availability availability: chezJulesAvail2){
             availabilityRepository.save(availability);
-            chezJulesTable2.addAvailability(availability);
-            dinnerTableRepository.save(chezJulesTable2);}
+        }
 
         DinnerTable chezJulesTable3 = new DinnerTable(3,4,PriorityType.HIGH,chezJules);
         dinnerTableRepository.save(chezJulesTable3);
         List<Availability> chezJulesAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, chezJulesTable3);
         for(Availability availability: chezJulesAvail3){
             availabilityRepository.save(availability);
-            chezJulesTable3.addAvailability(availability);
-            dinnerTableRepository.save(chezJulesTable3);}
+        }
 
         // adds resto 4 - The Chanter
 
@@ -291,24 +282,21 @@ public class DataLoader implements ApplicationRunner {
         List<Availability> theChanterAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1300, theChanterTable1);
         for(Availability availability: theChanterAvail1){
             availabilityRepository.save(availability);
-            theChanterTable1.addAvailability(availability);
-            dinnerTableRepository.save(theChanterTable1);}
+        }
 
         DinnerTable theChanterTable2 = new DinnerTable(2,4,PriorityType.HIGH,theChanter);
         dinnerTableRepository.save(theChanterTable2);
         List<Availability> theChanterAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1315, theChanterTable2);
         for(Availability availability: theChanterAvail2){
             availabilityRepository.save(availability);
-            theChanterTable2.addAvailability(availability);
-            dinnerTableRepository.save(theChanterTable2);}
+        }
 
         DinnerTable theChanterTable3 = new DinnerTable(3,4,PriorityType.HIGH,theChanter);
         dinnerTableRepository.save(theChanterTable3);
         List<Availability> theChanterAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, theChanterTable3);
         for(Availability availability: theChanterAvail3){
             availabilityRepository.save(availability);
-            theChanterTable3.addAvailability(availability);
-            dinnerTableRepository.save(theChanterTable3);}
+        }
 
         // rest 5 - Bread Meets Bread
 
@@ -330,24 +318,21 @@ public class DataLoader implements ApplicationRunner {
         List<Availability> breadMeatsBreadAvail1 = DataLoaderHelper.getAvailabilities(dates, timesfrom1200, breadMeatsBreadTable1);
         for(Availability availability: breadMeatsBreadAvail1){
             availabilityRepository.save(availability);
-            breadMeatsBreadTable1.addAvailability(availability);
-            dinnerTableRepository.save(breadMeatsBreadTable1);}
+        }
 
         DinnerTable breadMeatsBreadTable2 = new DinnerTable(2,4,PriorityType.MEDIUM,breadMeatsBread);
         dinnerTableRepository.save(breadMeatsBreadTable2);
         List<Availability> breadMeatsBreadAvail2 = DataLoaderHelper.getAvailabilities(dates, timesfrom1315, breadMeatsBreadTable2);
         for(Availability availability: breadMeatsBreadAvail2){
             availabilityRepository.save(availability);
-            breadMeatsBreadTable2.addAvailability(availability);
-            dinnerTableRepository.save(breadMeatsBreadTable2);}
+        }
 
         DinnerTable breadMeetsBreadTable3 = new DinnerTable(3,4,PriorityType.HIGH,breadMeatsBread);
         dinnerTableRepository.save(breadMeetsBreadTable3);
         List<Availability> breadMeatsBreadAvail3 = DataLoaderHelper.getAvailabilities(dates, timesfrom1330, breadMeetsBreadTable3);
         for(Availability availability: breadMeatsBreadAvail3){
             availabilityRepository.save(availability);
-            breadMeetsBreadTable3.addAvailability(availability);
-            dinnerTableRepository.save(breadMeetsBreadTable3);}
+        }
 
 
         // adds some saved restos to customers
