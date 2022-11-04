@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, Image } from "react-native"
+import { TouchableOpacity, Text, Image, StyleSheet } from "react-native"
 
 const HomeFeaturedRestaurant = ({restaurant, navigation}) => {
 
@@ -31,5 +31,22 @@ const HomeFeaturedRestaurant = ({restaurant, navigation}) => {
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create({
+    textH3Dark: {
+        fontSize: 18,
+        textAlign: 'left',
+        marginBottom: 3,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-ExtraBold',
+    },
+    paraDark: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 5,
+        color: '#27233A',
+        fontFamily:'Covered_By_Your_Grace,Karla,Rubik_Dirt/Karla-Regular',
+    },
+})
 
 export default HomeFeaturedRestaurant;
