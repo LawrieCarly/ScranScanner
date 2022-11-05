@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import SearchResultItem from "./SearchResultItem";
 
 const SearchResults = ({navigation, searchResults, formParams}) => {
@@ -24,9 +24,9 @@ const SearchResults = ({navigation, searchResults, formParams}) => {
         // Renders results as list
 
         // TODO - Investigate react native list components for accessability
-        <View>
+        <SafeAreaView>
             {searchNodes}
-        </View>
+        </SafeAreaView>
     )
 }
 

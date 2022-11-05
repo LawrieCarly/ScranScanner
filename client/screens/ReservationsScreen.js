@@ -31,7 +31,13 @@ const ReservationsScreen = ({ navigation }) => {
 
     useEffect(() => {
         getBookingsByCustomer(context.customerId)
-            .then(returnedBookings => setBookings(returnedBookings))
+            .then(returnedBookings => {
+                console.log("bookings", returnedBookings)
+                setBookings(returnedBookings)
+            })
+
+        // TODO
+        // - having bookings as a dependency here is giving us an infinte loop of get requests.
     }, [IsFocused, bookings]);
 
     // console.log("booking name", customer.bookings)
@@ -54,7 +60,9 @@ const ReservationsScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainView}>
-            {bookings && customer ?
+            {bookings 
+            
+             ?
 
                 <View>
                     <Text style={styles.textH2Dark}>{customer.displayName}'s bookings</Text>

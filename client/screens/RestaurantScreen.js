@@ -76,7 +76,7 @@ const RestaurantScreen = ({ navigation, route }) => {
                                     onPress={ () => {
                                         Alert.alert(
                                         `'${restaurantById.displayName}' Confirmation:`,
-                                        `Table for ${route.params.partysize} customers, at ${availability.time} on ${availability.date}`,
+                                        `Table for ${route.params.partySize} customers, at ${availability.time} on ${availability.date}`,
         
                                         [
                                             {text: 'Book Now', onPress: () => {
@@ -92,12 +92,13 @@ const RestaurantScreen = ({ navigation, route }) => {
                                                 "availability": {
                                                     "id": availability.id
                                                 },
-                                                "numberOfGuests": route.params.partysize
+                                                "numberOfGuests": route.params.partySize
                                             }
                                             postBooking(bookingObject)
 
                                             // NAVIGATE - to reservations page
-                                            navigation.navigate('Profile')}
+                                            navigation.navigate('Profile')
+                                            }
                                             },
             
                                             {text: 'Cancel', onPress: () => console.log('cancelled'), style: 'cancel'},
